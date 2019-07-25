@@ -15,6 +15,8 @@ public interface MovieService {
 
     Page<Movie> findTopRatedMovies(Pageable pageable);
 
+    Page<Movie> findUpcomingMovies(Pageable pageable);
+
     Page<Movie> findAllWithEagerRelationships(Pageable pageable);
 
     Optional<Movie> findOne(Long id);

@@ -1,6 +1,5 @@
 server:
   port: 8025
-  address: localhost
 
 spring:
   application:
@@ -14,14 +13,11 @@ spring:
     hikari:
       auto-commit: false
   jpa:
-#    database-platform: io.github.jhipster.domain.util.FixedH2Dialect
     database: H2
     open-in-view: false
     show-sql: false
     hibernate:
-      dialect: org.hibernate.dialect.H2Dialect
-      ddl-auto: create-drop
-      show_sql: true
+      ddl-auto: 'create-drop'
       naming:
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy

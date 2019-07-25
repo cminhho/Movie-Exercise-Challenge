@@ -34,10 +34,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Integration tests for the {@Link MovieResource} REST controller.
+ * Integration tests for the {@Link MovieRestController} REST controller.
  */
 @SpringBootTest(classes = MovieApplication.class)
-public class MovieResourceIT {
+public class MovieRestControllerIT {
 
     private static final String DEFAULT_TITLE = "AAAAAAAAAA";
     private static final String UPDATED_TITLE = "BBBBBBBBBB";
@@ -79,7 +79,7 @@ public class MovieResourceIT {
     private static final String UPDATED_RELEASE_DATE = "BBBBBBBBBB";
 
     @Autowired
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
     @Mock
     private MovieService movieServiceMock;
@@ -100,8 +100,8 @@ public class MovieResourceIT {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final MovieResource movieResource = new MovieResource(movieService);
-        this.restMovieMockMvc = MockMvcBuilders.standaloneSetup(movieResource)
+        final MovieRestController movieRestController = new MovieRestController(movieService);
+        this.restMovieMockMvc = MockMvcBuilders.standaloneSetup(movieRestController)
             .setCustomArgumentResolvers(pageableArgumentResolver).build();
     }
 
@@ -253,10 +253,10 @@ public class MovieResourceIT {
 
     @SuppressWarnings({"unchecked"})
     public void getAllMoviesWithEagerRelationshipsIsEnabled() throws Exception {
-        MovieResource movieResource = new MovieResource(movieServiceMock);
+        MovieRestController movieRestController = new MovieRestController(movieServiceMock);
         when(movieServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
-        MockMvc restMovieMockMvc = MockMvcBuilders.standaloneSetup(movieResource)
+        MockMvc restMovieMockMvc = MockMvcBuilders.standaloneSetup(movieRestController)
             .setCustomArgumentResolvers(pageableArgumentResolver).build();
 
         restMovieMockMvc.perform(get("/api/movie?eagerload=true"))
@@ -267,9 +267,9 @@ public class MovieResourceIT {
 
     @SuppressWarnings({"unchecked"})
     public void getAllMoviesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        MovieResource movieResource = new MovieResource(movieServiceMock);
+        MovieRestController movieRestController = new MovieRestController(movieServiceMock);
         when(movieServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-        MockMvc restMovieMockMvc = MockMvcBuilders.standaloneSetup(movieResource)
+        MockMvc restMovieMockMvc = MockMvcBuilders.standaloneSetup(movieRestController)
             .setCustomArgumentResolvers(pageableArgumentResolver).build();
 
         restMovieMockMvc.perform(get("/api/movie?eagerload=true"))

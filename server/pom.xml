@@ -14,9 +14,11 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>movie</name>
-  <description>RETS API for Movie Interview Application</description>
+  <description>REST API for Movie Manager Exercise</description>
 
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
 
     <slf4j.api.version>2.0.0-alpha0</slf4j.api.version>
@@ -40,6 +42,11 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -122,6 +129,12 @@
   </dependencies>
 
   <build>
+    <defaultGoal>spring-boot:run</defaultGoal>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources/</directory>
+      </testResource>
+    </testResources>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>

@@ -19,6 +19,7 @@ public class MovieServiceImpl implements MovieService {
 
     private static final String POPULARITY = "popularity";
     private static final String VOTE_AVERAGE = "voteAverage";
+    private static final String RELEASE_DATE = "releaseDate";
 
     private final Logger log = LoggerFactory.getLogger(MovieServiceImpl.class);
 
@@ -53,6 +54,13 @@ public class MovieServiceImpl implements MovieService {
         return findAllWithEagerRelationships(PageRequest.of(0, pageable.getPageSize(),
             Sort.by(Direction.DESC,
                 VOTE_AVERAGE)));
+    }
+
+    @Override
+    public Page<Movie> findUpcomingMovies(Pageable pageable) {
+        return findAllWithEagerRelationships(PageRequest.of(0, pageable.getPageSize(),
+            Sort.by(Direction.DESC,
+                RELEASE_DATE)));
     }
 
     @Override

@@ -19,6 +19,7 @@ export class MovieComponent implements OnInit {
   predicate: any;
   reverse: any;
   totalItems: number;
+  selectedMoveType: string;
 
   carouselMovies = [
     {
@@ -48,11 +49,19 @@ export class MovieComponent implements OnInit {
     this.movies = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 1;
+    this.selectedMoveType = 'popular';
     this.loadAll();
   }
 
-  onChangedTab(event: any) {
-    console.log(event);
+  onChangedTab(selectedMoveType: string) {
+    this.selectedMoveType = selectedMoveType;
+    this.reset();
+  }
+
+  reset() {
+    this.page = 1;
+    this.movies = [];
+    this.loadAll();
   }
 
   loadPage(page: any) {
@@ -61,7 +70,7 @@ export class MovieComponent implements OnInit {
   }
 
   private loadAll() {
-    this.movieService.query({
+    this.movieService.query(this.selectedMoveType, {
       page: this.page,
       size: this.itemsPerPage,
       sort: this.sort()

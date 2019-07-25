@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: 'movie',
-        loadChildren: './movie/movie.module#MovieModule'
+        loadChildren: './movie/movie.module#MovieMgmtModule'
       }
     ])
   ],
@@ -15,4 +15,4 @@ import { RouterModule } from '@angular/router';
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class MovieExerciseAdminModule {}
+export class AdminModule {}

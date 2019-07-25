@@ -4,12 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { IMovie } from 'app/shared/model/movie.model';
-import { MovieService } from './movie.service';
+import { MovieService } from './movie-management.service';
 import { TmaEventManager } from '@app/core';
 
 @Component({
-  selector: 'app-movie-delete-dialog',
-  templateUrl: './movie-delete-dialog.component.html'
+  selector: 'app-movie-management-delete-dialog',
+  templateUrl: './movie-management-delete-dialog.component.html'
 })
 export class MovieDeleteDialogComponent {
   movie: IMovie;

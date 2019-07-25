@@ -5,15 +5,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { IMovie, Movie } from 'app/shared/model/movie.model';
-import { MovieService } from './movie.service';
+import { MovieService } from './movie-management.service';
 import { IGenre } from 'app/shared/model/genre.model';
-import { GenreService } from 'app/entities/genre';
 import { IList } from 'app/shared/model/list.model';
-import { ListService } from 'app/entities/list';
 
 @Component({
   selector: 'app-movie-update',
-  templateUrl: './movie-update.component.html'
+  templateUrl: './movie-management-update.component.html'
 })
 export class MovieUpdateComponent implements OnInit {
   isSaving: boolean;
@@ -43,8 +41,6 @@ export class MovieUpdateComponent implements OnInit {
 
   constructor(
     protected movieService: MovieService,
-    protected genreService: GenreService,
-    protected listService: ListService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -54,20 +50,6 @@ export class MovieUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ movie }) => {
       this.updateForm(movie);
     });
-    this.genreService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IGenre[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IGenre[]>) => response.body)
-      )
-      .subscribe((res: IGenre[]) => (this.genres = res), (res: HttpErrorResponse) => this.onError(res.message));
-    this.listService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IList[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IList[]>) => response.body)
-      )
-      .subscribe((res: IList[]) => (this.lists = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(movie: IMovie) {

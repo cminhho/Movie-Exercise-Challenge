@@ -22,7 +22,7 @@
             <th><span>Vote Count</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th><span>Video</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th><span>Media Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th"><span>Popularity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Popularity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th><span>Poster Path</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th><span>Original Language</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th><span>Original Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -34,7 +34,7 @@
             <th></th>
             </tr>
             </thead>
-            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tbody>
             <tr *ngFor="let movie of movies ;trackBy: trackId">
                 <td><a [routerLink]="['/movie', movie.id, 'view' ]">{{movie.id}}</a></td>
                 <td>{{movie.title}}</td>

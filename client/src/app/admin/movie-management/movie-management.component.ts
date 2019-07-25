@@ -5,14 +5,14 @@ import { filter, map } from 'rxjs/operators';
 
 import { IMovie } from 'app/shared/model/movie.model';
 
-import { MovieService } from './movie.service';
+import { MovieService } from './movie-management.service';
 import { TmaEventManager } from '@app/core';
 
 const ITEMS_PER_PAGE = 10;
 
 @Component({
-  selector: 'app-movie',
-  templateUrl: './movie.component.html'
+  selector: 'app-movie-management',
+  templateUrl: './movie-management.component.html'
 })
 export class MovieComponent implements OnInit, OnDestroy {
   movies: IMovie[];
@@ -89,7 +89,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   }
 
   protected paginateMovies(data: IMovie[], headers: HttpHeaders) {
-    this.links = this.parseLinks.parse(headers.get('link'));
+    // this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     for (let i = 0; i < data.length; i++) {
       this.movies.push(data[i]);

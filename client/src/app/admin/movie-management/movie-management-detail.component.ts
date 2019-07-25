@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { IMovie } from 'app/shared/model/movie.model';
 
 @Component({
-  selector: 'app-movie-detail',
-  templateUrl: './movie-detail.component.html'
+  selector: 'app-movie-management-detail',
+  templateUrl: './movie-management-detail.component.html'
 })
 export class MovieDetailComponent implements OnInit {
   movie: IMovie;

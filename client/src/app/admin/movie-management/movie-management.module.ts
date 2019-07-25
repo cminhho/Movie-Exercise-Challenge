@@ -10,7 +10,7 @@ import {
   MovieDeleteDialogComponent,
   movieRoute,
   moviePopupRoute
-} from './';
+} from '.';
 
 const ENTITY_STATES = [...movieRoute, ...moviePopupRoute];
 
@@ -20,4 +20,4 @@ const ENTITY_STATES = [...movieRoute, ...moviePopupRoute];
   entryComponents: [MovieComponent, MovieUpdateComponent, MovieDeleteDialogComponent, MovieDeletePopupComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class MovieModule {}
+export class MovieMgmtModule {}

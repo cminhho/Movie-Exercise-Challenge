@@ -4,11 +4,11 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@a
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Movie } from 'app/shared/model/movie.model';
-import { MovieService } from './movie.service';
-import { MovieComponent } from './movie.component';
-import { MovieDetailComponent } from './movie-detail.component';
-import { MovieUpdateComponent } from './movie-update.component';
-import { MovieDeletePopupComponent } from './movie-delete-dialog.component';
+import { MovieService } from './movie-management.service';
+import { MovieComponent } from './movie-management.component';
+import { MovieDetailComponent } from './movie-management-detail.component';
+import { MovieUpdateComponent } from './movie-management-update.component';
+import { MovieDeletePopupComponent } from './movie-management-delete-dialog.component';
 import { IMovie } from 'app/shared/model/movie.model';
 
 @Injectable({ providedIn: 'root' })

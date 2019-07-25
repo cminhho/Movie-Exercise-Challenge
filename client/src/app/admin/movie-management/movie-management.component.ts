@@ -31,7 +31,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   ) {
     this.movies = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
-    this.page = 0;
+    this.page = 1;
     this.links = {
       last: 0
     };

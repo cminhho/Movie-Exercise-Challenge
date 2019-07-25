@@ -5,7 +5,8 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { TreeModule } from 'ng2-tree';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 @NgModule({
   imports: [NgbModule, NgSelectModule, FormsModule],
   exports: [
@@ -16,7 +17,7 @@ import { TreeModule } from 'ng2-tree';
     ReactiveFormsModule,
     AngularFontAwesomeModule,
     NgSelectModule,
-    TreeModule
+    InfiniteScrollModule
   ],
   entryComponents: [],
   providers: []

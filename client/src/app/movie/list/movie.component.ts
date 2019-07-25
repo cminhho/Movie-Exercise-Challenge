@@ -121,13 +121,13 @@ export class MovieComponent implements OnInit {
 
   private loadAll() {
     this.movieService.query().subscribe((res: HttpResponse<any[]>) => {
-      // this.paginateCrawlRequests(res.body.results);
+      this.paginateCrawlRequests(res.body.results);
     }, (error: any) => {
-
     });
   }
 
   private paginateCrawlRequests(data: any) {
+    debugger
     this.movies = data;
   }
 }

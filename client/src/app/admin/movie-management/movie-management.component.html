@@ -34,7 +34,7 @@
             <th></th>
             </tr>
             </thead>
-            <tbody>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let movie of movies ;trackBy: trackId">
                 <td><a [routerLink]="['/movie', movie.id, 'view' ]">{{movie.id}}</a></td>
                 <td>{{movie.title}}</td>

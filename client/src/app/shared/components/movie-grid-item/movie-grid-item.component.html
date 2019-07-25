@@ -1,7 +1,7 @@
 <div>
   <div class="thumbnail-gallery card shadow-lg" style="height: 450px;">
     <div class="thumbnail-gallery-wrapper hovereffect">
-      <img class="card-img-top" [src]="movie.image" alt="Card image" style="width:100%;height: 350px;" />
+      <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Card image" style="width:100%;height: 350px;" />
       <div class="overlay">
         <h2>{{ movie.title }}</h2>
         <a class="info" href="#">Play Now</a>

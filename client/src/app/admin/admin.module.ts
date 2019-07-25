@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forChild([
       {
-        path: 'movie',
-        loadChildren: './movie/movie.module#MovieMgmtModule'
+        path: 'movie-management',
+        loadChildren: './movie-management/movie-management.module#MovieMgmtModule'
       }
     ])
   ],

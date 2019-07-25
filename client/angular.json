@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "broadcom-angular-client": {
+    "movie-exercise-client": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/broadcom-angular-client",
+            "outputPath": "dist/movie-exercise-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -39,23 +39,13 @@
                 }
               ]
             },
-            "onix-dev": {
+            "dev": {
               "sourceMap": true,
               "aot": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.onix-dev.ts"
-                }
-              ]
-            },
-            "broadcom-dev": {
-              "sourceMap": true,
-              "aot": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.broadcom-dev.ts"
+                  "with": "src/environments/environment.dev.ts"
                 }
               ]
             },
@@ -74,27 +64,24 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "broadcom-angular-client:build"
+            "browserTarget": "movie-exercise-client:build"
           },
           "configurations": {
             "local": {
-              "browserTarget": "broadcom-angular-client:build:local"
+              "browserTarget": "movie-exercise-client:build:local"
             },
-            "onix-dev": {
-              "browserTarget": "broadcom-angular-client:build:onix-dev"
-            },
-            "broadcom-dev": {
-              "browserTarget": "broadcom-angular-client:build:broadcom-dev"
+            "dev": {
+              "browserTarget": "movie-exercise-client:build:dev"
             },
             "production": {
-              "browserTarget": "broadcom-angular-client:build:production"
+              "browserTarget": "movie-exercise-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "broadcom-angular-client:build"
+            "browserTarget": "movie-exercise-client:build"
           }
         },
         "test": {
@@ -122,7 +109,7 @@
         }
       }
     },
-    "broadcom-angular-client-e2e": {
+    "movie-exercise-client-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -130,11 +117,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "broadcom-angular-client:serve"
+            "devServerTarget": "movie-exercise-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "broadcom-angular-client:serve:production"
+              "devServerTarget": "movie-exercise-client:serve:production"
             }
           }
         },
@@ -148,7 +135,7 @@
       }
     }
   },
-  "defaultProject": "broadcom-angular-client",
+  "defaultProject": "movie-exercise-client",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

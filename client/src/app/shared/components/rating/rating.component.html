@@ -1,0 +1,12 @@
+<div>
+  Rating <span style="color: darkgrey">based on <b>{{reviews}}</b> reviews</span>
+</div>
+<div class="d-flex align-items-center">
+  <ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+      <span class="half" [style.width.%]="fill" style="color: #ff0079">&#9733;</span>&#9733;
+    </span>
+  </ng-template>
+  <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+  <span class="ml-2 border px-1" style="color: darkgrey; border-color: darkgrey !important"><b>{{currentRate}}</b></span>
+</div>

@@ -1,0 +1,12 @@
+<div>
+  <app-carousel [movies]="movies"></app-carousel>
+  <div class="container">
+    <app-tabset (changedTab)="onChangedTab($event)"></app-tabset>
+    <div class="mb-5">
+      <app-movie-grid [movies]="movies"></app-movie-grid>
+    </div>
+    <div class="mb-5">
+      <app-pagination class="d-flex justify-content-center"></app-pagination>
+    </div>
+  </div>
+</div>

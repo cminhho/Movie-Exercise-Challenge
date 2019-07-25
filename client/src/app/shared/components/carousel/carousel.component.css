@@ -1,0 +1,58 @@
+.title {
+  position: absolute;
+  bottom: 20px;
+  left: 15%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.rating {
+  position: absolute;
+  bottom: 20px;
+  right: 15%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.button {
+  border: none !important;
+  color: white !important;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.watch-movie-button {
+  background-color: #ff0079; 
+  color: black; 
+}
+
+.view-info-button {
+  background-color: transparent; 
+  color: black;
+  border: 2px solid white !important;
+}
+
+.max-width-100-height-auto {
+  max-width: 100%;
+  height: auto;
+}
+
+.width-height-100 {
+  width: 100%;
+  height: auto;
+}
+
+.picsum-img-wrapper {
+  height: 400px;
+}

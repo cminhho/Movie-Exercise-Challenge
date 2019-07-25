@@ -53,7 +53,6 @@ export class MovieComponent implements OnInit {
 
   onChangedTab(event: any) {
     console.log(event);
-    // this.movies = this.moviesForTopRated;
   }
 
   loadPage(page: any) {

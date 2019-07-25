@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="movie">
+            <h2><span>Movie</span> {{movie.id}}</h2>
+            <hr>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Title</span></dt>
+                <dd>
+                    <span>{{movie.title}}</span>
+                </dd>
+                <dt><span>Vote Average</span></dt>
+                <dd>
+                    <span>{{movie.voteAverage}}</span>
+                </dd>
+                <dt><span>Vote Count</span></dt>
+                <dd>
+                    <span>{{movie.voteCount}}</span>
+                </dd>
+                <dt><span>Video</span></dt>
+                <dd>
+                    <span>{{movie.video}}</span>
+                </dd>
+                <dt><span>Media Type</span></dt>
+                <dd>
+                    <span>{{movie.mediaType}}</span>
+                </dd>
+                <dt><span>Popularity</span></dt>
+                <dd>
+                    <span>{{movie.popularity}}</span>
+                </dd>
+                <dt><span>Poster Path</span></dt>
+                <dd>
+                    <span>{{movie.posterPath}}</span>
+                </dd>
+                <dt><span>Original Language</span></dt>
+                <dd>
+                    <span>{{movie.originalLanguage}}</span>
+                </dd>
+                <dt><span>Original Title</span></dt>
+                <dd>
+                    <span>{{movie.originalTitle}}</span>
+                </dd>
+                <dt><span>Backdrop Path</span></dt>
+                <dd>
+                    <span>{{movie.backdropPath}}</span>
+                </dd>
+                <dt><span>Adult</span></dt>
+                <dd>
+                    <span>{{movie.adult}}</span>
+                </dd>
+                <dt><span>Overview</span></dt>
+                <dd>
+                    <span>{{movie.overview}}</span>
+                </dd>
+                <dt><span>Release Date</span></dt>
+                <dd>
+                    <span>{{movie.releaseDate}}</span>
+                </dd>
+                <dt><span>Genre</span></dt>
+                <dd>
+                    <span *ngFor="let genre of movie.genres; let last = last">
+                        <a [routerLink]="['/genre', genre?.id, 'view' ]">{{genre.title}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>List</span></dt>
+                <dd>
+                    <div *ngIf="movie.list">
+                        <a [routerLink]="['/list', movie.list?.id, 'view']">{{movie.list?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/movie', movie.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

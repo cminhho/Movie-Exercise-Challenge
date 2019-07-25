@@ -1,17 +1,19 @@
 <div>
-  <div class="card shadow-lg m-2" style="height: 480px;">
-    <img class="card-img-top" [src]="movie.image" alt="Card image" style="width:100%;height: 380px;">
+  <div class="card shadow-lg" style="height: 450px;">
+    <img class="card-img-top" [src]="movie.image" alt="Card image" style="width:100%;height: 350px;" />
     <div class="d-flex flex-row align-items-center px-2" style="height: 100px">
       <div class="py-2 px-1" style="max-height: 100px">
-        <div style="max-height: 50px; overflow: hidden; text-overflow: ellipsis;" class="py-2">{{movie.title}}</div>
+        <div style="max-height: 50px; overflow: hidden; text-overflow: ellipsis;" class="py-2">{{ movie.title }}</div>
         <div>
           <span class="text-black-50">| </span>
-          <span class="card-text text-black-50" *ngFor="let category of movie.category">{{category}} | </span>
+          <span class="card-text text-black-50" *ngFor="let category of movie.category">{{ category }} | </span>
         </div>
       </div>
-      <div class="border d-flex align-items-center justify-content-center ml-2"
-        style="color: #ff0079; border-color: #ff0079 !important; width: 48px; height: 36px;">
-        <span>{{movie.currentRate}}</span>
+      <div
+        class="border d-flex align-items-center justify-content-center ml-2"
+        style="color: #ff0079; border-color: #ff0079 !important; width: 48px; height: 36px;"
+      >
+        <span>{{ movie.currentRate }}</span>
       </div>
     </div>
   </div>

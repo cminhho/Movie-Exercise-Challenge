@@ -11,6 +11,7 @@ import { AppRoutes } from '@app/app.routing';
 import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
+import { AdminModule } from '@app/admin/admin.module';
 
 import {
   HeaderComponent,
@@ -37,7 +38,8 @@ import {
       useHash: true
     }),
     CoreModule,
-    SharedModule
+    SharedModule,
+    AdminModule
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

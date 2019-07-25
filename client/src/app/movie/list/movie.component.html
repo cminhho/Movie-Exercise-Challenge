@@ -2,6 +2,7 @@
   <app-header></app-header>
   <app-carousel [movies]="movies"></app-carousel>
   <div class="container">
+      <h4 class="latest-text my-4">Featured Movies</h4>
     <app-tabset (changedTab)="onChangedTab($event)"></app-tabset>
     <div class="mb-5">
       <app-movie-grid [movies]="movies"></app-movie-grid>

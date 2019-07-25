@@ -1,0 +1,93 @@
+package com.exercise.movie.comment;
+
+import com.exercise.movie.movie.Movie;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+@Entity
+@Table(name = "comment")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class MovieComment implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    @Column(name = "review", nullable = false)
+    private String review;
+
+    @ManyToOne
+    @JsonIgnoreProperties("comments")
+    private Movie movie;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public MovieComment review(String review) {
+        this.review = review;
+        return this;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public MovieComment movie(Movie movie) {
+        this.movie = movie;
+        return this;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof MovieComment)) {
+            return false;
+        }
+        return id != null && id.equals(((MovieComment) o).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    @Override
+    public String toString() {
+        return "MovieComment{" +
+            "id=" + getId() +
+            ", review='" + getReview() + "'" +
+            "}";
+    }
+}

@@ -1,0 +1,37 @@
+server:
+  port: 8025
+  address: localhost
+
+spring:
+  application:
+    name: Movie
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:moviedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
+    name:
+    username: sa
+    password: sa
+    hikari:
+      auto-commit: false
+  jpa:
+#    database-platform: io.github.jhipster.domain.util.FixedH2Dialect
+    database: H2
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect
+      ddl-auto: create-drop
+      show_sql: true
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    properties:
+      hibernate.id.new_generator_mappings: true
+
+  mvc:
+    favicon:
+      enabled: false
+
+  data:
+    rest:
+      basePath: "/api/v1"

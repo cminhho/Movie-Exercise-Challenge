@@ -56,3 +56,8 @@
 .picsum-img-wrapper {
   height: 400px;
 }
+
+.carousel img {
+  max-width: 100%;
+  object-fit: cover;
+}

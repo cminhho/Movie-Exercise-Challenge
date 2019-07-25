@@ -1,0 +1,103 @@
+{
+  "name": "movie-manager-exercise",
+  "version": "1.0.0",
+  "description": "movie-manager-exercise",
+  "cacheDirectories": [
+    "node_modules"
+  ],
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --configuration=local --o --host 0.0.0.0 --aot",
+    "start:onix-dev": "ng serve --configuration=onix-dev --o --host 0.0.0.0",
+    "start:tma-dev": "ng serve --configuration=tma-dev --o --host 0.0.0.0",
+    "start:prod": "ng serve --configuration=production --o --host 0.0.0.0",
+    "build:local": "ng build --configuration=local --aot",
+    "build:onix-dev": "ng build --prod --configuration=onix-dev --aot",
+    "build:tma-dev": "ng build --prod --configuration=tma-dev --aot",
+    "build:prod": "ng build --prod --configuration=production --aot",
+    "pwa:build:local": "ng build --configuration=local && sw-precache --root=dist --config=precache-config.js",
+    "pwa:build:onix-dev": "ng build --prod --configuration=onix-dev && sw-precache --root=dist --config=precache-config.js",
+    "pwa:build:tma-dev": "ng build --prod --configuration=tma-dev && sw-precache --root=dist --config=precache-config.js",
+    "pwa:build:prod": "ng build --prod && sw-precache --root=dist --config=precache-config.js",
+    "test": "ng test",
+    "e2e": "ng e2e",
+    "generate": "ng generate",
+    "compodoc:gen": "./node_modules/.bin/compodoc -p src/tsconfig.app.json",
+    "compodoc:serve": "./node_modules/.bin/compodoc -s src/tsconfig.app.json",
+    "compodoc": "npm run compodoc:gen && npm run compodoc:serve",
+    "lint": "tslint --fix --config tslint.json --project tsconfig.json",
+    "format:fix": "pretty-quick --staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "ng build --prod --configuration=onix-dev --aot"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "pretty-quick --staged",
+      "tslint --fix --config tslint.json --project tsconfig.json",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@angular/animations": "8.0.1",
+    "@angular/common": "8.0.1",
+    "@angular/compiler": "8.0.1",
+    "@angular/core": "8.0.1",
+    "@angular/forms": "8.0.1",
+    "@angular/http": "7.2.4",
+    "@angular/platform-browser": "8.0.1",
+    "@angular/platform-browser-dynamic": "8.0.1",
+    "@angular/router": "8.0.1",
+    "@angular/service-worker": "8.0.1",
+    "@ng-bootstrap/ng-bootstrap": "5.0.0",
+    "@ng-select/ng-select": "2.20.0",
+    "@types/gapi": "0.0.36",
+    "@types/gapi.auth2": "0.0.50",
+    "angular-font-awesome": "3.1.2",
+    "bootstrap": "4.3.1",
+    "core-js": "2.6.4",
+    "font-awesome": "4.7.0",
+    "jquery": "3.4.1",
+    "lodash": "4.17.11",
+    "luxon": "1.3.3",
+    "moment": "2.24.0",
+    "ng2-tree": "2.0.0-rc.11",
+    "ngx-bootstrap": "4.0.1",
+    "rxjs": "6.5.2",
+    "rxjs-compat": "6.5.2",
+    "zone.js": "0.9.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "0.800.0",
+    "@angular/cli": "8.0.3",
+    "@angular/compiler-cli": "8.0.1",
+    "@angular/language-service": "8.0.1",
+    "@compodoc/compodoc": "1.1.9",
+    "@types/jasmine": "2.8.6",
+    "@types/jasminewd2": "2.0.3",
+    "@types/jquery": "3.3.5",
+    "@types/lodash": "4.14.134",
+    "@types/luxon": "1.2.2",
+    "@types/node": "8.9.4",
+    "codelyzer": "5.1.0",
+    "husky": "0.14.3",
+    "jasmine-core": "2.99.1",
+    "jasmine-spec-reporter": "4.2.1",
+    "karma": "4.1.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-coverage-istanbul-reporter": "2.0.0",
+    "karma-jasmine": "1.1.2",
+    "karma-jasmine-html-reporter": "0.2.2",
+    "lint-staged": "7.2.0",
+    "prettier": "1.18.2",
+    "pretty-quick": "1.6.0",
+    "protractor": "5.4.0",
+    "sw-precache-webpack-plugin": "0.11.5",
+    "ts-node": "8.3.0",
+    "tslint": "5.18.0",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "3.4.5"
+  }
+}

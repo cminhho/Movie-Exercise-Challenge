@@ -1,0 +1,30 @@
+<ngb-carousel *ngIf="movies">
+  <ng-template *ngFor="let movie of movies" ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="movie.image" alt="Random first slide" class="w-100" style="height: inherit">
+    </div>
+    <div class="carousel-caption">
+
+    </div>
+    <div class="title text-left">
+      <h1>{{movie.title}}</h1>
+      <div>
+        <span *ngFor="let category of movie.category" class="mr-2">
+          {{category}}
+        </span>
+        <span> | </span>
+        <span class="ml-2">Duration: {{movie.duration}}</span>
+      </div>
+      <div class="left-button mt-2">
+        <button class="button watch-movie-button rounded mr-3">WATCH MOVIE</button>
+        <button class="button view-info-button rounded">VIEW INFO</button>
+      </div>
+    </div>
+    <div class="right-action"></div>
+    <div class="rating border px-3 py-2" style="border-color: darkgrey">
+      <app-rating [currentRate]="movie.currentRate" [reviews]="movie.reviews"></app-rating>
+    </div>
+  </ng-template>
+</ngb-carousel>
+
+  

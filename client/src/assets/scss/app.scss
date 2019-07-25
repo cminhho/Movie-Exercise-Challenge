@@ -1,0 +1,105 @@
+/**
+ * Table Of Content
+ *
+ *  1. Globals
+ *  2. Headers
+ *  3. Navigations
+ *  4. Banners
+ *  5. Footers
+ *  6. Posts
+ *  7. Widgets
+ *  8. Custom Templates
+ */
+
+/*******************
+Global Styles
+*******************/
+
+* {
+  outline: none;
+}
+body {
+  font-size: 14px;
+  color: $bodytext;
+  min-height: 100%;
+  padding-bottom: 170px;
+  position: relative;
+  line-height: 1.42857143;
+  font-family: $bodyfont;
+}
+.container {
+  min-width: 1280px;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+.extra-light {
+  font-weight: 200;
+}
+.btn {
+  font-family: $headingfont;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+a {
+  color: $themecolor;
+  &:hover,
+  &:focus {
+    color: $headingtext;
+  }
+}
+
+a.link {
+  color: $headingtext;
+  &:hover,
+  &:focus {
+    color: $themecolor;
+  }
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid $danger;
+  font-size: 14px;
+  background: #f4f5f9;
+  line-height: 28px;
+}
+
+// Navigations
+.app-navbar {
+  background-color: $topbar;
+  border-bottom: 7px solid $danger;
+  height: 70px;
+  font-size: 16px;
+  font-family: $headingfont;
+}
+.navbar .logo-img {
+  width: 205px;
+  height: 39px;
+  margin: 0;
+  font-size: 0;
+  background: url(https://static.tma.com/static/img/avago-logo.png) center
+    center no-repeat;
+}
+.bc-nav-link {
+  color: $danger !important;
+  padding-right: 2px;
+  padding-left: 2px;
+  font-weight: 400px;
+  display: inline-block;
+}
+
+.footer {
+  background-color: #bbbcbc;
+  color: #53565a;
+}
+
+.page-heading {
+  color: #cc092f;
+  font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+}

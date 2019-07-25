@@ -13,6 +13,7 @@ import {
   HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '@env/environment';
 
 import { ErrorHandlerInterceptor } from '@app/core/http/error-handler.interceptor';
 

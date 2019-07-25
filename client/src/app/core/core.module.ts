@@ -17,6 +17,7 @@ import {
   UserService,
   UtilService
 } from '@app/core/service';
+import { ApiKeyInterceptor } from './http/api-key.interceptor';
 
 
 @NgModule({
@@ -28,6 +29,11 @@ import {
     UserService,
     UtilService,
     ErrorMessageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiKeyInterceptor,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorHandlerInterceptor,

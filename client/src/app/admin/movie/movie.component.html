@@ -1,14 +1,13 @@
 <div>
     <h2 id="page-heading">
         <span>Movies</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-movie" [routerLink]="['/movie/new']">
+        <button class="btn btn-primary float-right create-movie" [routerLink]="['/movie/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
             Create new Movie
             </span>
         </button>
     </h2>
-    <jhi-alert></jhi-alert>
     <br/>
     <div class="alert alert-warning" *ngIf="movies?.length === 0">
         <span>No movies found</span>
@@ -16,22 +15,22 @@
     <div class="table-responsive" *ngIf="movies?.length > 0">
         <table class="table table-striped">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="title"><span>Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="voteAverage"><span>Vote Average</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="voteCount"><span>Vote Count</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="video"><span>Video</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="mediaType"><span>Media Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="popularity"><span>Popularity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="posterPath"><span>Poster Path</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="originalLanguage"><span>Original Language</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="originalTitle"><span>Original Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="backdropPath"><span>Backdrop Path</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="adult"><span>Adult</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="overview"><span>Overview</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="releaseDate"><span>Release Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="list.id"><span>List</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <tr>
+            <th ><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Vote Average</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Vote Count</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Video</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Media Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th"><span>Popularity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Poster Path</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Original Language</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Original Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Backdrop Path</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Adult</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Overview</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>Release Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span>List</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>

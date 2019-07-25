@@ -2,19 +2,19 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
 
 import { IMovie } from 'app/shared/model/movie.model';
 import { MovieService } from './movie.service';
+import { TmaEventManager } from '@app/core';
 
 @Component({
-  selector: 'jhi-movie-delete-dialog',
+  selector: 'app-movie-delete-dialog',
   templateUrl: './movie-delete-dialog.component.html'
 })
 export class MovieDeleteDialogComponent {
   movie: IMovie;
 
-  constructor(protected movieService: MovieService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
+  constructor(protected movieService: MovieService, public activeModal: NgbActiveModal, protected eventManager: TmaEventManager) { }
 
   clear() {
     this.activeModal.dismiss('cancel');
@@ -32,13 +32,13 @@ export class MovieDeleteDialogComponent {
 }
 
 @Component({
-  selector: 'jhi-movie-delete-popup',
+  selector: 'app-movie-delete-popup',
   template: ''
 })
 export class MovieDeletePopupComponent implements OnInit, OnDestroy {
   protected ngbModalRef: NgbModalRef;
 
-  constructor(protected activatedRoute: ActivatedRoute, protected router: Router, protected modalService: NgbModal) {}
+  constructor(protected activatedRoute: ActivatedRoute, protected router: Router, protected modalService: NgbModal) { }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ movie }) => {

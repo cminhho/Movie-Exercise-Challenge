@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IMovie } from 'app/shared/model/movie.model';
 
 @Component({
-  selector: 'jhi-movie-detail',
+  selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html'
 })
 export class MovieDetailComponent implements OnInit {

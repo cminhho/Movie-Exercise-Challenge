@@ -4,7 +4,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { JhiAlertService } from 'ng-jhipster';
 import { IMovie, Movie } from 'app/shared/model/movie.model';
 import { MovieService } from './movie.service';
 import { IGenre } from 'app/shared/model/genre.model';
@@ -13,7 +12,7 @@ import { IList } from 'app/shared/model/list.model';
 import { ListService } from 'app/entities/list';
 
 @Component({
-  selector: 'jhi-movie-update',
+  selector: 'app-movie-update',
   templateUrl: './movie-update.component.html'
 })
 export class MovieUpdateComponent implements OnInit {
@@ -43,7 +42,6 @@ export class MovieUpdateComponent implements OnInit {
   });
 
   constructor(
-    protected jhiAlertService: JhiAlertService,
     protected movieService: MovieService,
     protected genreService: GenreService,
     protected listService: ListService,
@@ -142,7 +140,7 @@ export class MovieUpdateComponent implements OnInit {
     this.isSaving = false;
   }
   protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
+    // display error message
   }
 
   trackGenreById(index: number, item: IGenre) {

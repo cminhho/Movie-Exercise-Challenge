@@ -2,16 +2,16 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { IMovie } from 'app/shared/model/movie.model';
-import { AccountService } from 'app/core';
 
-import { ITEMS_PER_PAGE } from 'app/shared';
 import { MovieService } from './movie.service';
+import { TmaEventManager } from '@app/core';
+
+const ITEMS_PER_PAGE = 10;
 
 @Component({
-  selector: 'jhi-movie',
+  selector: 'app-movie',
   templateUrl: './movie.component.html'
 })
 export class MovieComponent implements OnInit, OnDestroy {
@@ -27,10 +27,7 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   constructor(
     protected movieService: MovieService,
-    protected jhiAlertService: JhiAlertService,
-    protected eventManager: JhiEventManager,
-    protected parseLinks: JhiParseLinks,
-    protected accountService: AccountService
+    protected eventManager: TmaEventManager
   ) {
     this.movies = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -61,16 +58,13 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.loadAll();
   }
 
-  loadPage(page) {
+  loadPage(page: any) {
     this.page = page;
     this.loadAll();
   }
 
   ngOnInit() {
     this.loadAll();
-    this.accountService.identity().then(account => {
-      this.currentAccount = account;
-    });
     this.registerChangeInMovies();
   }
 
@@ -83,7 +77,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   }
 
   registerChangeInMovies() {
-    this.eventSubscriber = this.eventManager.subscribe('movieListModification', response => this.reset());
+    this.eventSubscriber = this.eventManager.subscribe('movieListModification', (response: any) => this.reset());
   }
 
   sort() {
@@ -103,6 +97,6 @@ export class MovieComponent implements OnInit, OnDestroy {
   }
 
   protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
+    // display error message
   }
 }

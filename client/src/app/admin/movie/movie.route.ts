@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { UserRouteAccessService } from 'app/core';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Movie } from 'app/shared/model/movie.model';
@@ -36,7 +35,7 @@ export const movieRoute: Routes = [
       authorities: ['ROLE_USER'],
       pageTitle: 'Movies'
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: []
   },
   {
     path: ':id/view',
@@ -48,7 +47,7 @@ export const movieRoute: Routes = [
       authorities: ['ROLE_USER'],
       pageTitle: 'Movies'
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: []
   },
   {
     path: 'new',
@@ -60,7 +59,7 @@ export const movieRoute: Routes = [
       authorities: ['ROLE_USER'],
       pageTitle: 'Movies'
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: []
   },
   {
     path: ':id/edit',
@@ -72,7 +71,7 @@ export const movieRoute: Routes = [
       authorities: ['ROLE_USER'],
       pageTitle: 'Movies'
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: []
   }
 ];
 
@@ -87,7 +86,7 @@ export const moviePopupRoute: Routes = [
       authorities: ['ROLE_USER'],
       pageTitle: 'Movies'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [],
     outlet: 'popup'
   }
 ];

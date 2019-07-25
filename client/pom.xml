@@ -5,12 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>tma-parent</artifactId>
-    <groupId>com.onixnet</groupId>
+    <artifactId>movie-exercise-parent</artifactId>
+    <groupId>com.hmchung</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>tma-client</artifactId>
+  <artifactId>movie-exercise-client</artifactId>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

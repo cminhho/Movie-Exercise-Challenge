@@ -8,16 +8,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration=local --o --host 0.0.0.0 --aot",
-    "start:onix-dev": "ng serve --configuration=onix-dev --o --host 0.0.0.0",
-    "start:tma-dev": "ng serve --configuration=tma-dev --o --host 0.0.0.0",
+    "start:dev": "ng serve --configuration=dev --o --host 0.0.0.0",
     "start:prod": "ng serve --configuration=production --o --host 0.0.0.0",
     "build:local": "ng build --configuration=local --aot",
-    "build:onix-dev": "ng build --prod --configuration=onix-dev --aot",
-    "build:tma-dev": "ng build --prod --configuration=tma-dev --aot",
+    "build:dev": "ng build --prod --configuration=dev --aot",
     "build:prod": "ng build --prod --configuration=production --aot",
     "pwa:build:local": "ng build --configuration=local && sw-precache --root=dist --config=precache-config.js",
-    "pwa:build:onix-dev": "ng build --prod --configuration=onix-dev && sw-precache --root=dist --config=precache-config.js",
-    "pwa:build:tma-dev": "ng build --prod --configuration=tma-dev && sw-precache --root=dist --config=precache-config.js",
+    "pwa:build:ev": "ng build --prod --configuration=dev && sw-precache --root=dist --config=precache-config.js",
     "pwa:build:prod": "ng build --prod && sw-precache --root=dist --config=precache-config.js",
     "test": "ng test",
     "e2e": "ng e2e",
@@ -30,7 +27,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "ng build --prod --configuration=onix-dev --aot"
+      "pre-commit": "ng build --prod --configuration=dev --aot"
     }
   },
   "lint-staged": {

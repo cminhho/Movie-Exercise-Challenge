@@ -9,3 +9,24 @@ h4.latest-text {
     background-color: #151515;
     color: #fff;
 }
+
+
+
+.ui-to-top {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    line-height: 56px;
+    color: #fff;
+    background: #d81a24;
+    border-radius: 50%;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    z-index: 20;
+    transition: .3s all ease;
+    transform: translateY(100px);
+}

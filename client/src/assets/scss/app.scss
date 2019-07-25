@@ -70,8 +70,8 @@ a.link {
 
 // Navigations
 .app-navbar {
-  background-color: $topbar;
-  border-bottom: 7px solid $danger;
+  // background-color: $topbar;
+  // border-bottom: 7px solid $danger;
   height: 70px;
   font-size: 16px;
   font-family: $headingfont;
@@ -85,7 +85,6 @@ a.link {
     center no-repeat;
 }
 .bc-nav-link {
-  color: $danger !important;
   padding-right: 2px;
   padding-left: 2px;
   font-weight: 400px;

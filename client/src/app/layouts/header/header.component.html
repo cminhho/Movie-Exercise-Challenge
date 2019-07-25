@@ -1,30 +1,42 @@
-<nav id="header" class="navbar navbar-expand-sm navbar-light bg-light row app-navbar">
-        <a class="logo-img"></a>
-        <a class="navbar-brand" [routerLink]="['/']" (click)="collapseNavbar()">
-            <span class="navbar-title ml-2">Movie Manager Exercise</span> <span class="navbar-version">{{version}}</span>
-        </a>
-        <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
-            <fa-icon icon="bars"></fa-icon>
-        </a>
-        <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="bc-nav-link nav-link" [routerLink]="['/']" (click)="collapseNavbar()">
-                        <span>
-                            <fa-icon icon="home"></fa-icon>
-                            <span >Home</span>
-                        </span>
-                    </a>
+<div>
+  <nav id="header" class="navbar bg-dark navbar-dark navbar-expand-sm app-navbar movie-fixed-navbar">
+    <div class="container">
+            <img src="https://livedemo00.template-help.com/wt_prod-20691/images/logo-default.png" alt="">
+            <a class="navbar-brand" [routerLink]="['/']" (click)="collapseNavbar()">
+              <span class="navbar-title ml-2">Movie Manager Exercise</span> <span class="navbar-version">{{ version }}</span>
+            </a>
+            <a
+              class="navbar-toggler d-lg-none"
+              href="javascript:void(0);"
+              data-toggle="collapse"
+              data-target="#navbarResponsive"
+              aria-controls="navbarResponsive"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              (click)="toggleNavbar()"
+            >
+              <fa-icon icon="bars"></fa-icon>
+            </a>
+            <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                  <a class="bc-nav-link nav-link" [routerLink]="['/']" (click)="collapseNavbar()">
+                    <span>
+                      <fa-icon icon="home"></fa-icon>
+                      <span>Home</span>
+                    </span>
+                  </a>
                 </li>
-                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="bc-nav-link nav-link" [routerLink]="['/movie-management']" (click)="collapseNavbar()">
-                        <span>
-                            <fa-icon icon="home"></fa-icon>
-                            <span>Movie Management</span>
-                        </span>
-                    </a>
+                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                  <a class="bc-nav-link nav-link" [routerLink]="['/movie-management']" (click)="collapseNavbar()">
+                    <span>
+                      <fa-icon icon="home"></fa-icon>
+                      <span>Movie Management</span>
+                    </span>
+                  </a>
                 </li>
-            </ul>
-        </div>
-      </nav>
-    
+              </ul>
+            </div>
+    </div>
+  </nav>
+</div>

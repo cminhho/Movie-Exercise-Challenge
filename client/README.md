@@ -1,5 +1,5 @@
-# Tma GCS Angular Client - Box Connector UI
-
+# Music Manager Exercise
+https://www.templatemonster.com/demo/49053.html
 1. Go to project folder and install dependencies:
 
 ```bash

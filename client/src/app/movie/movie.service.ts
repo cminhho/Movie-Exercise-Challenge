@@ -12,6 +12,6 @@ export class MovieService extends BaseCrudAPIClass<any,any>{
   constructor(protected http: HttpClient) {
     super(http);
     // this.resourceUrl = this.SERVER_API_URL + '/movies';
-    this.resourceUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=a7b3c9975791294647265c71224a88ad&language=en-US&page=1';
+    this.resourceUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=a7b3c9975791294647265c71224a88ad&language=en-US';
   }
 }

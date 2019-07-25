@@ -5,3 +5,7 @@ h4.latest-text {
     text-transform: uppercase;
     padding: 0.3em 0.5em;
 }
+.bg-gray-900 {
+    background-color: #151515;
+    color: #fff;
+}

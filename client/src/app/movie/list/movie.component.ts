@@ -9,7 +9,7 @@ import { HttpResponse } from '@angular/common/http';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
-  movies = [
+  carouselMovies = [
     {
       title: 'WRATH OF THE TITANS',
       image: '/assets/images/Bitmap.png',
@@ -25,10 +25,28 @@ export class MovieComponent implements OnInit {
       duration: '1h32',
       currentRate: '3.12',
       reviews: '1234',
+    }
+  ];
+  movies = [
+    {
+      title: 'WRATH OF THE TITANS',
+      image: 'https://livedemo00.template-help.com/wt_prod-20691/images/gallery-1.jpg',
+      category: ['Fantasy', 'Animation', 'Family'],
+      duration: '1h52',
+      currentRate: '3.14',
+      reviews: '4343',
     },
     {
       title: 'WRATH OF THE TITANS',
-      image: '/assets/images/Bitmap.png',
+      image: 'https://livedemo00.template-help.com/wt_prod-20691/images/gallery-1.jpg',
+      category: ['Action', 'Thriller'],
+      duration: '1h32',
+      currentRate: '3.12',
+      reviews: '1234',
+    },
+    {
+      title: 'WRATH OF THE TITANS',
+      image: 'https://livedemo00.template-help.com/wt_prod-20691/images/gallery-1.jpg',
       category: ['Action', 'Adventure', 'Fantasy','test','Test'],
       duration: '1h00',
       currentRate: '3.77',
@@ -36,7 +54,7 @@ export class MovieComponent implements OnInit {
     },
     {
       title: 'WRATH OF THE TITANS',
-      image: '/assets/images/Bitmap.png',
+      image: 'https://livedemo00.template-help.com/wt_prod-20691/images/gallery-1.jpg',
       category: ['Action', 'Adventure', 'Fantasy'],
       duration: '1h00',
       currentRate: '3.77',
@@ -44,18 +62,18 @@ export class MovieComponent implements OnInit {
     },
     {
       title: 'WRATH OF THE TITANS',
-      image: '/assets/images/Bitmap.png',
+      image: 'https://livedemo00.template-help.com/wt_prod-20691/images/gallery-1.jpg',
       category: ['Action', 'Adventure', 'Fantasy'],
       duration: '1h00',
       currentRate: '3.77',
       reviews: '4664',
     },
-  ]
+  ];
 
   moviesForTopRated = [
     {
       title: 'WRATH OF THE TITANS',
-      image: '/assets/images/Bitmap.png',
+      image: 'https://livedemo00.template-help.com/wt_prod-20691/images/gallery-1.jpg',
       category: ['Fantasy', 'Animation', 'Family'],
       duration: '1h52',
       currentRate: '3.14',
@@ -63,7 +81,7 @@ export class MovieComponent implements OnInit {
     },
     {
       title: 'WRATH OF THE TITANS',
-      image: '/assets/images/Bitmap.png',
+      image: 'https://livedemo00.template-help.com/wt_prod-20691/images/gallery-1.jpg',
       category: ['Action', 'Thriller'],
       duration: '1h32',
       currentRate: '3.12',
@@ -71,7 +89,7 @@ export class MovieComponent implements OnInit {
     },
     {
       title: 'WRATH OF THE TITANS',
-      image: '/assets/images/Bitmap.png',
+      image: 'https://livedemo00.template-help.com/wt_prod-20691/images/gallery-1.jpg',
       category: ['Action', 'Adventure', 'Fantasy'],
       duration: '1h00',
       currentRate: '3.77',
@@ -79,7 +97,7 @@ export class MovieComponent implements OnInit {
     },
     {
       title: 'WRATH OF THE TITANS',
-      image: '/assets/images/Bitmap.png',
+      image: 'https://livedemo00.template-help.com/wt_prod-20691/images/gallery-1.jpg',
       category: ['Action', 'Adventure', 'Fantasy'],
       duration: '1h00',
       currentRate: '3.77',

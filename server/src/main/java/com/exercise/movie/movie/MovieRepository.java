@@ -10,7 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository
+
+@Repository("movieRepository")
 public interface MovieRepository extends JpaRepository<Movie, Long> {
   @Query(value = "select distinct movie from Movie movie left join fetch movie.genres",
       countQuery = "select count(distinct movie) from Movie movie")

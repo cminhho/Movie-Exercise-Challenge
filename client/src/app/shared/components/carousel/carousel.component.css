@@ -1,22 +1,7 @@
-.title {
-  position: absolute;
-  bottom: 20px;
-  left: 15%;
-  z-index: 10;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: #fff;
-  text-align: center;
-}
-
 .rating {
-  position: absolute;
-  bottom: 20px;
+  width: 250px;
   right: 15%;
   z-index: 10;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: #fff;
   text-align: center;
 }
 
@@ -30,11 +15,6 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-}
-
-.watch-movie-button {
-  background-color: #ff0079; 
-  color: black; 
 }
 
 .view-info-button {
@@ -54,7 +34,7 @@
 }
 
 .picsum-img-wrapper {
-  height: 400px;
+  height: 480px;
 }
 
 .carousel img {

@@ -1,9 +1,7 @@
-<div>
+<div class="bg-light">
   <app-header></app-header>
   <app-carousel [movies]="carouselMovies"></app-carousel>
   <div class="container">
-    <h4 class="latest-text my-4">Featured Movies</h4>
-    <hr />
     <app-tabset (changedTab)="onChangedTab($event)"></app-tabset>
     <div
       class="mb-5"

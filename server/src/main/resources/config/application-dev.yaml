@@ -9,17 +9,11 @@ logging:
     com.zaxxer: DEBUG
 
 spring:
-  h2:
-    console:
-      enabled: false
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:moviedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
-    name:
-    username: sa
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/moviedb?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
     password:
-    hikari:
-      auto-commit: false
 
   jpa:
     generate-ddl: true

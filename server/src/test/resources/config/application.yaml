@@ -9,7 +9,7 @@ spring:
     url: jdbc:h2:mem:moviedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
     name:
     username: sa
-    password: sa
+    password:
     hikari:
       auto-commit: false
   jpa:
@@ -27,7 +27,9 @@ spring:
   mvc:
     favicon:
       enabled: false
-
+  h2:
+    console:
+      enabled: true
   data:
     rest:
       basePath: "/api/v1"

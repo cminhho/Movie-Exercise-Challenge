@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -28,12 +29,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
 
 /**
  * Integration tests for the {@Link MovieRestController} REST controller.
  */
-//@Slf4j
-//@SpringBootTest(classes = MovieApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = MovieApplication.class)
 @WebAppConfiguration
@@ -80,7 +80,7 @@ public class MovieRestControllerIT2 {
 
     @Autowired
     @MockBean
-    private MovieRepository movieRepository;
+    private MovieRestRepository movieRepository;
 
     @MockBean
     private MovieService movieServiceMock;
@@ -91,6 +91,9 @@ public class MovieRestControllerIT2 {
 
     private MockMvc restMovieMockMvc;
 
+    @Autowired
+    private Validator validator;
+
     private Movie movie;
 
     @Autowired
@@ -100,8 +103,10 @@ public class MovieRestControllerIT2 {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         final MovieRestController movieRestController = new MovieRestController(movieService);
+        movie = createEntity();
         this.restMovieMockMvc = MockMvcBuilders.standaloneSetup(movieRestController)
-            .setCustomArgumentResolvers(pageableArgumentResolver).build();
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setValidator(validator).build();
     }
 
     /**
@@ -110,7 +115,7 @@ public class MovieRestControllerIT2 {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static Movie createEntity(EntityManager em) {
+    public static Movie createEntity() {
         Movie movie = new Movie()
             .title(DEFAULT_TITLE)
             .voteAverage(DEFAULT_VOTE_AVERAGE)
@@ -149,10 +154,6 @@ public class MovieRestControllerIT2 {
             .overview(UPDATED_OVERVIEW)
             .releaseDate(UPDATED_RELEASE_DATE);
         return movie;
-    }
-
-    @Before
-    public void initTest() {
     }
 
     @Test

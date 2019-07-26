@@ -14,7 +14,7 @@ export const movieRoute: Routes = [
         component: MovieComponent,
       },
       {
-        path: 'toprated',
+        path: 'top_rated',
         component: MovieComponent,
       },
       {

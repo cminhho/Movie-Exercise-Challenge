@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared';
 import { MovieGridComponent } from '../shared/components/movie-grid/movie-grid.component';
 import { MovieGridItemComponent } from '../shared/components/movie-grid-item/movie-grid-item.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 const ENTITY_STATES = [...movieRoute];
 
@@ -13,6 +14,7 @@ const ENTITY_STATES = [...movieRoute];
   declarations: [MovieComponent, MovieGridComponent, MovieGridItemComponent],
   imports: [
     CommonModule,
+    TabsModule.forRoot(),
     RouterModule.forChild(ENTITY_STATES),
     SharedModule
   ],

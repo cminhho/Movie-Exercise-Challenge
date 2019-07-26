@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tabset',
@@ -9,6 +9,7 @@ export class TabsetComponent implements OnInit {
   @Output()
   changedTab = new EventEmitter();
   choseTag: boolean;
+  items: any[] = [];
 
   activeTab: string;
 
@@ -16,12 +17,18 @@ export class TabsetComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activeTab = "popular";
+    this.items = [{
+      title: 'Popular',
+      value: 'popular'
+    }, {
+      title: 'Top Rated',
+      value: 'top_rated'
+    }, {
+      title: 'Upcoming',
+      value: 'upcoming'
+    }];
+    this.activeTab = 'popular';
   }
-
-  // onDisplayed(event: any) {
-  //   this.changedTab.emit(event);
-  // }
 
   onChangedTab(tabChanged: any) {
     if (this.activeTab !== tabChanged) {

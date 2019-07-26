@@ -21,10 +21,8 @@
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.json"],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css",
-              "src/assets/scss/style.scss",
-              "./node_modules/ng2-tree/styles.css"
+              "src/assets/scss/style.scss"
             ],
             "scripts": ["node_modules/jquery/dist/jquery.min.js"]
           },

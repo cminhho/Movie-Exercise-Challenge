@@ -4,11 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
-  imports: [NgbModule, NgSelectModule, FormsModule],
+  imports: [NgbModule, FormsModule],
   exports: [
     NgbModule,
     CommonModule,
@@ -16,7 +15,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     RouterModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,
-    NgSelectModule,
     InfiniteScrollModule
   ],
   entryComponents: [],

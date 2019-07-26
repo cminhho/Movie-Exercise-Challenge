@@ -1,8 +1,5 @@
 ul {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
 }
 
 li {
@@ -18,11 +15,11 @@ li a {
 }
 
 li a:hover:not(.active) {
-  border-bottom: 1px solid #ff0079;
+  border-bottom: 4px solid #ff0079;
   color: #ff0079 !important;
 }
 
 .active {
-  border-bottom: 1px solid #ff0079;
+  border-bottom: 4px solid #ff0079;
   color: #ff0079 !important;
 }

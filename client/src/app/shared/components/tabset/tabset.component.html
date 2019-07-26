@@ -1,8 +1,8 @@
 <div class="border-bottom mt-4">
-  <ul >
-    <li [routerLink]="['/movie/popular']" (click)="onChangedTab('popular')"><a routerLinkActive="active">Popular</a></li>
-    <li [routerLink]="['/movie/toprated']" (click)="onChangedTab('top_rated')"><a routerLinkActive="active">Top Rated</a></li>
-    <li [routerLink]="['/movie/upcoming']" (click)="onChangedTab('upcoming')"><a routerLinkActive="active">Upcoming</a></li>
-    <li [routerLink]="['/movie/genre']" (click)="onChangedTab('genge')"><a routerLinkActive="active">Genre</a></li>
+  <ul class="list-group list-group-horizontal">
+    <li [routerLink]="['/movie/popular']" (click)="onChangedTab('popular')"><a routerLinkActive="active" class="mx-2 p-3" href="javascript:void(0);">Popular</a></li>
+    <li [routerLink]="['/movie/toprated']" (click)="onChangedTab('top_rated')"><a routerLinkActive="active" class="mx-2 p-3" href="javascript:void(0);">Top Rated</a></li>
+    <li [routerLink]="['/movie/upcoming']" (click)="onChangedTab('upcoming')"><a routerLinkActive="active" class="mx-2 p-3" href="javascript:void(0);">Upcoming</a></li>
+    <li [routerLink]="['/movie/genre']" (click)="onChangedTab('genge')"><a routerLinkActive="active" class="mx-2 p-3" href="javascript:void(0);">Genre</a></li>
   </ul>
 </div>

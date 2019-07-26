@@ -1,24 +1,12 @@
-<!-- Main wrapper - style you can find in pages.scss -->
 <div id="main-wrapper">
-    <!-- Page wrapper  -->
-    <div class="page-wrapper">
-        <!-- Container fluid  -->
-        <div>
-            <!-- <app-breadcrumb></app-breadcrumb> -->
-            <app-header></app-header>
-            <!-- Start Page Content -->
-            <router-outlet></router-outlet>
-            <router-outlet name="popup"></router-outlet> 
-            <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
-            <!-- End Start Page Content -->
-        </div>
-        <!-- End Container fluid  -->
+  <div class="page-wrapper">
+    <div>
+      <app-header></app-header>
+      <router-outlet></router-outlet>
+      <router-outlet name="popup"></router-outlet>
+      <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
     </div>
-    <!-- End Page wrapper  -->
-    <!-- footer -->
+  </div>
   <div></div>
-    <footer>
-        <app-footer></app-footer>
-    </footer>
-    <!-- End footer -->
+  <app-footer></app-footer>
 </div>

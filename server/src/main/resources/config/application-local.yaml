@@ -3,18 +3,21 @@ server:
 
 logging:
   level:
-    ROOT: INFO
+    ROOT: DEBUG
     ccom.exercise.movie: DEBUG
-    org.springframework: INFO
     com.zaxxer: DEBUG
 
 spring:
+  profiles:
+    active: local
+
   h2:
     console:
       enabled: false
+
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:moviedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
+    url: jdbc:h2:mem:moviedb_local;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
     name:
     username: sa
     password:
@@ -26,4 +29,4 @@ spring:
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: 'update'
+      ddl-auto: 'create-drop'

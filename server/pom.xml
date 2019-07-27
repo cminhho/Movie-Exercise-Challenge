@@ -13,7 +13,7 @@
   <artifactId>movie-exercise-server</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>movie</name>
+  <name>movie-exercise-server</name>
   <description>REST API for Movie Manager Exercise</description>
 
   <properties>
@@ -26,8 +26,10 @@
     <spring-data-rest-webmvc.version>3.1.9.RELEASE</spring-data-rest-webmvc.version>
     <validation-api.version>2.0.1.Final</validation-api.version>
     <problem-spring-web.version>0.24.0</problem-spring-web.version>
+    <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+    <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
 
-    <spring.profiles.default>local</spring.profiles.default>
+    <!--<spring.profiles.default>local</spring.profiles.default>-->
   </properties>
 
   <dependencies>
@@ -146,7 +148,53 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${maven-failsafe-plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>integration-test</goal>
+                <goal>verify</goal>
+              </goals>
+              <configuration>
+                <includes>
+                  <include>**/IT*.java</include>
+                  <include>**/*IT.java</include>
+                  <include>**/*ITCase.java</include>
+                  <include>**/*IntegrationTest.java</include>
+                </includes>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+          <configuration>
+            <excludes>
+              <exclude>**/IT*.java</exclude>
+              <exclude>**/*IT.java</exclude>
+              <exclude>**/*ITCase.java</exclude>
+              <include>**/*IntegrationTest.java</include>
+            </excludes>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 
   <profiles>
@@ -157,6 +205,37 @@
       </activation>
       <properties>
         <spring.profiles.active>local</spring.profiles.active>
+      </properties>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+              <jvmArguments>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
+              </jvmArguments>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>build-info</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <spring.profiles.active>dev</spring.profiles.active>
       </properties>
 
       <build>

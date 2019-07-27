@@ -1,0 +1,14 @@
+version: '2'
+services:
+  soundserver-app:
+    image: musicapp
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://musicapp-mariadb:3306/musicdb
+    ports:
+      - 8080:8080
+  musicapp-mariadb:
+    extends:
+      file: mariadb.yml
+      service: soundserver-mariadb

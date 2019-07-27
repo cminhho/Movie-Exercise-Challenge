@@ -1,5 +1,9 @@
 # TMA Movie Exercise Interview Challenge
 
+## Application Architecture
+- client - Angular 8 Single Page Application that provides the Movie UI
+- server - REST API for Movie Manager Exercise
+
 ## Requirements
 
 For building and running the application you need:

@@ -1,6 +1,7 @@
 package com.exercise.movie.list;
 
 import com.exercise.movie.movie.Movie;
+import com.exercise.movie.shared.domain.BaseEntity;
 import java.util.HashSet;
 import java.util.Set;
 import org.hibernate.annotations.Cache;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "list")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class MovieList implements Serializable {
+public class MovieList extends BaseEntity<String> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +34,7 @@ public class MovieList implements Serializable {
     @Column(name = "poster_path")
     private String posterPath;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.ALL})
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "movie_list",
         joinColumns = @JoinColumn(name = "movie_list_id", referencedColumnName = "id"),

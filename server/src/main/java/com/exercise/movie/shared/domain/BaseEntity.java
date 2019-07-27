@@ -1,5 +1,6 @@
 package com.exercise.movie.shared.domain;
 
+import com.exercise.movie.list.MovieList;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.EntityListeners;
@@ -40,4 +41,8 @@ public abstract class BaseEntity<U> implements Serializable {
   @Column(name = "last_modified_date")
   protected Date lastModifiedDate;
 
+  public BaseEntity<U> createdBy(U createdBy) {
+    this.createdBy = createdBy;
+    return this;
+  }
 }

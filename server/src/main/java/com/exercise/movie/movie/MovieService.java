@@ -11,13 +11,13 @@ public interface MovieService {
 
     Page<Movie> findAll(Pageable pageable);
 
+    Page<Movie> findAllWithEagerRelationships(Pageable pageable);
+
     Page<Movie> findPopularMovies(Pageable pageable);
 
     Page<Movie> findTopRatedMovies(Pageable pageable);
 
     Page<Movie> findUpcomingMovies(Pageable pageable);
-
-    Page<Movie> findAllWithEagerRelationships(Pageable pageable);
 
     Optional<Movie> findOne(Long id);
 

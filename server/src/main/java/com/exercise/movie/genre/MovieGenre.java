@@ -1,6 +1,7 @@
 package com.exercise.movie.genre;
 
 import com.exercise.movie.movie.Movie;
+import com.exercise.movie.shared.domain.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "genre")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class MovieGenre implements Serializable {
+public class MovieGenre extends BaseEntity<String> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

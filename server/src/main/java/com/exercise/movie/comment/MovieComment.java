@@ -1,23 +1,27 @@
 package com.exercise.movie.comment;
 
 import com.exercise.movie.movie.Movie;
+import com.exercise.movie.shared.domain.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Table(name = "comment")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class MovieComment implements Serializable {
+public class MovieComment extends BaseEntity<String> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,8 +33,9 @@ public class MovieComment implements Serializable {
     @Column(name = "review", nullable = false)
     private String review;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("comments")
+    @JsonIgnore
     private Movie movie;
 
     public Long getId() {

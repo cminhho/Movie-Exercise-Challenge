@@ -21,6 +21,8 @@ Start a mariadb database in a docker container, run:
 Build a docker image for the app by running:
 
     ./mvnw -Pprod verify jib:dockerBuild
+    or
+    mvn clean package dockerfile:build
 
 Then run:
 

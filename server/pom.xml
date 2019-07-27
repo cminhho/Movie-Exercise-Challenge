@@ -29,6 +29,9 @@
     <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
 
+    <dockerfile.version>1.4.3</dockerfile.version>
+    <docker.image.prefix>hmchung</docker.image.prefix>
+
     <!--<spring.profiles.default>local</spring.profiles.default>-->
   </properties>
 
@@ -180,6 +183,7 @@
             </execution>
           </executions>
         </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -191,6 +195,41 @@
               <exclude>**/*ITCase.java</exclude>
               <include>**/*IntegrationTest.java</include>
             </excludes>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>com.spotify</groupId>
+          <artifactId>dockerfile-maven-plugin</artifactId>
+          <version>${dockerfile.version}</version>
+          <executions>
+            <execution>
+              <id>default</id>
+              <goals>
+                <goal>build</goal>
+                <goal>push</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <forceTags>true</forceTags>
+            <images>
+              <image>
+                <name>docker.io/kkapelon/docker-maven-comparison</name>
+                <build>
+                  <dockerFile>${project.basedir}/Dockerfile</dockerFile >
+                </build>
+                <run>
+                  <ports>
+                    <port>8080:8080</port>
+                  </ports>
+                </run>
+              </image>
+            </images>
+            <repository>${docker.image.prefix}/${project.artifactId}</repository>
+            <buildArgs>
+              <WAR_FILE>target/${project.build.finalName}.war</WAR_FILE>
+            </buildArgs>
           </configuration>
         </plugin>
       </plugins>

@@ -28,9 +28,11 @@
     <problem-spring-web.version>0.24.0</problem-spring-web.version>
     <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
+    <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
 
     <dockerfile.version>1.4.3</dockerfile.version>
     <docker.image.prefix>hmchung</docker.image.prefix>
+    <client-app.directory>../client</client-app.directory>
 
     <!--<spring.profiles.default>local</spring.profiles.default>-->
   </properties>
@@ -162,6 +164,47 @@
     </plugins>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>copy-resources</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${project.parent.basedir}/client/dist/movie-exercise-client/</directory>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>${maven-war-plugin.version}</version>
+          <configuration>
+            <webResources>
+              <resource>
+                <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                <filtering>true</filtering>
+                <targetPath>WEB-INF</targetPath>
+              </resource>
+              <resource>
+                <directory>${client-app.directory}/dist/movie-exercise-client</directory>
+                <filtering>false</filtering>
+                <targetPath>/</targetPath>
+              </resource>
+            </webResources>
+            <warSourceDirectory>war</warSourceDirectory>
+          </configuration>
+        </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>

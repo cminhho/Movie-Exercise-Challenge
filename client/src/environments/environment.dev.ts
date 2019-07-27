@@ -1,7 +1,7 @@
 export const environment = {
   env: 'DEV',
   production: true,
-  serverBaseUrl: 'https://tma-dev.appspot.com',
+  serverBaseUrl: '/api',
   apiKey: '',
-  serverUrl: 'https://tma-dev.appspot.com/api/v1'
+  serverUrl: '/api'
 };

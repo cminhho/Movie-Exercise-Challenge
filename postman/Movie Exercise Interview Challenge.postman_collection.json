@@ -1,0 +1,1234 @@
+{
+	"info": {
+		"_postman_id": "d1cda5e2-0de1-489f-a0f5-777cc7e6f499",
+		"name": "Movie Exercise Interview Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Move",
+			"item": [
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/movie?eagerload=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"movie"
+							],
+							"query": [
+								{
+									"key": "eagerload",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/movie/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"movie",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/movie/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"movie",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get popular movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/movie/popular?eagerload=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"movie",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "eagerload",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Movie 2\",\n    \"createdBy\": \"hmchung92@gmail.com\",\n    \"voteAverage\": 2,\n    \"voteCount\": 12011,\n    \"video\": false,\n    \"mediaType\": null,\n    \"popularity\": 2,\n    \"posterPath\": null,\n    \"originalLanguage\": null,\n    \"originalTitle\": null,\n    \"backdropPath\": null,\n    \"adult\": null,\n    \"overview\": null,\n    \"releaseDate\": null\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/movie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get comments by movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/movie/1/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"movie",
+								"1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n    \"title\": \"Movie 2\",\n    \"createdBy\": \"hmchung92@gmail.com\",\n    \"voteAverage\": 2,\n    \"voteCount\": 12011,\n    \"video\": false,\n    \"mediaType\": null,\n    \"popularity\": 2,\n    \"posterPath\": null,\n    \"originalLanguage\": null,\n    \"originalTitle\": null,\n    \"backdropPath\": null,\n    \"adult\": null,\n    \"overview\": null,\n    \"releaseDate\": null\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/movie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get top rated movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/movie/top_rated?eagerload=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"movie",
+								"top_rated"
+							],
+							"query": [
+								{
+									"key": "eagerload",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Upcomming movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/movie/upcoming?eagerload=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"movie",
+								"upcoming"
+							],
+							"query": [
+								{
+									"key": "eagerload",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "Get movies by list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie/1/movielists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie",
+								"1",
+								"movielists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get genres by movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie/1/genres",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie",
+								"1",
+								"genres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get comments by movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie/1/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie",
+								"1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movies profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/profile/movie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"profile",
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Movie 2\",\n    \"createdBy\": \"hmchung92@gmail.com\",\n    \"voteAverage\": 2,\n    \"voteCount\": 12011,\n    \"video\": false,\n    \"mediaType\": null,\n    \"popularity\": 2,\n    \"posterPath\": null,\n    \"originalLanguage\": null,\n    \"originalTitle\": null,\n    \"backdropPath\": null,\n    \"adult\": null,\n    \"overview\": null,\n    \"releaseDate\": null\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign movie to List",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/uri-list",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "http://localhost:9080/api/v1/list/1\n"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie/2/movielists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie",
+								"2",
+								"movielists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign movie to Genre",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "text/uri-list"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "http://localhost:9080/api/v1/genre/1"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie/1/genres",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie",
+								"1",
+								"genres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign comment to movie",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/uri-list",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "http://localhost:9080/api/v1/movie/1"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_comment/1/movie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_comment",
+								"1",
+								"movie"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/profile/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"profile",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"hmchung92\",\n    \"email\": \"hmchung92@gmail.com\",\n    \"activated\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/v1/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List",
+			"item": [
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_list/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_list",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one with movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_list/1/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_list",
+								"1",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign movie to List",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " http://localhost:9080/api/v1/movie/1"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_list/1/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_list",
+								"1",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/profile/movie_list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"profile",
+								"movie_list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Album 3\",\n    \"description\": \"description\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a movie to a list",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/uri-list",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "http://localhost:9080/api/v1/movie/1"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_list/1/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_list",
+								"1",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Genre",
+			"item": [
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Genre Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/profile/movie_genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"profile",
+								"movie_genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Action2\",\n    \"description\": \"description\",\n    \"createdBy\": \"hmchung92@gmail.com\",\n    \"lastModifiedBy\": \"hmchung92@gmail2.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_genre"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "977a278a-2355-4c6e-8ff1-144050a5c4c9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "28b9509e-8eb9-4eb0-bc21-b6612d0f154d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get coment by movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_comment/1/movie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_comment",
+								"1",
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/profile/movie_comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"profile",
+								"movie_comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"review\": \"Googd\",\n    \"createdBy\": \"hmchung92@gmail.com\",\n    \"movie\": {\n        \"createdBy\": \"hmchung92@gmail.com\",\n        \"lastModifiedBy\": null,\n        \"id\": 1,\n        \"title\": \"Movie 2\",\n        \"voteAverage\": 12011,\n        \"voteCount\": 12011,\n        \"video\": false,\n        \"mediaType\": null,\n        \"popularity\": null,\n        \"posterPath\": null,\n        \"originalLanguage\": null,\n        \"originalTitle\": null,\n        \"backdropPath\": null,\n        \"adult\": null,\n        \"overview\": null,\n        \"releaseDate\": null,\n        \"_links\": {\n            \"self\": {\n                \"href\": \"http://localhost:9080/api/v1/movie/1\"\n            },\n            \"movie\": {\n                \"href\": \"http://localhost:9080/api/v1/movie/1\"\n            },\n            \"movieComments\": {\n                \"href\": \"http://localhost:9080/api/v1/movie/1/movieComments\"\n            },\n            \"albums\": {\n                \"href\": \"http://localhost:9080/api/v1/movie/1/albums\"\n            },\n            \"genres\": {\n                \"href\": \"http://localhost:9080/api/v1/movie/1/genres\"\n            }\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_comment"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "977a278a-2355-4c6e-8ff1-144050a5c4c9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "28b9509e-8eb9-4eb0-bc21-b6612d0f154d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Public APIs",
+			"item": [
+				{
+					"name": "Get lists",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a7b3c9975791294647265c71224a88ad ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.themoviedb.org/4/list/1?api_key=a7b3c9975791294647265c71224a88ad",
+							"protocol": "https",
+							"host": [
+								"api",
+								"themoviedb",
+								"org"
+							],
+							"path": [
+								"4",
+								"list",
+								"1"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "a7b3c9975791294647265c71224a88ad"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get genre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a7b3c9975791294647265c71224a88ad ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.themoviedb.org/3/genre/movie/list?api_key=a7b3c9975791294647265c71224a88ad&language=en-US",
+							"protocol": "https",
+							"host": [
+								"api",
+								"themoviedb",
+								"org"
+							],
+							"path": [
+								"3",
+								"genre",
+								"movie",
+								"list"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "a7b3c9975791294647265c71224a88ad"
+								},
+								{
+									"key": "language",
+									"value": "en-US"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "popular",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a7b3c9975791294647265c71224a88ad ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.themoviedb.org/3/movie/popular?api_key=a7b3c9975791294647265c71224a88ad&language=en-US&page=1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"themoviedb",
+								"org"
+							],
+							"path": [
+								"3",
+								"movie",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "a7b3c9975791294647265c71224a88ad"
+								},
+								{
+									"key": "language",
+									"value": "en-US"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upcoming",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a7b3c9975791294647265c71224a88ad ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.themoviedb.org/3/movie/upcoming?api_key=a7b3c9975791294647265c71224a88ad&language=en-US&page=1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"themoviedb",
+								"org"
+							],
+							"path": [
+								"3",
+								"movie",
+								"upcoming"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "a7b3c9975791294647265c71224a88ad"
+								},
+								{
+									"key": "language",
+									"value": "en-US"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Images",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg",
+							"protocol": "https",
+							"host": [
+								"image",
+								"tmdb",
+								"org"
+							],
+							"path": [
+								"t",
+								"p",
+								"w500",
+								"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "48c2dbee-958b-4b6f-b5c1-4673fb37c742",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1033e34e-371d-49cd-aab2-d379282ee0c0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

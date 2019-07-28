@@ -17,6 +17,7 @@
     "pwa:build:ev": "ng build --prod --configuration=dev && sw-precache --root=dist --config=precache-config.js",
     "pwa:build:prod": "ng build --prod && sw-precache --root=dist --config=precache-config.js",
     "test": "ng test",
+    "test:watch": "npm run test -- --watch",
     "e2e": "ng e2e",
     "generate": "ng generate",
     "compodoc:gen": "./node_modules/.bin/compodoc -p src/tsconfig.app.json",

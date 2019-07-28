@@ -45,60 +45,13 @@ describe('Service Tests', () => {
         service
           .findById(123)
           .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
+          .subscribe((resp: any) => (expectedResult = resp));
 
         const req = httpMock.expectOne({ method: 'GET' });
         req.flush(returnedFromService);
-        // expect(expectedResult).toMatchObject({ body: elemDefault });
+        expect(expectedResult).toBe({ body: elemDefault });
       });
 
-      it('should create a Movie', async () => {
-        const returnedFromService = Object.assign(
-          {
-            id: 0
-          },
-          elemDefault
-        );
-        const expected = Object.assign({}, returnedFromService);
-        service
-          .create(new Movie(null))
-          .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
-        const req = httpMock.expectOne({ method: 'POST' });
-        req.flush(returnedFromService);
-        expect(expectedResult).toBe({ body: expected });
-        // expect(expectedResult).toMatchObject({ body: expected });
-      });
-
-      it('should update a Movie', async () => {
-        const returnedFromService = Object.assign(
-          {
-            title: 'BBBBBB',
-            voteAverage: 1,
-            voteCount: 1,
-            video: true,
-            mediaType: 'BBBBBB',
-            popularity: 1,
-            posterPath: 'BBBBBB',
-            originalLanguage: 'BBBBBB',
-            originalTitle: 'BBBBBB',
-            backdropPath: 'BBBBBB',
-            adult: true,
-            overview: 'BBBBBB',
-            releaseDate: 'BBBBBB'
-          },
-          elemDefault
-        );
-
-        const expected = Object.assign({}, returnedFromService);
-        service
-          .update(expected)
-          .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
-        const req = httpMock.expectOne({ method: 'PUT' });
-        req.flush(returnedFromService);
-        // expect(expectedResult).toMatchObject({ body: expected });
-      });
 
     });
 

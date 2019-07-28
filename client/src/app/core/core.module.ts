@@ -5,13 +5,11 @@ import {
   HttpClientModule
 } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { RouteReuseStrategy, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import {
   ErrorHandlerInterceptor,
   HttpService
 } from '@app/core/http';
-import { LocalStorageService } from '@app/core/local-storage.service';
-import { RouteReusableStrategy } from '@app/core/route-reusable-strategy';
 import {
   ErrorMessageService,
   UserService,
@@ -24,7 +22,6 @@ import { ApiKeyInterceptor } from './http/api-key.interceptor';
   imports: [CommonModule, HttpClientModule, RouterModule],
   declarations: [],
   providers: [
-    LocalStorageService,
     ErrorHandlerInterceptor,
     UserService,
     UtilService,
@@ -42,11 +39,7 @@ import { ApiKeyInterceptor } from './http/api-key.interceptor';
     {
       provide: HttpClient,
       useClass: HttpService
-    },
-    {
-      provide: RouteReuseStrategy,
-      useClass: RouteReusableStrategy
     }
   ]
 })
-export class CoreModule {}
+export class CoreModule { }

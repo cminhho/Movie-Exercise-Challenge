@@ -8,7 +8,7 @@ const ITEMS_PER_PAGE = 20;
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
-  styleUrls: ['./movie.component.css']
+  styleUrls: ['./movie.component.scss']
 })
 export class MovieComponent implements OnInit {
   movies: any[];
@@ -27,7 +27,7 @@ export class MovieComponent implements OnInit {
       image: '/assets/images/Bitmap.png',
       category: ['Fantasy', 'Animation', 'Family'],
       duration: '1h52',
-      currentRate: '3.14',
+      currentRate: '3.54',
       reviews: '4343',
     },
     {
@@ -35,7 +35,7 @@ export class MovieComponent implements OnInit {
       image: '/assets/images/Bitmap.png',
       category: ['Action', 'Thriller'],
       duration: '1h32',
-      currentRate: '3.12',
+      currentRate: '3.52',
       reviews: '1234',
     }
   ];

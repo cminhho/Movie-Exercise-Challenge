@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-rating',
+  // tslint:disable-next-line: component-selector
+  selector: 'movie-rating',
   templateUrl: './rating.component.html',
-  styleUrls: ['./rating.component.css']
+  styleUrls: ['./rating.component.scss']
 })
 export class RatingComponent implements OnInit {
   @Input()

@@ -4,12 +4,12 @@
   font-size: 2rem;
   color: #d3d3d3;
 }
-.full {
-  color: red;
+.vote-average {
+  color: darkgrey; 
+  border-color: darkgrey !important
 }
 .half {
   position: absolute;
   display: inline-block;
   overflow: hidden;
-  color: red;
 }

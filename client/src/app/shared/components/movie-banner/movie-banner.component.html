@@ -18,7 +18,7 @@
       </div>
       <div class="d-flex justify-content-center m-2 flex-row flex-md-column">
         <div class="rating-wrapper border p-3 d-flex justify-content-center justify-content-md-between">
-          <movie-rating [currentRate]="movie.voteAverage" [reviews]="movie.voteCount"></movie-rating>
+          <movie-rating [currentRate]="movie.voteAverage/2" [reviews]="movie.voteCount"></movie-rating>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IMovie } from '@app/shared/model/movie.model';
 
+const DEFAULT_WATCH_NOW_TITLE = 'WATCH MOVIE';
 @Component({
   selector: 'app-movie-grid-item',
   templateUrl: './movie-grid-item.component.html',
@@ -10,9 +11,9 @@ export class MovieGridItemComponent implements OnInit {
   @Input()
   movie: IMovie;
 
-  watchMovieTitle = 'WATCH MOVIE';
-  baseImageUrl = 'https://image.tmdb.org/t/p/w500/';
-  emptyImageUrl = 'https://cdn1.iconfinder.com/data/icons/business-company-1/500/image-512.png';
+  watchMovieTitle = DEFAULT_WATCH_NOW_TITLE;
+  private baseImageUrl = 'https://image.tmdb.org/t/p/w500/';
+  private DEFAULT_IMAGEURL = 'http://placehold.it/265x375';
 
   constructor() { }
 
@@ -21,7 +22,7 @@ export class MovieGridItemComponent implements OnInit {
 
   createPosterImageUrl(posterPath: string) {
     if (!posterPath) {
-      return this.emptyImageUrl;
+      return this.DEFAULT_IMAGEURL;
     }
     return this.baseImageUrl + posterPath;
   }

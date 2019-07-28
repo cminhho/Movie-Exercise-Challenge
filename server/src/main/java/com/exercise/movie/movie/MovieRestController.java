@@ -2,6 +2,7 @@ package com.exercise.movie.movie;
 
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.shared.domain.PageResponseModel;
+import com.exercise.movie.shared.rest.util.RestResponseUtil;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
@@ -12,9 +13,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
@@ -32,6 +39,13 @@ public class MovieRestController {
     this.movieRepository = movieRepository;
   }
 
+  /**
+   * {@code POST  /movie} : Create a new movie.
+   *
+   * @param movie the movie to create.
+   * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new
+   * movie
+   */
   @PostMapping("/movie")
   public ResponseEntity<Movie> createMovie(@Valid @RequestBody Movie movie)
       throws URISyntaxException {
@@ -58,7 +72,7 @@ public class MovieRestController {
     } else {
       page = movieService.findAll(pageable);
     }
-    return ResponseEntity.ok().body(pageToResponseResult(page));
+    return ResponseEntity.ok().body(RestResponseUtil.pageToResponseResult(page));
   }
 
 
@@ -72,30 +86,20 @@ public class MovieRestController {
   public ResponseEntity<PageResponseModel> getPopularMovies(Pageable pageable) {
     log.debug("REST request to get a list of the popular movies");
     Page<Movie> page = movieService.findPopularMovies(pageable);
-    return ResponseEntity.ok().body(pageToResponseResult(page));
-  }
-
-  private PageResponseModel pageToResponseResult(Page<?> page) {
-    return PageResponseModel.builder()
-        .number(page.getNumber())
-        .size(page.getSize())
-        .totalElements(page.getTotalElements())
-        .totalPages(page.getTotalPages())
-        .results(page.getContent())
-        .build();
+    return ResponseEntity.ok().body(RestResponseUtil.pageToResponseResult(page));
   }
 
   /**
    * {@code GET  /movies/top_rated} : Get the top rated movies
    *
-   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of top rated movies
-   * in body.
+   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of top rated
+   * movies in body.
    */
   @GetMapping("/movie/top_rated")
   public ResponseEntity<PageResponseModel> getTopRatedMovies(Pageable pageable) {
     log.debug("REST request to gGet the top rated movies");
     Page<Movie> page = movieService.findTopRatedMovies(pageable);
-    return ResponseEntity.ok().body(pageToResponseResult(page));
+    return ResponseEntity.ok().body(RestResponseUtil.pageToResponseResult(page));
   }
 
   /**
@@ -108,9 +112,16 @@ public class MovieRestController {
   public ResponseEntity<PageResponseModel> getUpcomingMovies(Pageable pageable) {
     log.debug("REST request to get the top rated movies");
     Page<Movie> page = movieService.findUpcomingMovies(pageable);
-    return ResponseEntity.ok().body(pageToResponseResult(page));
+    return ResponseEntity.ok().body(RestResponseUtil.pageToResponseResult(page));
   }
 
+  /**
+   * {@code GET  /movie/:id} : get the "id" movie.
+   *
+   * @param id the id of the movie to retrieve.
+   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the movie, or
+   * with status {@code 404 (Not Found)}.
+   */
   @GetMapping("/movie/{id}")
   public ResponseEntity<Movie> getMovie(@PathVariable Long id) {
     log.debug("REST request to get movie by ID: {}", id);
@@ -128,7 +139,7 @@ public class MovieRestController {
   public ResponseEntity<Set<MovieComment>> getComments(@PathVariable Long id) {
     log.debug("REST request to get a list of comment by movie : {}", id);
     Optional<Movie> movieOptional = movieRepository.findOneWithEagerRelationships(id);
-    if(!movieOptional.isPresent()){
+    if (!movieOptional.isPresent()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     Movie movie = movieOptional.get();
@@ -136,18 +147,35 @@ public class MovieRestController {
     return ResponseEntity.ok().body(movieComments);
   }
 
+  /**
+   * {@code PUT  /movie} : Updates an existing movie.
+   *
+   * @param movie the movie to update.
+   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated
+   * movie, or with status {@code 400 (Bad Request)} if the movie is not valid
+   */
   @PutMapping("/movie")
   public ResponseEntity<Movie> updateMovie(@Valid @RequestBody Movie movie) {
     log.debug("REST request to update movie: {}", movie);
-    if (movie.getId() == null) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    try {
+      if (movie.getId() == null) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+      Movie result = movieService.save(movie);
+      return ResponseEntity.ok().body(result);
+    } catch (Exception ex) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    Movie result = movieService.save(movie);
-    return ResponseEntity.ok().body(result);
   }
 
+  /**
+   * {@code DELETE  /movie/:id} : delete the movie.
+   *
+   * @param id the id of the movie to delete.
+   * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
+   */
   @DeleteMapping("/movie/{id}")
-  public ResponseEntity<Void> updateMovie(@PathVariable Long id) {
+  public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
     log.debug("REST request to delete movie: {}", id);
     try {
       movieService.delete(id);
@@ -155,6 +183,5 @@ public class MovieRestController {
     } catch (Exception ex) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
   }
 }

@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 export interface IBaseCrudApi<T, ID> {
   create(payload: T): Observable<HttpResponse<T>>;
 
-  update(id: number, payload: T): Observable<HttpResponse<T>>;
+  update(payload: T): Observable<HttpResponse<T>>;
+
+  updateByID(id: number, payload: T): Observable<HttpResponse<T>>;
 
   query(req: any): Observable<HttpResponse<T[]>>;
 

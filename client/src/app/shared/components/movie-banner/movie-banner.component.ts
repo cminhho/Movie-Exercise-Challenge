@@ -12,7 +12,7 @@ export class MovieBannerComponent implements OnInit {
   movies: IMovie[];
 
   baseImageUrl = 'https://image.tmdb.org/t/p/w500/';
-  emptyImageUrl = 'http://cdn.collider.com/wp-content/uploads/dark-knight-rises-movie-poster-banner-batman.jpg';
+  DEFAULT_IMAGEURL = 'http://placehold.it/1905x480';
 
   constructor(
     private carouselConfig: NgbCarouselConfig
@@ -28,7 +28,7 @@ export class MovieBannerComponent implements OnInit {
 
   createBackdropImageUrl(backdropPath: string) {
     if (!backdropPath) {
-      return this.emptyImageUrl;
+      return this.DEFAULT_IMAGEURL;
     }
     return this.baseImageUrl + backdropPath;
   }

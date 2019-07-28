@@ -47,11 +47,11 @@ export class MovieDeletePopupComponent implements OnInit, OnDestroy {
         this.ngbModalRef.componentInstance.movie = movie;
         this.ngbModalRef.result.then(
           result => {
-            this.router.navigate(['/movie', { outlets: { popup: null } }]);
+            this.router.navigate(['/movie-management', { outlets: { popup: null } }]);
             this.ngbModalRef = null;
           },
           reason => {
-            this.router.navigate(['/movie', { outlets: { popup: null } }]);
+            this.router.navigate(['/movie-management', { outlets: { popup: null } }]);
             this.ngbModalRef = null;
           }
         );

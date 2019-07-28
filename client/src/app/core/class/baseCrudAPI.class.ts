@@ -15,7 +15,13 @@ export abstract class BaseCrudAPIClass<T, ID> implements IBaseCrudApi<T, ID> {
       .pipe(map((res: HttpResponse<T>) => res));
   }
 
-  update(id: number, payload: T): Observable<HttpResponse<T>> {
+  update(payload: T): Observable<HttpResponse<T>> {
+    return this.http
+      .put<T>(this.resourceUrl, payload, { observe: 'response' })
+      .pipe(map((res: HttpResponse<T>) => res));
+  }
+
+  updateByID(id: number, payload: T): Observable<HttpResponse<T>> {
     return this.http
       .put<T>(this.resourceUrl + '/' + id, payload, { observe: 'response' })
       .pipe(map((res: HttpResponse<T>) => res));

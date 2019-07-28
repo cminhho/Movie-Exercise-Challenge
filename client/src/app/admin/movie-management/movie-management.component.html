@@ -1,9 +1,15 @@
-<div>
-  <app-admin-header></app-admin-header>
+<div class="px-5">
   <h2 id="page-heading">
     <span>Movie Management</span>
-    <button class="btn btn-primary float-right create-movie" [routerLink]="['/movie-management/new']">
-      <fa-icon [icon]="'plus'"></fa-icon>
+    <button class="btn btn-warning float-right create-movie m-2" (click)="populateMovieData()">
+      <div *ngIf="isPopulatingLoading" class="spinner-border spinner-border-icon" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <span>
+        Populate Movie Data
+      </span>
+    </button>
+    <button class="btn btn-primary float-right create-movie m-2" [routerLink]="['/movie-management/new']">
       <span>
         Create new Movie
       </span>
@@ -35,7 +41,7 @@
           <th></th>
         </tr>
       </thead>
-      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= totalPages" [infiniteScrollDistance]="0">
         <tr *ngFor="let movie of movies; trackBy: trackId">
           <td>
             <a [routerLink]="['/movie', movie.id, 'view']">{{ movie.id }}</a>

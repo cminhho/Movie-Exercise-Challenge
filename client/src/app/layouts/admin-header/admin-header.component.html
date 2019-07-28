@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark navbar-expand-md bg-dark movie-admin-navbar">
   <a class="navbar-brand logo" routerLink="/">
     <span class="logo-img"></span>
-    <span class="navbar-title">Movie Exercise Administration</span>
+    <span class="navbar-title">THEMOVIEBOX <small>Administration</small></span>
   </a>
   <a
     class="navbar-toggler d-lg-none"
@@ -12,7 +12,7 @@
     aria-expanded="false"
     aria-label="Toggle navigation"
   >
-    <!-- <fa-icon icon="bars"></fa-icon> -->
+    <fa-icon icon="bars"></fa-icon>
   </a>
   <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed">
     <ul class="navbar-nav ml-auto">
@@ -20,11 +20,11 @@
         <a class="nav-link" routerLink="/">
           <span>
             <fa-icon icon="home"></fa-icon>
-            <span>Home</span>
+            <span class="ml-1">Go Back Client Page</span>
           </span>
         </a>
       </li>
-      <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" placement="bottom-right">
         <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
           <span>
             <fa-icon icon="user-plus"></fa-icon>
@@ -39,14 +39,6 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">
-          <span>
-            <fa-icon icon="home"></fa-icon>
-            <span>User</span>
-          </span>
-        </a>
       </li>
     </ul>
   </div>

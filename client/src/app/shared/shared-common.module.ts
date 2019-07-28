@@ -9,6 +9,7 @@ import { MovieGridComponent } from './components/movie-grid/movie-grid.component
 import { MovieGridItemComponent } from './components/movie-grid/movie-grid-item/movie-grid-item.component';
 import { DisplayByDirective } from './directives/displayby.directive';
 import { DisplayDirective } from './directives/display.directive';
+import { ToastsContainerComponent } from './components/toasts-container/toasts-container.component';
 
 @NgModule({
   imports: [SharedLibsModule, NgbModule],
@@ -20,7 +21,8 @@ import { DisplayDirective } from './directives/display.directive';
     DisplayByDirective,
     DisplayDirective,
     MovieGridComponent,
-    MovieGridItemComponent
+    MovieGridItemComponent,
+    ToastsContainerComponent
   ],
   exports: [
     MovieBannerComponent,
@@ -30,7 +32,8 @@ import { DisplayDirective } from './directives/display.directive';
     DisplayByDirective,
     DisplayDirective,
     MovieGridComponent,
-    MovieGridItemComponent
+    MovieGridItemComponent,
+    ToastsContainerComponent
   ],
   entryComponents: [],
   providers: [],

@@ -1,18 +1,30 @@
 <div class="border-bottom mt-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
-  <ul class="list-group list-group-horizontal">
-    <li [routerLink]="['/movie/' + item.value]" *ngFor="let item of items" (click)="onChangedTab(item.value)">
-      <a routerLinkActive="active" class="mx-2 p-3" href="javascript:void(0);">{{ item.title }}</a>
+  <ul class="list-group list-group-horizontal navbar-nav">
+    <li [routerLink]="['/movie/' + item.value]" *ngFor="let item of items" (click)="onChangedTab(item.value)" class="nav-item mx-2">
+      <a routerLinkActive="text-primary active" class="p-2 text-muted" href="javascript:void(0);">{{ item.title }}</a>
     </li>
-    <li [routerLink]="['/movie/genre']" (click)="onChangedTab('genge')">
-      <a routerLinkActive="active" class="mx-2 p-3" href="javascript:void(0);">Genre</a>
+    <li ngbDropdown class="nav-item">
+      <a routerLinkActive="active" class="mx-2 p-2 text-muted" href="javascript:void(0);" ngbDropdownToggle>Genre</a>
+      <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
+        <li>
+          <a class="dropdown-item" (click)="onChangedTab('')" >
+            <span>Movie List</span>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="onChangedTab('tvlist')" >
+            <span>TV List </span>
+          </a>
+        </li>
+      </ul>
     </li>
   </ul>
   <div class="action-button d-none d-md-block">
-      <button class="btn text-muted">
-        <fa-icon icon="th-large" size="lg"></fa-icon>
-      </button>
-      <button class="btn text-muted">
-          <fa-icon icon="stream" size="lg"></fa-icon>
-      </button>
+    <button class="btn text-muted">
+      <fa-icon icon="th-large" size="lg"></fa-icon>
+    </button>
+    <button class="btn text-muted">
+      <fa-icon icon="stream" size="lg"></fa-icon>
+    </button>
   </div>
 </div>

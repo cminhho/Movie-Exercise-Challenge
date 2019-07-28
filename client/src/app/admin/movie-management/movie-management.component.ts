@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
 
 import { IMovie } from 'app/shared/model/movie.model';
 
 import { MovieService } from './movie-management.service';
 import { TmaEventManager } from '@app/core';
+import { ToastService } from '@app/shared';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -24,19 +24,24 @@ export class MovieComponent implements OnInit, OnDestroy {
   predicate: any;
   reverse: any;
   totalItems: number;
+  totalPages: number;
+  isPopulatingLoading: boolean;
 
   constructor(
     protected movieService: MovieService,
-    protected eventManager: TmaEventManager
+    protected eventManager: TmaEventManager,
+    protected toastService: ToastService
   ) {
     this.movies = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
-    this.page = 1;
+    this.page = 0;
+    this.totalPages = 0;
     this.links = {
       last: 0
     };
     this.predicate = 'id';
     this.reverse = true;
+    this.isPopulatingLoading = false;
   }
 
   loadAll() {
@@ -89,11 +94,33 @@ export class MovieComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  protected paginateMovies(data: IMovie[], headers: HttpHeaders) {
-    // this.links = this.parseLinks.parse(headers.get('link'));
-    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    for (let i = 0; i < data.length; i++) {
-      this.movies.push(data[i]);
+  populateMovieData() {
+    this.isPopulatingLoading = true;
+    this.movieService
+      .populateMovieData({
+        listType: 'popular',
+        fromPage: 1,
+        toPage: 5
+      })
+      .subscribe(
+        (res: HttpResponse<any>) => {
+          this.isPopulatingLoading = false;
+          const responseMessage = res.body.totalCrawledItems + ' movie records are added successfullly';
+          this.toastService.show(responseMessage, { classname: 'bg-primary text-light', delay: 10000 });
+          this.loadAll();
+        },
+        (res: HttpErrorResponse) => {
+          this.toastService.show('Error while populating movie records');
+          this.isPopulatingLoading = false;
+        }
+      );
+  }
+
+  protected paginateMovies(data: any, headers: HttpHeaders) {
+    this.totalItems = data.totalElements;
+    this.totalPages = data.totalPages;
+    for (let i = 0; i < data.results.length; i++) {
+      this.movies.push(data.results[i]);
     }
   }
 

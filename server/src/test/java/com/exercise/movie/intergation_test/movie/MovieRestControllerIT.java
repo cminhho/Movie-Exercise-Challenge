@@ -77,7 +77,7 @@ public class MovieRestControllerIT {
 
   @Test
   @Transactional
-  public void createMovie_thenStatus200() throws Exception {
+  public void createMovie_thenStatus201() throws Exception {
     int totalMovieInDatabaseBeforeDelete = movieRepository.findAllWithEagerRelationships().size();
 
     System.out.println(applicationName);
@@ -250,7 +250,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
-  public void deleteMovie_existingID_thenStatus200() throws Exception {
+  public void deleteMovie_existingID_thenStatus204() throws Exception {
     Movie movie = createEntity();
     movieRepository.saveAndFlush(movie);
 

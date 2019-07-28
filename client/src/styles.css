@@ -20,3 +20,8 @@ body {
 .carousel-indicators .active {
   background-color: #ff0079;
 }
+
+.spinner-border-icon {
+  width: 20px !important;
+  height: 20px !important;
+}

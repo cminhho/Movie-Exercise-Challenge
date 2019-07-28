@@ -1,4 +1,5 @@
 import * as $ from 'jquery';
+import './vendor.ts';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -11,7 +12,6 @@ import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { AdminModule } from '@app/admin/admin.module';
-import { DashboardModule } from '@app/dashboard/dashboard.module';
 
 import {
   HeaderComponent,

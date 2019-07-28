@@ -1,4 +1,4 @@
-package com.exercise.movie.crawler.vo;
+package com.exercise.movie.crawler.movie.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

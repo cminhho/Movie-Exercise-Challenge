@@ -1,12 +1,15 @@
-package com.exercise.movie.crawler.service;
+package com.exercise.movie.crawler.movie.service;
 
-import com.exercise.movie.crawler.vo.MovieCrawler;
-import com.exercise.movie.crawler.helper.MovieCrawlerRequestHelper;
-import com.exercise.movie.crawler.mapper.MovieCrawlerMapper;
+import com.exercise.movie.crawler.movie.vo.MovieCrawler;
+import com.exercise.movie.crawler.movie.helper.MovieCrawlerRequestHelper;
+import com.exercise.movie.crawler.movie.mapper.MovieCrawlerMapper;
+import com.exercise.movie.genre.MovieGenre;
+import com.exercise.movie.genre.MovieGenreRestRepository;
 import com.exercise.movie.movie.Movie;
 import com.exercise.movie.movie.MovieRepository;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,51 +18,51 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 @Slf4j
-public class MovieContentCrawler {
+public class MovieCrawlerService {
 
   // TODO: Getting following values from spring boot profile properties instead
   private static String CRAWLER_AUTHOR = "system";
   private static String CRAWLER_LINK = "https://api.themoviedb.org/3/movie";
-  private static String POPULAR_MOVIE_PATH = CRAWLER_LINK + "/popular";
   private static String CRAWLER_API_KEY = "a7b3c9975791294647265c71224a88ad";
 
   private final MovieRepository movieRepository;
+  private final MovieGenreRestRepository movieGenreRestRepository;
   private final MovieCrawlerRequestHelper movieCrawlerRequestHelper;
   private final MovieCrawlerMapper movieCrawlerMapper;
 
-  public MovieContentCrawler(MovieRepository movieRepository,
+  public MovieCrawlerService(MovieRepository movieRepository,
+      MovieGenreRestRepository movieGenreRestRepository,
       MovieCrawlerRequestHelper movieCrawlerRequestHelper,
       MovieCrawlerMapper movieCrawlerMapper) {
     this.movieRepository = movieRepository;
+    this.movieGenreRestRepository = movieGenreRestRepository;
     this.movieCrawlerRequestHelper = movieCrawlerRequestHelper;
     this.movieCrawlerMapper = movieCrawlerMapper;
   }
 
   //  TODO: Using AsyncTask
   @Transactional
-  public int crawlMovieItems(int fromPage, int toPage) throws Exception {
+  public int crawlMovieItems(String listType, int fromPage, int toPage) throws Exception {
     int totalCrawledItem = 0;
     for (int i = fromPage; i <= toPage; i++) {
-      totalCrawledItem += crawlMovieItem(i);
+      totalCrawledItem += crawlMovieItem(listType, i);
     }
     return totalCrawledItem;
   }
 
-  protected int crawlMovieItem(int page) {
+  protected int crawlMovieItem(String listType, int page) {
     try {
-      String popularMoviePath = buildCrawlerLink(page);
+      String popularMoviePath = buildMovieCrawlerLink(listType, page);
       String apiOutput = movieCrawlerRequestHelper.getStringResponse(popularMoviePath);
       List<MovieCrawler> movieCrawlerList =
-          movieCrawlerRequestHelper.getMovieCrawlerFromStringResponse(apiOutput);
+          movieCrawlerRequestHelper.getMovieCrawlerFromStringResponse("results", apiOutput);
 
       List<Movie> movieList = new ArrayList<>();
       for (MovieCrawler movieCrawler : movieCrawlerList) {
-        Movie movie = movieCrawlerMapper.movieCrawlerToMovie(movieCrawler);
-        Movie movieWithAuditInformation = addAuditInformation(movie);
-        movieList.add(movieWithAuditInformation);
+        Movie movie = createMovieEntity(movieCrawler);
+        movieList.add(movie);
       }
       log.debug("Processing to save movies from themoviedb.org to database");
-
       movieRepository.saveAll(movieList);
       return movieList.size();
     } catch (Exception ex) {
@@ -68,8 +71,21 @@ public class MovieContentCrawler {
     return 0;
   }
 
-  protected String buildCrawlerLink(int page) {
-    return POPULAR_MOVIE_PATH + "?api_key=" + CRAWLER_API_KEY + "&language=en-US&page=" + page;
+  protected Movie createMovieEntity(MovieCrawler movieCrawler) {
+    Movie movie = movieCrawlerMapper.movieCrawlerToMovie(movieCrawler);
+    addDefaultGenres(movie);
+    addAuditInformation(movie);
+    return movie;
+  }
+
+  protected Movie addDefaultGenres(Movie movie) {
+    List<MovieGenre> movieGenreList = movieGenreRestRepository.findAll();
+    movie.genres(new HashSet(movieGenreList));
+    return movie;
+  }
+
+  protected String buildMovieCrawlerLink(String listType, int page) {
+    return CRAWLER_LINK + '/' + listType + "?api_key=" + CRAWLER_API_KEY + "&language=en-US&page=" + page;
   }
 
   protected Movie addAuditInformation(Movie movie) {

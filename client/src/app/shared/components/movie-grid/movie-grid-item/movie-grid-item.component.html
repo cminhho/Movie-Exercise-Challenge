@@ -1,0 +1,25 @@
+<div>
+    <div class="thumbnail-gallery card" style="height: 450px;">
+      <div class="thumbnail-gallery-wrapper thumbnail-hovereffect">
+        <img class="card-img-top h-100 w-100" [src]="createPosterImageUrl(movie.posterPath)" alt="{{ movie.title }}" />
+        <div class="overlay">
+          <h2>{{ movie.title }}</h2>
+          <a class="info lighting-button" href="">{{ watchMovieTitle }}</a>
+        </div>
+      </div>
+      <div class="d-flex bd-highlight p-2">
+        <div class="flex-grow-1 flex-column mr-1 text-truncate">
+          <div class="py-2 text-overflow font-weight-bold">{{ movie.title }}</div>
+          <div class="text-muted">
+            <span *ngFor="let genre of movie.genres; let last = last">
+                {{ genre.title }} <span *ngIf="!last">|</span>
+            </span>
+          </div>
+        </div>
+        <div class="align-self-center">
+          <span class="border border-primary text-primary p-2 rounded">{{ calculateVoteAverage(movie.voteAverage) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

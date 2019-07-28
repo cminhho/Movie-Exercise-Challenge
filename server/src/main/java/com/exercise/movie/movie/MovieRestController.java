@@ -1,11 +1,9 @@
 package com.exercise.movie.movie;
 
 import com.exercise.movie.comment.MovieComment;
-import com.exercise.movie.shared.domain.ResponseResult;
+import com.exercise.movie.shared.domain.PageResponseModel;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import javax.validation.Valid;
@@ -51,7 +49,7 @@ public class MovieRestController {
    * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of movies in body.
    */
   @GetMapping("/movie")
-  public ResponseEntity<List<Movie>> getAllMovies(Pageable pageable,
+  public ResponseEntity<PageResponseModel> getAllMovies(Pageable pageable,
       @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
     log.debug("REST request to get a page of Movies");
     Page<Movie> page;
@@ -60,21 +58,9 @@ public class MovieRestController {
     } else {
       page = movieService.findAll(pageable);
     }
-    return ResponseEntity.ok().body(page.getContent());
+    return ResponseEntity.ok().body(pageToResponseResult(page));
   }
 
-  /**
-   * {@code GET  /movies/popular} : Get a list of the popular movies
-   *
-   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of popular movies
-   * in body.
-   */
-  @GetMapping("/movie/popular2")
-  public ResponseEntity<List<Movie>> getPopularMovies2(Pageable pageable) {
-    log.debug("REST request to get a list of the popular movies");
-    Page<Movie> page = movieService.findPopularMovies(pageable);
-    return ResponseEntity.ok().body(page.getContent());
-  }
 
   /**
    * {@code GET  /movies/popular} : Get a list of the popular movies
@@ -83,17 +69,18 @@ public class MovieRestController {
    * in body.
    */
   @GetMapping("/movie/popular")
-  public ResponseEntity<ResponseResult> getPopularMovies(Pageable pageable) {
+  public ResponseEntity<PageResponseModel> getPopularMovies(Pageable pageable) {
     log.debug("REST request to get a list of the popular movies");
     Page<Movie> page = movieService.findPopularMovies(pageable);
     return ResponseEntity.ok().body(pageToResponseResult(page));
   }
 
-  private ResponseResult pageToResponseResult(Page<?> page) {
-    return ResponseResult.builder()
-        .page(page.getNumber())
-        .total_pages(page.getTotalPages())
-        .total_results(page.getNumberOfElements())
+  private PageResponseModel pageToResponseResult(Page<?> page) {
+    return PageResponseModel.builder()
+        .number(page.getNumber())
+        .size(page.getSize())
+        .totalElements(page.getTotalElements())
+        .totalPages(page.getTotalPages())
         .results(page.getContent())
         .build();
   }
@@ -105,10 +92,10 @@ public class MovieRestController {
    * in body.
    */
   @GetMapping("/movie/top_rated")
-  public ResponseEntity<List<Movie>> getTopRatedMovies(Pageable pageable) {
+  public ResponseEntity<PageResponseModel> getTopRatedMovies(Pageable pageable) {
     log.debug("REST request to gGet the top rated movies");
     Page<Movie> page = movieService.findTopRatedMovies(pageable);
-    return ResponseEntity.ok().body(page.getContent());
+    return ResponseEntity.ok().body(pageToResponseResult(page));
   }
 
   /**
@@ -118,10 +105,10 @@ public class MovieRestController {
    * in body.
    */
   @GetMapping("/movie/upcoming")
-  public ResponseEntity<List<Movie>> getUpcomingMovies(Pageable pageable) {
+  public ResponseEntity<PageResponseModel> getUpcomingMovies(Pageable pageable) {
     log.debug("REST request to get the top rated movies");
     Page<Movie> page = movieService.findUpcomingMovies(pageable);
-    return ResponseEntity.ok().body(page.getContent());
+    return ResponseEntity.ok().body(pageToResponseResult(page));
   }
 
   @GetMapping("/movie/{id}")

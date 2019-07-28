@@ -1,21 +1,21 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SharedLibsModule } from './shared-libs.modules';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CarouselComponent } from './components/carousel/carousel.component';
+import { MovieBannerComponent } from './components/movie-banner/movie-banner.component';
 import { RatingComponent } from './components/rating/rating.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
+import { LoadingComponent } from './components/loading/loading.component';
 import { TabsetComponent } from './components/tabset/tabset.component';
 import { MovieGridComponent } from './components/movie-grid/movie-grid.component';
-import { MovieGridItemComponent } from './components/movie-grid-item/movie-grid-item.component';
+import { MovieGridItemComponent } from './components/movie-grid/movie-grid-item/movie-grid-item.component';
 import { DisplayByDirective } from './directives/displayby.directive';
 import { DisplayDirective } from './directives/display.directive';
 
 @NgModule({
   imports: [SharedLibsModule, NgbModule],
   declarations: [
-    CarouselComponent,
+    MovieBannerComponent,
     RatingComponent,
-    PaginationComponent,
+    LoadingComponent,
     TabsetComponent,
     DisplayByDirective,
     DisplayDirective,
@@ -23,9 +23,9 @@ import { DisplayDirective } from './directives/display.directive';
     MovieGridItemComponent
   ],
   exports: [
-    CarouselComponent,
+    MovieBannerComponent,
     RatingComponent,
-    PaginationComponent,
+    LoadingComponent,
     TabsetComponent,
     DisplayByDirective,
     DisplayDirective,

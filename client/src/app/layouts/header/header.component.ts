@@ -13,7 +13,8 @@ export class HeaderComponent implements OnInit {
   layout: any;
   pageInfo: any;
   version: 'v1.0.0';
-  public isNavbarCollapsed = true;
+  isNavbarCollapsed = true;
+  isAuthenticated = false;
 
   constructor(
     private router: Router,
@@ -40,21 +41,29 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    $(document).ready(function () {
-      // Transition effect for navbar
-      $(window).scroll(function () {
-        // checks if window is scrolled more than 300px, adds/removes solid class
-        if ($(this).scrollTop() > 100) {
-          $('.navbar').addClass('solid');
-        } else {
-          $('.navbar').removeClass('solid');
-        }
-      });
-    });
+    // window.addEventListener('scroll', this.scroll, true);
+    this.onScrolledWindow();
   }
 
-  isAuthenticated() {
+  private onScrolledWindow() {
+    // TODO: JQuery need to be removed and use Angular function instead
+    $(window).scroll(function () {
+      // checks if window is scrolled more than 300px, adds/removes solid class
+      if ($(this).scrollTop() > 100) {
+        $('.navbar').addClass('solid');
+      } else {
+        $('.navbar').removeClass('solid');
+      }
+    });
   }
+  
+  private scroll = (): void => {
+    if ($(this).scrollTop() > 100) {
+      $('.navbar').addClass('solid');
+    } else {
+      $('.navbar').removeClass('solid');
+    }
+  };
 
   signOut(): void {
   }

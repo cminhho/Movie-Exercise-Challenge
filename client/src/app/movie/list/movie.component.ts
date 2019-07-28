@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 import { MovieService } from '../movie.service';
 import { HttpResponse } from '@angular/common/http';
+import { IMovie } from '@app/shared/model/movie.model';
 
 const ITEMS_PER_PAGE = 20;
+const DEFAULT_MOVIE_LIST = 'popular';
+
+const DEFAULT_MOVIE_BANNER_ITEMS = 3;
+const DEFAULT_MOVIE_BANNER_LIST = 'popular';
 
 @Component({
   selector: 'app-movie',
@@ -11,45 +15,29 @@ const ITEMS_PER_PAGE = 20;
   styleUrls: ['./movie.component.scss']
 })
 export class MovieComponent implements OnInit {
-  movies: any[];
   currentAccount: any;
   itemsPerPage: number;
   links: any;
   page: any;
   predicate: any;
   reverse: any;
-  totalItems: number;
+  totalPages: number;
   selectedMoveType: string;
 
-  carouselMovies = [
-    {
-      title: 'WRATH OF THE TITANS',
-      image: '/assets/images/Bitmap.png',
-      category: ['Fantasy', 'Animation', 'Family'],
-      duration: '1h52',
-      currentRate: '3.54',
-      reviews: '4343',
-    },
-    {
-      title: 'WRATH OF THE TITANS',
-      image: '/assets/images/Bitmap.png',
-      category: ['Action', 'Thriller'],
-      duration: '1h32',
-      currentRate: '3.52',
-      reviews: '1234',
-    }
-  ];
+  movies: IMovie[];
+  bannerMovies: IMovie[];
 
   constructor(
-    private config: NgbTabsetConfig,
     private movieService: MovieService,
   ) { }
 
   ngOnInit() {
+    this.bannerMovies = [];
     this.movies = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 0;
-    this.selectedMoveType = 'popular';
+    this.selectedMoveType = DEFAULT_MOVIE_LIST;
+    this.loadBannerMovies();
     this.loadAll();
   }
 
@@ -67,6 +55,21 @@ export class MovieComponent implements OnInit {
   loadPage(page: any) {
     this.page = page;
     this.loadAll();
+  }
+
+  private loadBannerMovies() {
+    this.movieService.query(DEFAULT_MOVIE_BANNER_LIST, {
+      page: 0,
+      size: DEFAULT_MOVIE_BANNER_ITEMS,
+      sort: this.sort()
+    }).subscribe((res: HttpResponse<any[]>) => {
+      this.buildBannerMovies(res.body);
+    }, (error: any) => {
+    });
+  }
+
+  private buildBannerMovies(body: any) {
+    this.bannerMovies = body.results;
   }
 
   private loadAll() {
@@ -89,6 +92,8 @@ export class MovieComponent implements OnInit {
   }
 
   private paginateCrawlRequests(data: any) {
+    // this.totalPages = data.totalPages;
+    this.totalPages = 1;
     for (let i = 0; i < data.results.length; i++) {
       this.movies.push(data.results[i]);
     }

@@ -1,4 +1,5 @@
 <div>
+  <app-admin-header></app-admin-header>
   <h2 id="page-heading">
     <span>Movie Management</span>
     <button class="btn btn-primary float-right create-movie" [routerLink]="['/movie-management/new']">
@@ -16,21 +17,21 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Vote Average</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Vote Count</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Video</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Media Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Popularity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Poster Path</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Original Language</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Original Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Backdrop Path</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Adult</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Overview</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>Release Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-          <th><span>List</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+          <th><span>ID</span></th>
+          <th><span>Title</span></th>
+          <th><span>Vote Average</span></th>
+          <th><span>Vote Count</span></th>
+          <th><span>Video</span></th>
+          <th><span>Media Type</span></th>
+          <th><span>Popularity</span></th>
+          <th><span>Poster Path</span></th>
+          <th><span>Original Language</span></th>
+          <th><span>Original Title</span></th>
+          <th><span>Backdrop Path</span></th>
+          <th><span>Adult</span></th>
+          <th><span>Overview</span></th>
+          <th><span>Release Date</span></th>
+          <th><span>List</span></th>
           <th></th>
         </tr>
       </thead>
@@ -60,11 +61,9 @@
           <td class="text-right">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/movie-management', movie.id, 'view']" class="btn btn-info btn-sm">
-                <fa-icon [icon]="'eye'"></fa-icon>
                 <span class="d-none d-md-inline">View</span>
               </button>
               <button type="submit" [routerLink]="['/movie-management', movie.id, 'edit']" class="btn btn-primary btn-sm">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>
                 <span class="d-none d-md-inline">Edit</span>
               </button>
               <button
@@ -74,7 +73,6 @@
                 queryParamsHandling="merge"
                 class="btn btn-danger btn-sm"
               >
-                <fa-icon [icon]="'times'"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
               </button>
             </div>

@@ -24,15 +24,13 @@ import org.springframework.context.annotation.Profile;
 @Profile({SPRING_PROFILE_LOCAL, SPRING_PROFILE_DEV})
 public class LoadDatabase {
 
-  private static String CREATED_BY_SYSTEM = "system";
-  private static String LAST_MODIFIED_BY_SYSTEM = "system";
-
   private MovieList movieList1;
   private MovieList movieList2;
   private MovieList movieList3;
 
   private MovieGenre actionGenre;
   private MovieGenre comedyGenre;
+  private MovieGenre animationGenre;
 
   private Movie movie1;
   private Movie movie2;
@@ -66,7 +64,7 @@ public class LoadDatabase {
         .title("Spider-Man: Far from Home")
         .backdropPath("rjbNpRMoVvqHmhmksbokcyCr7wn.jpg")
         .posterPath("rjbNpRMoVvqHmhmksbokcyCr7wn.jpg")
-        .genres(Collections.emptySet())
+        .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
         .movielists(Collections.emptySet())
         .voteAverage(2L)
@@ -75,7 +73,7 @@ public class LoadDatabase {
         .title("Alita: Battle Angel")
         .backdropPath("xRWht48C2V8XNfzvPehyClOvDni.jpg")
         .posterPath("xRWht48C2V8XNfzvPehyClOvDni.jpg")
-        .genres(Collections.emptySet())
+        .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
         .movielists(Collections.emptySet())
         .voteAverage(3L)
@@ -106,7 +104,8 @@ public class LoadDatabase {
     log.debug("Create movie genre records");
     actionGenre = new MovieGenre().title("Action");
     comedyGenre = new MovieGenre().title("Comedy");
-    movieGenreRestRepository.saveAll(Arrays.asList(actionGenre, comedyGenre));
+    animationGenre = new MovieGenre().title("Animation");
+    movieGenreRestRepository.saveAll(Arrays.asList(actionGenre, comedyGenre, animationGenre));
   }
 
   private void initMovieListRecords(MovieListRestRepository movieListRestRepository) {

@@ -1,40 +1,21 @@
 .rating-wrapper {
   width: 250px;
-  right: 15%;
   z-index: 10;
   text-align: center;
   border-color: darkgrey
 }
-
-.button {
-  border: none !important;
-  color: white !important;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
 .view-info-button {
   background-color: transparent; 
   color: black;
+  color: white;
   border: 2px solid white !important;
 }
-
 .max-width-100-height-auto {
   max-width: 100%;
   height: auto;
 }
 
-.width-height-100 {
-  width: 100%;
-  height: auto;
-}
-
-.picsum-img-wrapper {
+.backdrop-img-wrapper {
   height: 480px;
 }
 

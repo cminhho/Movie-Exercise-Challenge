@@ -1,21 +1,19 @@
 <div class="bg-light">
   <app-header></app-header>
-  <app-carousel [movies]="carouselMovies"></app-carousel>
+  <movie-banner [movies]="bannerMovies"></movie-banner>
   <div class="container">
     <app-tabset (changedTab)="onChangedTab($event)"></app-tabset>
     <div
-      class="mb-5"
-      class="search-results"
+      class="my-3"
       infinite-scroll
       (scrolled)="loadPage(page + 1)"
-      [infiniteScrollDisabled]="page >= 3"
+      [infiniteScrollDisabled]="page >= totalPages"
       [infiniteScrollDistance]="0"
     >
       <app-movie-grid [movies]="movies"></app-movie-grid>
-      <div class="mb-5">
-        <app-pagination class="d-flex justify-content-center"></app-pagination>
+      <div class="p-5" *ngIf="!(page >= totalPages)">
+        <movie-loading class="d-flex justify-content-center"></movie-loading>
       </div>
     </div>
   </div>
-  <a href="#" id="ui-to-top" class="ui-to-top fa fa-chevron-up active">TOP</a>
 </div>

@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "movie",
       "schematics": {},
       "architect": {
         "build": {
@@ -136,11 +136,11 @@
   "defaultProject": "movie-exercise-client",
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "app",
+      "prefix": "movie",
       "styleext": "css"
     },
     "@schematics/angular:directive": {
-      "prefix": "app"
+      "prefix": "movie"
     }
   }
 }

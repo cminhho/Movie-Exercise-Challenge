@@ -106,7 +106,7 @@ public class MovieRestControllerIT {
         .contentType(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-        .andExpect(jsonPath("$[0].title", is(DEFAULT_TITLE)));
+        .andExpect(jsonPath("$.results.[0].title", is(DEFAULT_TITLE)));
   }
 
   @Test
@@ -117,7 +117,7 @@ public class MovieRestControllerIT {
     mvc.perform(get("/api/movie?eagerload=false")
         .contentType(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)));
+        .andExpect(jsonPath("$.results.[*].title").value(hasItem(DEFAULT_TITLE)));
   }
 
   @Test
@@ -144,9 +144,9 @@ public class MovieRestControllerIT {
         .andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_UTF8_VALUE))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$[0].popularity", is(POPULARITY_3.intValue())))
-        .andExpect(jsonPath("$[1].popularity", is(POPULARITY_2.intValue())))
-        .andExpect(jsonPath("$[2].popularity", is(POPULARITY_1.intValue())));
+        .andExpect(jsonPath("$.results.[0].popularity", is(POPULARITY_3.intValue())))
+        .andExpect(jsonPath("$.results.[1].popularity", is(POPULARITY_2.intValue())))
+        .andExpect(jsonPath("$.results.[2].popularity", is(POPULARITY_1.intValue())));
   }
 
   @Test
@@ -160,7 +160,7 @@ public class MovieRestControllerIT {
         .andExpect(content()
             .contentTypeCompatibleWith(MediaType.APPLICATION_JSON_UTF8_VALUE))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)));
+        .andExpect(jsonPath("$.results.[*].title").value(hasItem(DEFAULT_TITLE)));
   }
 
   @Test
@@ -174,7 +174,7 @@ public class MovieRestControllerIT {
         .andExpect(content()
             .contentTypeCompatibleWith(MediaType.APPLICATION_JSON_UTF8_VALUE))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)));
+        .andExpect(jsonPath("$.results.[*].title").value(hasItem(DEFAULT_TITLE)));
   }
 
   @Test

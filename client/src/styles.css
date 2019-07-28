@@ -3,6 +3,9 @@ body {
   overflow: auto;
 }
 
+.lighting-button:hover {
+  box-shadow: 0 0 7px #fff;
+}
 
 .cursor-pointer {
   cursor: pointer;

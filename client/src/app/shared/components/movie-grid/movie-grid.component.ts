@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IMovie } from '@app/shared/model/movie.model';
 
 @Component({
   selector: 'app-movie-grid',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MovieGridComponent implements OnInit {
 
   @Input()
-  movies: any;
+  movies: IMovie[];
 
   constructor() { }
 

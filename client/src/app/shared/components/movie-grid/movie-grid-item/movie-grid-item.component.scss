@@ -11,6 +11,10 @@
   text-align: center;
   cursor: default;
 }
+.text-overflow {
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
 
 .thumbnail-hovereffect .overlay {
   width: 100%;
@@ -60,10 +64,6 @@
   transition: all 0.2s ease-in-out;
   margin: 120px 0 0;
   padding: 7px 14px;
-}
-
-.thumbnail-hovereffect a.info:hover {
-  box-shadow: 0 0 5px #fff;
 }
 
 .thumbnail-hovereffect:hover .overlay {

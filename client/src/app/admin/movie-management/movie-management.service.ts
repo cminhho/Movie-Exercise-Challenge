@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<IMovie[]>;
 @Injectable({ providedIn: 'root' })
 export class MovieService {
   private SERVER_API_URL = environment.serverUrl;
-  public resourceUrl = this.SERVER_API_URL + 'api/movies';
+  public resourceUrl = this.SERVER_API_URL + 'api/movie';
 
   constructor(protected http: HttpClient) {}
 
@@ -28,7 +28,8 @@ export class MovieService {
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
-    return this.http.get<IMovie[]>(this.resourceUrl, { params: req, observe: 'response' });
+    return this.http.get<IMovie[]>(this.resourceUrl, { params: req, observe:
+    'response' });
   }
 
   delete(id: number): Observable<HttpResponse<any>> {

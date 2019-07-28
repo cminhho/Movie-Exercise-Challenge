@@ -1,7 +1,7 @@
 <div>
   <h2 id="page-heading">
-    <span>Movies</span>
-    <button class="btn btn-primary float-right create-movie" [routerLink]="['/movie/new']">
+    <span>Movie Management</span>
+    <button class="btn btn-primary float-right create-movie" [routerLink]="['/movie-management/new']">
       <fa-icon [icon]="'plus'"></fa-icon>
       <span>
         Create new Movie
@@ -59,17 +59,17 @@
           </td>
           <td class="text-right">
             <div class="btn-group">
-              <button type="submit" [routerLink]="['/movie', movie.id, 'view']" class="btn btn-info btn-sm">
+              <button type="submit" [routerLink]="['/movie-management', movie.id, 'view']" class="btn btn-info btn-sm">
                 <fa-icon [icon]="'eye'"></fa-icon>
                 <span class="d-none d-md-inline">View</span>
               </button>
-              <button type="submit" [routerLink]="['/movie', movie.id, 'edit']" class="btn btn-primary btn-sm">
+              <button type="submit" [routerLink]="['/movie-management', movie.id, 'edit']" class="btn btn-primary btn-sm">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>
                 <span class="d-none d-md-inline">Edit</span>
               </button>
               <button
                 type="submit"
-                [routerLink]="['/', 'movie', { outlets: { popup: movie.id + '/delete' } }]"
+                [routerLink]="['/', 'movie-management', { outlets: { popup: movie.id + '/delete' } }]"
                 replaceUrl="true"
                 queryParamsHandling="merge"
                 class="btn btn-danger btn-sm"

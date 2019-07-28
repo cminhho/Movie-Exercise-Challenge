@@ -44,7 +44,8 @@ export class MovieComponent implements OnInit, OnDestroy {
       .query({
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
+        eagerload: true
       })
       .subscribe(
         (res: HttpResponse<IMovie[]>) => this.paginateMovies(res.body, res.headers),

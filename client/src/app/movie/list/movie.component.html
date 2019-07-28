@@ -1,22 +1,21 @@
 <div class="bg-light">
-    <app-header></app-header>
-    <app-carousel [movies]="carouselMovies"></app-carousel>
-    <div class="container">
-      <app-tabset (changedTab)="onChangedTab($event)"></app-tabset>
-      <div
-        class="mb-5"
-        class="search-results"
-        infinite-scroll
-        (scrolled)="loadPage(page + 1)"
-        [infiniteScrollDisabled]="page >= 3"
-        [infiniteScrollDistance]="0"
-      >
-        <app-movie-grid [movies]="movies"></app-movie-grid>
-        <div class="mb-5">
-          <app-pagination class="d-flex justify-content-center"></app-pagination>
-        </div>
+  <app-header></app-header>
+  <app-carousel [movies]="carouselMovies"></app-carousel>
+  <div class="container">
+    <app-tabset (changedTab)="onChangedTab($event)"></app-tabset>
+    <div
+      class="mb-5"
+      class="search-results"
+      infinite-scroll
+      (scrolled)="loadPage(page + 1)"
+      [infiniteScrollDisabled]="page >= 3"
+      [infiniteScrollDistance]="0"
+    >
+      <app-movie-grid [movies]="movies"></app-movie-grid>
+      <div class="mb-5">
+        <app-pagination class="d-flex justify-content-center"></app-pagination>
       </div>
     </div>
-    <a href="#" id="ui-to-top" class="ui-to-top fa fa-chevron-up active">TOP</a>
   </div>
-  
+  <a href="#" id="ui-to-top" class="ui-to-top fa fa-chevron-up active">TOP</a>
+</div>

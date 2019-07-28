@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutes } from '@app/app.routing';
@@ -12,13 +11,17 @@ import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { AdminModule } from '@app/admin/admin.module';
+import { DashboardModule } from '@app/dashboard/dashboard.module';
 
 import {
   HeaderComponent,
   BlankComponent,
   FullComponent,
-  FooterComponent
+  FooterComponent,
+  AdminLayoutComponent,
+  AdminHeaderComponent
 } from './layouts';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import {
     HeaderComponent,
     BlankComponent,
     FullComponent,
-    FooterComponent
+    FooterComponent,
+    AdminLayoutComponent,
+    AdminHeaderComponent
   ],
   imports: [
     CommonModule,

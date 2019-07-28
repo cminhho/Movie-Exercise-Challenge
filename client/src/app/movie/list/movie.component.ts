@@ -48,7 +48,7 @@ export class MovieComponent implements OnInit {
   ngOnInit() {
     this.movies = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
-    this.page = 1;
+    this.page = 0;
     this.selectedMoveType = 'popular';
     this.loadAll();
   }
@@ -59,7 +59,7 @@ export class MovieComponent implements OnInit {
   }
 
   reset() {
-    this.page = 1;
+    this.page = 0;
     this.movies = [];
     this.loadAll();
   }

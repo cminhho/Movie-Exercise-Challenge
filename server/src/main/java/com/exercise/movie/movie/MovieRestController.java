@@ -1,8 +1,11 @@
 package com.exercise.movie.movie;
 
 import com.exercise.movie.comment.MovieComment;
+import com.exercise.movie.shared.domain.ResponseResult;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import javax.validation.Valid;
@@ -66,11 +69,33 @@ public class MovieRestController {
    * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of popular movies
    * in body.
    */
-  @GetMapping("/movie/popular")
-  public ResponseEntity<List<Movie>> getPopularMovies(Pageable pageable) {
+  @GetMapping("/movie/popular2")
+  public ResponseEntity<List<Movie>> getPopularMovies2(Pageable pageable) {
     log.debug("REST request to get a list of the popular movies");
     Page<Movie> page = movieService.findPopularMovies(pageable);
     return ResponseEntity.ok().body(page.getContent());
+  }
+
+  /**
+   * {@code GET  /movies/popular} : Get a list of the popular movies
+   *
+   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of popular movies
+   * in body.
+   */
+  @GetMapping("/movie/popular")
+  public ResponseEntity<ResponseResult> getPopularMovies(Pageable pageable) {
+    log.debug("REST request to get a list of the popular movies");
+    Page<Movie> page = movieService.findPopularMovies(pageable);
+    return ResponseEntity.ok().body(pageToResponseResult(page));
+  }
+
+  private ResponseResult pageToResponseResult(Page<?> page) {
+    return ResponseResult.builder()
+        .page(page.getNumber())
+        .total_pages(page.getTotalPages())
+        .total_results(page.getNumberOfElements())
+        .results(page.getContent())
+        .build();
   }
 
   /**

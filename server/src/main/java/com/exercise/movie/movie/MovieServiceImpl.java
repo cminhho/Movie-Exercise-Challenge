@@ -44,21 +44,21 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Page<Movie> findPopularMovies(Pageable pageable) {
-        return findAllWithEagerRelationships(PageRequest.of(0, pageable.getPageSize(),
+        return findAllWithEagerRelationships(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
             Sort.by(Direction.DESC,
                 POPULARITY)));
     }
 
     @Override
     public Page<Movie> findTopRatedMovies(Pageable pageable) {
-        return findAllWithEagerRelationships(PageRequest.of(0, pageable.getPageSize(),
+        return findAllWithEagerRelationships(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
             Sort.by(Direction.DESC,
                 VOTE_AVERAGE)));
     }
 
     @Override
     public Page<Movie> findUpcomingMovies(Pageable pageable) {
-        return findAllWithEagerRelationships(PageRequest.of(0, pageable.getPageSize(),
+        return findAllWithEagerRelationships(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
             Sort.by(Direction.DESC,
                 RELEASE_DATE)));
     }

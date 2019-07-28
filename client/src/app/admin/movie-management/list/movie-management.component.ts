@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { IMovie } from 'app/shared/model/movie.model';
 
-import { MovieService } from './movie-management.service';
+import { MovieService } from '../movie-management.service';
 import { TmaEventManager } from '@app/core';
 import { ToastService } from '@app/shared';
 

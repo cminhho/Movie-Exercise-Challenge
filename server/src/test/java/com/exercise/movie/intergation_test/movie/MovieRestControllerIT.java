@@ -19,7 +19,6 @@ import com.exercise.movie.movie.MovieRepository;
 import com.exercise.movie.shared.TestRestUtil;
 import com.exercise.movie.shared.enumeration.Language;
 import java.util.List;
-import javax.transaction.Transactional;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
@@ -31,6 +30,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MovieApplication.class)
@@ -98,6 +98,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void getAllMovies_isEagerload_ThenStatus200()
       throws Exception {
     movieRepository.saveAndFlush(createEntity());
@@ -110,6 +111,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void getAllMovies_notEagerload_ThenStatus200()
       throws Exception {
     movieRepository.saveAndFlush(createEntity());
@@ -121,6 +123,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void getPopularMovies_thenStatus200() throws Exception {
     Long POPULARITY_1 = 1L;
     Long POPULARITY_2 = 2L;
@@ -150,6 +153,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void getTopRatedMovies_thenStatus200() throws Exception {
     Movie movie = createEntity();
     movieRepository.saveAndFlush(movie);
@@ -164,6 +168,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void getUpcomingMovies_thenStatus200() throws Exception {
     Movie movie = createEntity();
     movieRepository.saveAndFlush(movie);
@@ -178,6 +183,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void getMovieComments_existingMovieID_thenStatus200() throws Exception {
     String REVIEW_MESSAGE = "The movie was exciting";
 
@@ -199,12 +205,14 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void getMovieComments_nonExistingMovieID_thenStatus404() throws Exception {
     mvc.perform(get("/api/movie/{id}/comments", 100L))
         .andExpect(status().isNotFound());
   }
 
   @Test
+  @Transactional
   public void getMovie_existingID_thenStatus200() throws Exception {
     Movie movie = createEntity();
     movieRepository.saveAndFlush(movie);
@@ -215,12 +223,14 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void getMovie_nonExistingID_thenStatus404() throws Exception {
     mvc.perform(get("/api/movie/{id}", 100L))
         .andExpect(status().isNotFound());
   }
 
   @Test
+  @Transactional
   public void updateMovie_existingID_thenStatus200() throws Exception {
     String UPDATED_TITLE = "Updated Title";
     Movie existingMovie = createEntity();
@@ -242,6 +252,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void updateMovie_nonExistingID_thenStatus400() throws Exception {
     Movie existingMovie = createEntity();
     existingMovie.setId(null);
@@ -250,6 +261,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void deleteMovie_existingID_thenStatus204() throws Exception {
     Movie movie = createEntity();
     movieRepository.saveAndFlush(movie);
@@ -266,6 +278,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
+  @Transactional
   public void deleteMovie_nonExistingID_thenStatus404() throws Exception {
     mvc.perform(delete("/api/movie/{id}", 100L))
         .andExpect(status().isNotFound());

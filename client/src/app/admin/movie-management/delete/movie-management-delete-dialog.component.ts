@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { IMovie } from 'app/shared/model/movie.model';
-import { MovieService } from './movie-management.service';
+import { MovieService } from '../movie-management.service';
 import { TmaEventManager } from '@app/core';
 
 @Component({
@@ -21,7 +21,7 @@ export class MovieDeleteDialogComponent {
   }
 
   confirmDelete(id: number) {
-    this.movieService.delete(id).subscribe(response => {
+    this.movieService.deleteById(id).subscribe(response => {
       this.eventManager.broadcast({
         name: 'movieListModification',
         content: 'Deleted an movie'

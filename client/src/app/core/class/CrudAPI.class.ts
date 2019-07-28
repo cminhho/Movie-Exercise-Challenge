@@ -1,13 +1,13 @@
-import { IBaseCrudApi } from '../model/base-crud-api.interface';
+import { ICrudAPI } from '../model/base-crud-api.interface';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export abstract class BaseCrudAPIClass<T, ID> implements IBaseCrudApi<T, ID> {
+export abstract class CrudAPIClass<T, ID> implements ICrudAPI<T, ID> {
   resourceUrl: string;
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) { }
 
   create(payload: T): Observable<HttpResponse<T>> {
     return this.http
@@ -36,7 +36,7 @@ export abstract class BaseCrudAPIClass<T, ID> implements IBaseCrudApi<T, ID> {
       .pipe(map((res: HttpResponse<T[]>) => res));
   }
 
-  find(id: ID): Observable<HttpResponse<T>> {
+  findById(id: ID): Observable<HttpResponse<T>> {
     return this.http
       .get<T>(`${this.resourceUrl}/${id}`, {
         observe: 'response'
@@ -44,16 +44,22 @@ export abstract class BaseCrudAPIClass<T, ID> implements IBaseCrudApi<T, ID> {
       .pipe(map((res: HttpResponse<T>) => res));
   }
 
-  delete(id: ID): Observable<HttpResponse<any>> {
-    return this.http.delete<any>(`${this.resourceUrl}/${id}`, {
+  deleteEntities(payloads: T[]): Observable<HttpResponse<any>> {
+    return this.http.put<any>(`${this.resourceUrl}/delete`, payloads, {
       observe: 'response'
     });
   }
 
-  deleteItems(items: T[]): Observable<HttpResponse<T>> {
-    return this.http
-      .put<T>(`${this.resourceUrl}/delete/items`, items, { observe: 'response' })
-      .pipe(map((res: HttpResponse<T>) => res));
+  delete(payload: T): Observable<HttpResponse<any>> {
+    return this.http.put<any>(`${this.resourceUrl}/delete`, payload, {
+      observe: 'response'
+    });
+  }
+
+  deleteById(id: ID): Observable<HttpResponse<any>> {
+    return this.http.delete<any>(`${this.resourceUrl}/${id}`, {
+      observe: 'response'
+    });
   }
 
   deleteAll(): Observable<HttpResponse<any>> {

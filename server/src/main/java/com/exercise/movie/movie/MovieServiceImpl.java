@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class MovieServiceImpl implements MovieService {
 
     private static final String POPULARITY = "popularity";
@@ -30,6 +29,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Transactional
     public Movie save(Movie movie) {
         log.debug("Request to save Movie : {}", movie);
         return movieRepository.save(movie);
@@ -43,6 +43,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Movie> findPopularMovies(Pageable pageable) {
         return findAllWithEagerRelationships(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
             Sort.by(Direction.DESC,
@@ -50,6 +51,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Movie> findTopRatedMovies(Pageable pageable) {
         return findAllWithEagerRelationships(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
             Sort.by(Direction.DESC,
@@ -57,6 +59,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Movie> findUpcomingMovies(Pageable pageable) {
         return findAllWithEagerRelationships(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
             Sort.by(Direction.DESC,
@@ -64,6 +67,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Movie> findAllWithEagerRelationships(Pageable pageable) {
         return movieRepository.findAllWithEagerRelationships(pageable);
     }
@@ -76,6 +80,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         log.debug("Request to delete Movie : {}", id);
         movieRepository.deleteById(id);

@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { IMovie, Movie } from 'app/shared/model/movie.model';
-import { MovieService } from './movie-management.service';
+import { MovieService } from '../movie-management.service';
 import { IGenre } from 'app/shared/model/genre.model';
 import { IList } from 'app/shared/model/list.model';
 

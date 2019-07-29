@@ -1,11 +1,11 @@
 <div>
-  <nav id="header" class="navbar bg-dark navbar-dark navbar-expand-sm app-navbar movie-fixed-navbar">
-    <div class="container">
+  <nav id="header" class="navbar bg-dark navbar-dark navbar-expand-lg app-navbar movie-fixed-navbar">
+    <div class="container d-flex">
       <img src="https://livedemo00.template-help.com/wt_prod-20691/images/logo-default.png" alt="">
-      <a class="navbar-brand display-item" [routerLink]="['/']" (click)="collapseNavbar()">
+      <a class="navbar-brand display-item ml-auto mr-0" [routerLink]="['/']" (click)="collapseNavbar()">
         <span class="navbar-title ml-2">Movie Manager Exercise</span> <span class="navbar-version">{{ version }}</span>
       </a>
-      <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse"
+      <a class="navbar-toggler d-lg-none display-item-md" href="javascript:void(0);" data-toggle="collapse"
         data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
         aria-label="Toggle navigation" (click)="toggleNavbar()">
         <fa-icon icon="bars"></fa-icon>

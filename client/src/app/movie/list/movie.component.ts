@@ -23,7 +23,7 @@ export class MovieComponent implements OnInit {
 
   carouselMovies = [
     {
-      title: 'WRATH OF THE TITANS asdfasdfsadfasdfasdfasdfasdfas',
+      title: 'WRATH OF THE TITANS',
       image: '/assets/images/Bitmap.png',
       category: ['Fantasy', 'Animation', 'Family'],
       duration: '1h52',
@@ -31,7 +31,7 @@ export class MovieComponent implements OnInit {
       reviews: '4343',
     },
     {
-      title: 'WRATH OF THE TITANSasdfasdfasdfasdfasdfsadfasdfasdf',
+      title: 'WRATH OF THE TITANS',
       image: '/assets/images/Bitmap.png',
       category: ['Action', 'Thriller'],
       duration: '1h32',
@@ -46,13 +46,12 @@ export class MovieComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.movies = this.carouselMovies;
-    // this.movies = [];
+    this.movies = [];
 
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 1;
     this.selectedMoveType = 'popular';
-    // this.loadAll();
+    this.loadAll();
   }
 
   onChangedTab(selectedMoveType: string) {

@@ -1,24 +1,24 @@
 <div>
   <ngb-carousel *ngIf="movies" class="carousel">
     <ng-template ngbSlide *ngFor="let movie of movies; index as i">
-      <div class="carousel-caption d-flex flex-md-row flex-sm-column justify-content-md-between justify-content-center">
-        <div class="text-left">
+      <div class="carousel-caption d-flex flex-md-row flex-sm-column justify-content-center justify-content-lg-between">
+        <div class="content-left text-center">
           <div class="title">
             <div class="text-title">{{ movie.title }}</div>
-            <div class="text-duration">
+            <div class="text-duration text-center">
               <span *ngFor="let category of movie.category" class="mr-2">
                 {{ category }}
               </span>
               <span> | </span>
               <span class="ml-2 ">Duration: {{ movie.duration }}</span>
             </div>
-            <div class="left-button mt-3 mt-sm-2 text-center text-sm-left">
+            <div class="left-button mt-3 mt-sm-2 text-center text-lg-left">
               <button class="button btn-primary rounded mr-3">WATCH MOVIE</button>
               <button class="button view-info-button rounded">VIEW INFO</button>
             </div>
           </div>
         </div>
-        <div class="display-item">
+        <div class="display-item-md">
           <div class="d-flex align-items-end">
             <div class="rating border px-3 py-2" style="border-color: darkgrey">
               <app-rating [currentRate]="movie.currentRate" [reviews]="movie.reviews"></app-rating>

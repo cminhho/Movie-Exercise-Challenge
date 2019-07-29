@@ -44,7 +44,7 @@ body {
     white-space: nowrap;
     text-align: center;
   }
-  .text-left {
+  .content-left {
     min-width: 300px !important;
     max-width: 500px !important;
   }
@@ -57,17 +57,23 @@ body {
     font-size: 14px !important;
   }
 }
+@media (min-width: 576px) and (max-width: 992px)  {
+  .carousel-caption {
+    left: 0px !important;
+    right: 0px !important;
+    bottom: 100px !important;
+  }
 
-/* @media (min-width: 768px) and (max-width: 1024px) {
+}
+@media (min-width: 992px){
   .display-item-md {
     display: block !important;
-
   }
 }
 
 .display-item-md {
-  display: none !important;
-} */
+  display: none;
+}
 
 .display-item {
   display: block;

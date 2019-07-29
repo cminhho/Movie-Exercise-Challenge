@@ -10,8 +10,6 @@ h4.latest-text {
     color: #fff;
 }
 
-
-
 .ui-to-top {
     width: 60px;
     height: 60px;
@@ -30,3 +28,5 @@ h4.latest-text {
     transition: .3s all ease;
     transform: translateY(100px);
 }
+
+

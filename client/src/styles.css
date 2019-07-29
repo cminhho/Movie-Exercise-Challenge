@@ -3,7 +3,6 @@ body {
   overflow: auto;
 }
 
-
 .cursor-pointer {
   cursor: pointer;
 }
@@ -17,3 +16,64 @@ body {
 .carousel-indicators .active {
   background-color: #ff0079;
 }
+
+@media (max-width: 576px){
+  .carousel-caption {
+    left: 0px !important;
+    right: 0px !important;
+    bottom: 50px !important;
+  }
+
+  .display-item {
+    display: none !important;
+  }
+
+  .carousel-control-next {
+    display: none !important;
+  }
+
+  .carousel-control-prev {
+    display: none !important;
+  }
+
+  .text-title {
+    font-size: 25px !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .text-left {
+    min-width: 300px !important;
+    max-width: 500px !important;
+  }
+  .text-duration {
+    font-size: 16px !important;
+    text-align: center;
+  }
+  .button {
+    padding: 5px 15px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* @media (min-width: 768px) and (max-width: 1024px) {
+  .display-item-md {
+    display: block !important;
+
+  }
+}
+
+.display-item-md {
+  display: none !important;
+} */
+
+.display-item {
+  display: block;
+}
+
+.text-title {
+  font-size: 2.5rem;
+}
+

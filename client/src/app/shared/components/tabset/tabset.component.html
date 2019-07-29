@@ -1,10 +1,10 @@
-<div class="border-bottom mt-4">
-  <ul class="list-group list-group-horizontal">
-    <li [routerLink]="['/movie/' + item.value]" *ngFor="let item of items" (click)="onChangedTab(item.value)">
-      <a routerLinkActive="active" class="mx-2 p-3" href="javascript:void(0);">{{ item.title }}</a>
-    </li>
-    <li [routerLink]="['/movie/genre']" (click)="onChangedTab('genge')">
+<div class="my-4">
+  <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start text-center">
+    <div class="py-2 py-sm-0" [routerLink]="['/movie/' + item.value]" *ngFor="let item of items" (click)="onChangedTab(item.value)">
+      <a routerLinkActive="active" class="mx-2 p-3 border-bottom" href="javascript:void(0);">{{ item.title }}</a>
+    </div>
+    <div [routerLink]="['/movie/genre']" (click)="onChangedTab('genge')">
       <a routerLinkActive="active" class="mx-2 p-3" href="javascript:void(0);">Genre</a>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

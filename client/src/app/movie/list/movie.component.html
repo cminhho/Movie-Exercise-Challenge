@@ -1,4 +1,4 @@
-<div class="bg-light">
+<div class="bg-light pb-4">
     <app-header></app-header>
     <app-carousel [movies]="carouselMovies"></app-carousel>
     <div class="container">
@@ -12,7 +12,7 @@
         [infiniteScrollDistance]="0"
       >
         <app-movie-grid [movies]="movies"></app-movie-grid>
-        <div class="mb-5">
+        <div class="m-2">
           <app-pagination class="d-flex justify-content-center"></app-pagination>
         </div>
       </div>

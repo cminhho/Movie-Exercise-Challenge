@@ -2,7 +2,7 @@ package com.exercise.movie.movie;
 
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.genre.MovieGenre;
-import com.exercise.movie.list.MovieList;
+import com.exercise.movie.playlist.PlaylistMovie;
 import com.exercise.movie.shared.domain.BaseEntity;
 import com.exercise.movie.shared.enumeration.Language;
 import com.exercise.movie.shared.enumeration.MediaType;
@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -24,7 +25,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -83,12 +83,11 @@ public class Movie extends BaseEntity<String> implements Serializable {
     @Column(name = "release_date")
     private String releaseDate;
 
-    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JsonIgnore
     private Set<MovieComment> comments = new HashSet<>();
 
-//    @JsonIgnore
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "movie_genre",
@@ -96,10 +95,18 @@ public class Movie extends BaseEntity<String> implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
     private Set<MovieGenre> genres = new HashSet<>();
 
-    @ManyToMany(mappedBy = "movies")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @ManyToMany(mappedBy = "movies")
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @JsonIgnore
+//    private Set<MovieList> movielists = new HashSet<>();
+
+    @OneToMany(
+        mappedBy = "movie",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
     @JsonIgnore
-    private Set<MovieList> movielists = new HashSet<>();
+    private Set<PlaylistMovie> playlistMovies = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -328,30 +335,38 @@ public class Movie extends BaseEntity<String> implements Serializable {
         this.genres = movieGenres;
     }
 
-    public Set<MovieList> getMovielists() {
-        return movielists;
+    public Set<PlaylistMovie> getPlaylistMovies() {
+        return playlistMovies;
     }
 
-    public Movie movielists(Set<MovieList> movieLists) {
-        this.movielists = movieLists;
-        return this;
+    public void setPlaylistMovies(Set<PlaylistMovie> playlistMovies) {
+        this.playlistMovies = playlistMovies;
     }
 
-    public Movie addMovielist(MovieList movieList) {
-        this.movielists.add(movieList);
-        movieList.getMovies().add(this);
-        return this;
-    }
-
-    public Movie removeMovielist(MovieList movieList) {
-        this.movielists.remove(movieList);
-        movieList.getMovies().remove(this);
-        return this;
-    }
-
-    public void setMovielists(Set<MovieList> movieLists) {
-        this.movielists = movieLists;
-    }
+    //    public Set<MovieList> getMovielists() {
+//        return movielists;
+//    }
+//
+//    public Movie movielists(Set<MovieList> movieLists) {
+//        this.movielists = movieLists;
+//        return this;
+//    }
+//
+//    public Movie addMovielist(MovieList movieList) {
+//        this.movielists.add(movieList);
+//        movieList.getMovies().add(this);
+//        return this;
+//    }
+//
+//    public Movie removeMovielist(MovieList movieList) {
+//        this.movielists.remove(movieList);
+//        movieList.getMovies().remove(this);
+//        return this;
+//    }
+//
+//    public void setMovielists(Set<MovieList> movieLists) {
+//        this.movielists = movieLists;
+//    }
 
     @Override
     public boolean equals(Object o) {

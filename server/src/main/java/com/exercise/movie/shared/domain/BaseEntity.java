@@ -1,6 +1,5 @@
 package com.exercise.movie.shared.domain;
 
-import com.exercise.movie.list.MovieList;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.EntityListeners;

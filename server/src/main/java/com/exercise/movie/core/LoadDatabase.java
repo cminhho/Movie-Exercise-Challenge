@@ -7,8 +7,8 @@ import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.comment.MovieCommentRestRepository;
 import com.exercise.movie.genre.MovieGenre;
 import com.exercise.movie.genre.MovieGenreRestRepository;
-import com.exercise.movie.list.MovieList;
-import com.exercise.movie.list.MovieListRestRepository;
+import com.exercise.movie.playlist.Playlist;
+import com.exercise.movie.playlist.PlaylistRestRepository;
 import com.exercise.movie.movie.Movie;
 import com.exercise.movie.movie.MovieRestRepository;
 import java.util.Arrays;
@@ -24,9 +24,9 @@ import org.springframework.context.annotation.Profile;
 @Profile({SPRING_PROFILE_LOCAL, SPRING_PROFILE_DEV})
 public class LoadDatabase {
 
-  private MovieList movieList1;
-  private MovieList movieList2;
-  private MovieList movieList3;
+  private Playlist movieList1;
+  private Playlist movieList2;
+  private Playlist movieList3;
 
   private MovieGenre actionGenre;
   private MovieGenre comedyGenre;
@@ -40,7 +40,7 @@ public class LoadDatabase {
   CommandLineRunner initDatabase(MovieRestRepository movieRestRepository,
       MovieCommentRestRepository movieCommentRestRepository,
       MovieGenreRestRepository movieGenreRestRepository,
-      MovieListRestRepository movieListRestRepository) {
+      PlaylistRestRepository movieListRestRepository) {
     return args -> {
       log.debug("Initial db records");
       initMovieGenresRecords(movieGenreRestRepository);
@@ -57,7 +57,7 @@ public class LoadDatabase {
         .posterPath("dzBtMocZuJbjLOXvrl4zGYigDzh.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .movielists(Collections.emptySet())
+//        .movielists(Collections.emptySet())
         .voteAverage(1L)
         .popularity(1L);
     movie2 = new Movie()
@@ -66,7 +66,7 @@ public class LoadDatabase {
         .posterPath("or06FN3Dka5tukK1e9sl16pB3iy.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .movielists(Collections.emptySet())
+//        .movielists(Collections.emptySet())
         .voteAverage(2L)
         .popularity(2L);
     movie3 = new Movie()
@@ -75,7 +75,7 @@ public class LoadDatabase {
         .posterPath("86Y6qM8zTn3PFVfCm9J98Ph7JEB.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .movielists(Collections.emptySet())
+//        .movielists(Collections.emptySet())
         .voteAverage(3L)
         .popularity(3L);
 
@@ -108,15 +108,15 @@ public class LoadDatabase {
     movieGenreRestRepository.saveAll(Arrays.asList(actionGenre, comedyGenre, animationGenre));
   }
 
-  private void initMovieListRecords(MovieListRestRepository movieListRestRepository) {
+  private void initMovieListRecords(PlaylistRestRepository movieListRestRepository) {
     log.debug("Create movie list records");
-    movieList1 = new MovieList().title("Movie 1ist 1");
-    movieList2 = new MovieList().title("Movie 1ist 2");
-    movieList3 = new MovieList().title("Movie 1ist 3");
+    movieList1 = new Playlist().title("Movie 1ist 1");
+    movieList2 = new Playlist().title("Movie 1ist 2");
+    movieList3 = new Playlist().title("Movie 1ist 3");
     movieListRestRepository.saveAll(Arrays.asList(movieList1, movieList2, movieList3));
 
     log.debug("Assign a move to specific lists");
-    movieList1.setMovies(Collections.singleton(movie1));
+//    movieList1.setMovies(Collections.singleton(movie1));
     movieListRestRepository.saveAll(Arrays.asList(movieList1));
   }
 }

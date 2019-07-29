@@ -2,7 +2,7 @@ package com.exercise.movie.core;
 
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.genre.MovieGenre;
-import com.exercise.movie.list.MovieList;
+import com.exercise.movie.playlist.Playlist;
 import com.exercise.movie.movie.Movie;
 import com.exercise.movie.user.User;
 import org.springframework.context.annotation.Bean;
@@ -35,7 +35,7 @@ public class SpringRestDataConfiguration {
             User.class,
             MovieGenre.class,
             MovieComment.class,
-            MovieList.class
+            Playlist.class
         );
       }
 

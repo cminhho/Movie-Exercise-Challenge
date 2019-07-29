@@ -183,7 +183,6 @@ public class MovieRestControllerIT {
   }
 
   @Test
-  @Transactional
   public void getMovieComments_existingMovieID_thenStatus200() throws Exception {
     String REVIEW_MESSAGE = "The movie was exciting";
 

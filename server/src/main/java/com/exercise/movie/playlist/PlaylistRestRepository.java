@@ -1,11 +1,11 @@
-package com.exercise.movie.list;
+package com.exercise.movie.playlist;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
-@RepositoryRestResource(path = "movie_list")
+@RepositoryRestResource(path = "playlist")
 @Repository
 @SuppressWarnings("unused")
-public interface MovieListRestRepository extends JpaRepository<MovieList, Long> {
+public interface PlaylistRestRepository extends JpaRepository<Playlist, Long> {
 }

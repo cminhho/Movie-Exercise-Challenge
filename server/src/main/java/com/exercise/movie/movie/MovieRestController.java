@@ -176,12 +176,7 @@ public class MovieRestController {
    */
   @DeleteMapping("/movie/{id}")
   public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
-    log.debug("REST request to delete movie: {}", id);
-    try {
-      movieService.delete(id);
-      return ResponseEntity.noContent().build();
-    } catch (Exception ex) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+    movieRepository.deleteById(id);
+    return ResponseEntity.noContent().build();
   }
 }

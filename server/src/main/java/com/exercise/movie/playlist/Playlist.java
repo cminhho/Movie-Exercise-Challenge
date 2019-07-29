@@ -1,9 +1,10 @@
-package com.exercise.movie.list;
+package com.exercise.movie.playlist;
 
-import com.exercise.movie.movie.Movie;
 import com.exercise.movie.shared.domain.BaseEntity;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
@@ -11,9 +12,11 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "list")
+@Table(name = "playlist")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class MovieList extends BaseEntity<String> implements Serializable {
+@Setter
+@Getter
+public class Playlist extends BaseEntity<String> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,12 +37,8 @@ public class MovieList extends BaseEntity<String> implements Serializable {
     @Column(name = "poster_path")
     private String posterPath;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.ALL})
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "movie_list",
-        joinColumns = @JoinColumn(name = "movie_list_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"))
-    private Set<Movie> movies = new HashSet<>();
+    @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL)
+    private Set<PlaylistMovie> playlist = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -53,7 +52,7 @@ public class MovieList extends BaseEntity<String> implements Serializable {
         return title;
     }
 
-    public MovieList title(String title) {
+    public Playlist title(String title) {
         this.title = title;
         return this;
     }
@@ -66,7 +65,7 @@ public class MovieList extends BaseEntity<String> implements Serializable {
         return description;
     }
 
-    public MovieList description(String description) {
+    public Playlist description(String description) {
         this.description = description;
         return this;
     }
@@ -79,7 +78,7 @@ public class MovieList extends BaseEntity<String> implements Serializable {
         return backdropPath;
     }
 
-    public MovieList backdropPath(String backdropPath) {
+    public Playlist backdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
         return this;
     }
@@ -92,7 +91,7 @@ public class MovieList extends BaseEntity<String> implements Serializable {
         return posterPath;
     }
 
-    public MovieList posterPath(String posterPath) {
+    public Playlist posterPath(String posterPath) {
         this.posterPath = posterPath;
         return this;
     }
@@ -101,40 +100,16 @@ public class MovieList extends BaseEntity<String> implements Serializable {
         this.posterPath = posterPath;
     }
 
-    public Set<Movie> getMovies() {
-        return movies;
-    }
-
-    public MovieList movies(Set<Movie> movies) {
-        this.movies = movies;
-        return this;
-    }
-
-    public MovieList addMovie(Movie movie) {
-        this.movies.add(movie);
-        movie.getMovielists().add(this);
-        return this;
-    }
-
-    public MovieList removeMovie(Movie movie) {
-        this.movies.remove(movie);
-        movie.getMovielists().remove(this);
-        return this;
-    }
-
-    public void setMovies(Set<Movie> movies) {
-        this.movies = movies;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof MovieList)) {
+        if (!(o instanceof Playlist)) {
             return false;
         }
-        return id != null && id.equals(((MovieList) o).id);
+        return id != null && id.equals(((Playlist) o).id);
     }
 
     @Override

@@ -20,12 +20,12 @@ public class PlaylistMovie  implements Serializable {
 
   @Id
   @ManyToOne
-  @JoinColumn
+  @JoinColumn(name = "movie_id")
   private Movie movie;
 
   @Id
   @ManyToOne
-  @JoinColumn
+  @JoinColumn(name = "playlist_id")
   private Playlist playlist;
 
   public PlaylistMovie(Playlist playlist, Movie movie) {

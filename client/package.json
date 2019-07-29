@@ -7,8 +7,8 @@
   ],
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --configuration=local --o --host 0.0.0.0 --aot",
-    "start:dev": "ng serve --configuration=dev --o --host 0.0.0.0 --aot --proxy-config proxy.conf.json",
+    "start": "ng serve --configuration=local --o --host 0.0.0.0 --aot --proxy-config config/local.proxy.conf.json",
+    "start:dev": "ng serve --configuration=dev --o --host 0.0.0.0 --aot --proxy-config config/dev.proxy.conf.json",
     "start:prod": "ng serve --configuration=production --o --host 0.0.0.0",
     "build:local": "ng build --configuration=local --aot",
     "build:dev": "ng build --prod --configuration=dev --aot",

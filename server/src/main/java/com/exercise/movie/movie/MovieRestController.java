@@ -176,7 +176,11 @@ public class MovieRestController {
    */
   @DeleteMapping("/movie/{id}")
   public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
-    movieRepository.deleteById(id);
-    return ResponseEntity.noContent().build();
+    try {
+      movieRepository.deleteById(id);
+      return ResponseEntity.noContent().build();
+    } catch (Exception e){
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }

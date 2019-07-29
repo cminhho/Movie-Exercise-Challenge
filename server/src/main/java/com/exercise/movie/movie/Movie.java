@@ -83,22 +83,21 @@ public class Movie extends BaseEntity<String> implements Serializable {
     @Column(name = "release_date")
     private String releaseDate;
 
-    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(
+        mappedBy = "movie",
+        fetch = FetchType.EAGER,
+        cascade = CascadeType.REMOVE)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JsonIgnore
     private Set<MovieComment> comments = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "movie_genre",
-               joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
+    @JoinTable(
+        name = "movie_genre",
+        joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
     private Set<MovieGenre> genres = new HashSet<>();
-
-//    @ManyToMany(mappedBy = "movies")
-//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-//    @JsonIgnore
-//    private Set<MovieList> movielists = new HashSet<>();
 
     @OneToMany(
         mappedBy = "movie",

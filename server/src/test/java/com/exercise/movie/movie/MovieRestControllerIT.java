@@ -1,4 +1,5 @@
-package com.exercise.movie.intergation_test.movie;
+package com.exercise.movie.movie;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -14,8 +15,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.exercise.movie.MovieApplication;
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.comment.MovieCommentRestRepository;
-import com.exercise.movie.movie.Movie;
-import com.exercise.movie.movie.MovieRepository;
 import com.exercise.movie.shared.TestRestUtil;
 import com.exercise.movie.shared.enumeration.Language;
 import java.util.List;
@@ -23,12 +22,9 @@ import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MovieApplication.class)
 @AutoConfigureMockMvc
-public class MovieRestControllerIntegrationTest {
+public class MovieRestControllerIT {
 
   private static final String DEFAULT_TITLE = "DEFAULT_TITLE";
   private static final Long DEFAULT_VOTE_AVERAGE = 1L;
@@ -276,9 +272,9 @@ public class MovieRestControllerIntegrationTest {
 
   @Test
   @Transactional
-  public void deleteMovie_nonExistingID_thenStatus404() throws Exception {
+  public void deleteMovie_nonExistingID_thenStatus500() throws Exception {
     mvc.perform(delete("/api/movie/{id}", 100L))
-        .andExpect(status().isNotFound());
+        .andExpect(status().is5xxServerError());
   }
 
   public static Movie createEntity() {

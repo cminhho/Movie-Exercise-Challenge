@@ -80,7 +80,6 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    @Transactional
     public void delete(Long id) {
         log.debug("Request to delete Movie : {}", id);
         movieRepository.deleteById(id);

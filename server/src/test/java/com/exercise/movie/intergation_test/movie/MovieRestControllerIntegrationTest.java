@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -35,8 +36,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MovieApplication.class)
 @AutoConfigureMockMvc
-@TestPropertySource(locations = "classpath:config/application.yaml")
-public class MovieRestControllerIT {
+public class MovieRestControllerIntegrationTest {
 
   private static final String DEFAULT_TITLE = "DEFAULT_TITLE";
   private static final Long DEFAULT_VOTE_AVERAGE = 1L;
@@ -64,12 +64,6 @@ public class MovieRestControllerIT {
   @Autowired
   private MovieCommentRestRepository commentRestRepository;
 
-  @Value("${spring.application.name}")
-  private String applicationName;
-
-  @Value("${spring.datasource.url}")
-  private String url;
-
   @BeforeEach
   public void initTest() {
     movie = createEntity();
@@ -80,8 +74,6 @@ public class MovieRestControllerIT {
   public void createMovie_thenStatus201() throws Exception {
     int totalMovieInDatabaseBeforeDelete = movieRepository.findAllWithEagerRelationships().size();
 
-    System.out.println(applicationName);
-    System.out.println(url);
     Movie newMovie = createEntity();
 
     // verify the rest to create movie
@@ -95,6 +87,15 @@ public class MovieRestControllerIT {
     assertThat(movies).hasSize(totalMovieInDatabaseBeforeDelete + 1);
     Movie latestUser = movies.get(movies.size() - 1);
     assertThat(latestUser.getTitle()).isEqualTo(DEFAULT_TITLE);
+    assertThat(latestUser.getBackdropPath()).isEqualTo(DEFAULT_BACKDROP_PATH);
+    assertThat(latestUser.getReleaseDate()).isEqualTo(DEFAULT_RELEASE_DATE);
+    assertThat(latestUser.getOriginalLanguage()).isEqualTo(DEFAULT_ORIGINAL_LANGUAGE);
+    assertThat(latestUser.getOverview()).isEqualTo(DEFAULT_OVERVIEW);
+    assertThat(latestUser.getPopularity()).isEqualTo(DEFAULT_POPULARITY);
+    assertThat(latestUser.getVoteAverage()).isEqualTo(DEFAULT_VOTE_AVERAGE);
+    assertThat(latestUser.getVoteCount()).isEqualTo(DEFAULT_VOTE_COUNT);
+    assertThat(latestUser.isAdult()).isEqualTo(DEFAULT_ADULT);
+    assertThat(latestUser.isVideo()).isEqualTo(DEFAULT_VIDEO);
   }
 
   @Test
@@ -186,21 +187,18 @@ public class MovieRestControllerIT {
   public void getMovieComments_existingMovieID_thenStatus200() throws Exception {
     String REVIEW_MESSAGE = "The movie was exciting";
 
+    // Create movie
     Movie movie = createEntity();
     movieRepository.saveAndFlush(movie);
 
-    int totalMovieCommentBeforeSave =
-        movieRepository.findOneWithEagerRelationships(movie.getId()).get().getComments().size();
-
+    // Assign a comment to the movie
     MovieComment movieComment = new MovieComment().review(REVIEW_MESSAGE);
     movieComment.setMovie(movie);
     commentRestRepository.saveAndFlush(movieComment);
 
     mvc.perform(get("/api/movie/{id}/comments", movie.getId()))
-        .andExpect(status().isOk());
-
-    Movie result = movieRepository.findOneWithEagerRelationships(movie.getId()).get();
-    assertThat(result.getComments().size()).isEqualTo(totalMovieCommentBeforeSave + 1);
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.[0].review", is(REVIEW_MESSAGE)));
   }
 
   @Test

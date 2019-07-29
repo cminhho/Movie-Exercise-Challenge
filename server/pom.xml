@@ -163,6 +163,7 @@
 
   <build>
     <defaultGoal>spring-boot:run</defaultGoal>
+    <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
     <testResources>
       <testResource>
         <directory>src/test/resources/</directory>
@@ -172,14 +173,6 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
       </plugin>
     </plugins>
     <pluginManagement>
@@ -197,7 +190,7 @@
                 <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
                 <resources>
                   <resource>
-                    <directory>${project.parent.basedir}/client/dist/movie-exercise-client/</directory>
+                    <directory>${client-app.directory}/dist/movie-exercise-client/</directory>
                   </resource>
                 </resources>
               </configuration>

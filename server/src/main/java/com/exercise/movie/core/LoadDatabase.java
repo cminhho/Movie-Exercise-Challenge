@@ -2,6 +2,7 @@ package com.exercise.movie.core;
 
 import static com.exercise.movie.core.Constants.SPRING_PROFILE_DEV;
 import static com.exercise.movie.core.Constants.SPRING_PROFILE_LOCAL;
+import static com.exercise.movie.core.Constants.SPRING_PROFILE_PROD;
 
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.comment.MovieCommentRestRepository;
@@ -23,16 +24,12 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 @Slf4j
-@Profile({SPRING_PROFILE_LOCAL, SPRING_PROFILE_DEV})
+@Profile({SPRING_PROFILE_LOCAL, SPRING_PROFILE_DEV, SPRING_PROFILE_PROD})
 public class LoadDatabase {
 
   private Playlist play1ist1;
   private Playlist play1ist2;
   private Playlist play1ist3;
-
-  private PlaylistMovie playlistMovie1;
-  private PlaylistMovie playlistMovie2;
-  private PlaylistMovie playlistMovie3;
 
   private MovieGenre actionGenre;
   private MovieGenre comedyGenre;

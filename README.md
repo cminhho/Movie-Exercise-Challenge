@@ -32,7 +32,7 @@ Note: Application will use the local profile by default.
 
 ### Using in produciton 
 
-1. Start MariaDB/MySQL then create 'moviedb' database
+1. Start MariaDB/MySQL then create `moviedb` database
 
 2. Build the application
 

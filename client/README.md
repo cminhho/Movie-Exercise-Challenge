@@ -1,5 +1,5 @@
-# Music Manager Exercise
-https://www.templatemonster.com/demo/49053.html
+# Movie Manager Exercise
+
 1. Go to project folder and install dependencies:
 
 ```bash

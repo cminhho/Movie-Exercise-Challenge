@@ -38,7 +38,7 @@ public class Playlist extends BaseEntity<String> implements Serializable {
     private String posterPath;
 
     @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL)
-    private Set<PlaylistMovie> playlist = new HashSet<>();
+    private Set<PlaylistMovie> moviePlaylist = new HashSet<>();
 
     public Long getId() {
         return id;

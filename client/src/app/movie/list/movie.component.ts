@@ -93,7 +93,7 @@ export class MovieComponent implements OnInit {
 
   private paginateCrawlRequests(data: any) {
     // this.totalPages = data.totalPages;
-    this.totalPages = 1;
+    this.totalPages = 0;
     for (let i = 0; i < data.results.length; i++) {
       this.movies.push(data.results[i]);
     }

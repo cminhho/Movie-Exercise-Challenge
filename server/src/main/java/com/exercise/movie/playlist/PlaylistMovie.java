@@ -36,4 +36,5 @@ public class PlaylistMovie  implements Serializable {
     this.movie = movie;
     this.playlist = playlist;
   }
+
 }

@@ -19,6 +19,17 @@ For building and running the application we need:
 - MariaDB
 - InteliJ, Visual Studio Code
 
+## Technology used
+### Server
++ Tomcat server
++ Spring Boot
++ Spring REST DATA
++ Spring JPA
+
+### Client
++ Angular 8
++ Bootstrap 4
+
 ## Using the application
 
 ### Application profiles
@@ -60,14 +71,3 @@ the server running on port 9080
 client > npm run start
 ```
 Visit to http://localhost:4200 to view the home page
-
-## Technology 
-### Server
-+ Tomcat server
-+ Spring Boot
-+ Spring REST DATA
-+ Spring JPA
-
-### Client
-+ Angular 8
-+ Bootstrap 4

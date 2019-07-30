@@ -18,12 +18,12 @@ import com.exercise.movie.shared.TestRestUtil;
 import com.exercise.movie.shared.enumeration.Language;
 import java.util.List;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +31,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MovieApplication.class)
 @AutoConfigureMockMvc
-public class MovieRestControllerIT {
+@ActiveProfiles("test")
+public class MovieRestControllerTest {
 
   private static final String DEFAULT_TITLE = "DEFAULT_TITLE";
   private static final Long DEFAULT_VOTE_AVERAGE = 1L;
@@ -58,11 +59,6 @@ public class MovieRestControllerIT {
 
   @Autowired
   private MovieCommentRestRepository commentRestRepository;
-
-  @BeforeEach
-  public void initTest() {
-    movie = createEntity();
-  }
 
   @Test
   @Transactional

@@ -5,11 +5,34 @@ The goal of the exercise is to make a movie application.
 All move images are stored in https://image.tmdb.org/
 
 ## Application Architecture
+
+Project structure
+
 - client - Movie UI
-- server - Movie server application 
+- server - Movie server application
+
+
 
 ## How should the UI look?
 
+#### Configure Movie data using GUI
+1. Accessing to http://localhost:9080/#/movie-management then click on 'populate movie data' table (wait for 1 minute).
+
+#### Movie Management Page
+<img src="/screenshots/movie-mgmt-page-desktop.png" width="850">
+
+#### Movie Page
+
+<table border="0">
+ <tr>
+    <td><b style="font-size:30px">Desktop layout</b></td>
+    <td><b style="font-size:30px">Mobile Layout</b></td>
+ </tr>
+ <tr>
+    <td><img src="/screenshots/movie-main-page-desktop.png" width="350"></td>
+    <td><img src="/screenshots/movie-main-page-mobile.png" width="350"></td>
+ </tr>
+</table>
 
 ## Tools used
 

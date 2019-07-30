@@ -13,17 +13,21 @@ For building and running the application you need:
 - [Node 10](https://nodejs.org/en/)
 - MariDB
 
-## Running locally
-Build the application
+## Run the application
+
+### Run the appication
+1. Start MariaDB/MySQL then create 'moviedb' database
+
+2. Build the application
 
 ```shell
 mvn clean install
 ```
-Run 
+3. Run the application
 
 ```shell
 cd server 
-mvn clean spring-boot:run -Plocal
+mvn clean spring-boot:run -Pprod
 ```
 
 ## Development
@@ -44,7 +48,7 @@ the server running on port 9080
 ### Start the client
 
 ```shell 
-server > npm run start
+client > npm run start
 ```
 Visit to http://localhost:4200 to view the home page
 

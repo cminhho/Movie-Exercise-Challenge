@@ -31,6 +31,7 @@ The application supports to work on multiple profiles
 Note: Application will use the local profile by default.
 
 ```shell
+cd server 
 mvn clean spring-boot:run -Plocal
 ```
 

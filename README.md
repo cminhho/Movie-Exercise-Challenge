@@ -11,29 +11,42 @@ For building and running the application you need:
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - [Maven 3](https://maven.apache.org)
 - [Node 10](https://nodejs.org/en/)
+- MariDB
 
-## Development
-
-### Building the application
+## Running locally
+Build the application
 
 ```shell
 mvn clean install
 ```
-
-### Running the application
-#### Running the application 
-
-The application supports to work on multiple profiles
-- local - for local local (running in port 9080 and using H2 databse)
-- dev - for local development (running in port 9080 and using MariaDB databse)
-- prod - for local production (running in port 8080 and using MariaDB databse)
-
-Note: Application will use the local profile by default.
+Run 
 
 ```shell
 cd server 
 mvn clean spring-boot:run -Plocal
 ```
+
+## Development
+
+The application supports to work on multiple profiles
+- local - for local local (running on port 9080 and using H2 databse)
+- dev - for local development (running on port 9080 and using MariaDB databse)
+- prod - for local production (running on port 8080 and using MariaDB databse)
+
+Note: Application will use the local profile by default.
+
+### Start the backend server
+
+```shell 
+server > mvn clean spring-boot:run -Plocal
+```
+the server running on port 9080
+### Start the client
+
+```shell 
+server > npm run start
+```
+Visit to http://localhost:4200 to view the home page
 
 ## Technology 
 ### Server

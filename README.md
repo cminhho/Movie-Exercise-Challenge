@@ -15,7 +15,6 @@ For building and running the application you need:
 
 ## Run the application
 
-### Run the appication
 1. Start MariaDB/MySQL then create 'moviedb' database
 
 2. Build the application
@@ -30,7 +29,7 @@ cd server
 mvn clean spring-boot:run -Pprod
 ```
 
-## Development
+## Using in Development
 
 The application supports to work on multiple profiles
 - local - for local local (running on port 9080 and using H2 databse)

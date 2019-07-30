@@ -12,14 +12,24 @@ For building and running the application you need:
 - [Maven 3](https://maven.apache.org)
 - [Node 10](https://nodejs.org/en/)
 
-## Running the application locally
+## Development
 
-There are several ways to run a Spring Boot application on your local machine. One way is to execute the `main` method in the `de.codecentric.springbootsample.Application` class from your IDE.
-
-Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) like so:
+### Building the application
 
 ```shell
-mvn spring-boot:run
+mvn clean install
+```
+
+### Running the application
+#### Running the application 
+
+The application is supporting to work on multiple envs
+- local: running in port 9080 and using H2 databse
+- dev: running in port 9080 and using MariaDB databse
+- prod: running in port 8080 and using MariaDB databse
+
+```shell
+mvn clean spring-boot:run -Plocal
 ```
 
 ## Technology 

@@ -2,8 +2,6 @@
 
 The goal of the exercise is to make a movie application.
 
-All move images are stored in https://image.tmdb.org/
-
 ## Application Architecture
 
 <ul>

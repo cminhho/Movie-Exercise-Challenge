@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Move",
+			"name": "Move - (Intergation Test purposes)",
 			"item": [
 				{
 					"name": "Get all",
@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9080/api/movie?eagerload=false",
+							"raw": "http://localhost:9080/api/movie?eagerload=true&page=0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -27,7 +27,11 @@
 							"query": [
 								{
 									"key": "eagerload",
-									"value": "false"
+									"value": "true"
+								},
+								{
+									"key": "page",
+									"value": "0"
 								}
 							]
 						}
@@ -596,7 +600,7 @@
 			]
 		},
 		{
-			"name": "List",
+			"name": "Playlist",
 			"item": [
 				{
 					"name": "Get all",
@@ -604,7 +608,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9080/api/v1/movie_list",
+							"raw": "http://localhost:9080/api/v1/playlist",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -613,7 +617,7 @@
 							"path": [
 								"api",
 								"v1",
-								"movie_list"
+								"playlist"
 							]
 						}
 					},
@@ -625,7 +629,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9080/api/v1/movie_list/1",
+							"raw": "http://localhost:9080/api/v1/playlist/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -634,7 +638,7 @@
 							"path": [
 								"api",
 								"v1",
-								"movie_list",
+								"playlist",
 								"1"
 							]
 						}
@@ -647,7 +651,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9080/api/v1/movie_list/1/movies",
+							"raw": "http://localhost:9080/api/v1/playlist/1/movies",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -656,7 +660,7 @@
 							"path": [
 								"api",
 								"v1",
-								"movie_list",
+								"playlist",
 								"1",
 								"movies"
 							]
@@ -674,7 +678,7 @@
 							"raw": " http://localhost:9080/api/v1/movie/1"
 						},
 						"url": {
-							"raw": "http://localhost:9080/api/v1/movie_list/1/movies",
+							"raw": "http://localhost:9080/api/v1/playlist/1/movies",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -683,7 +687,7 @@
 							"path": [
 								"api",
 								"v1",
-								"movie_list",
+								"playlist",
 								"1",
 								"movies"
 							]
@@ -730,7 +734,7 @@
 							"raw": "{\n    \"title\": \"Album 3\",\n    \"description\": \"description\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:9080/api/v1/movie_list",
+							"raw": "http://localhost:9080/api/v1/playlist",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -739,7 +743,7 @@
 							"path": [
 								"api",
 								"v1",
-								"movie_list"
+								"playlist"
 							]
 						}
 					},
@@ -761,7 +765,7 @@
 							"raw": "http://localhost:9080/api/v1/movie/1"
 						},
 						"url": {
-							"raw": "http://localhost:9080/api/v1/movie_list/1/movies",
+							"raw": "http://localhost:9080/api/v1/playlist/1/movies",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -770,7 +774,7 @@
 							"path": [
 								"api",
 								"v1",
-								"movie_list",
+								"playlist",
 								"1",
 								"movies"
 							]
@@ -907,6 +911,28 @@
 					"response": []
 				},
 				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_comment/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get coment by movie",
 					"request": {
 						"method": "GET",
@@ -924,6 +950,28 @@
 								"movie_comment",
 								"1",
 								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/v1/movie_comment/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"v1",
+								"movie_comment",
+								"1"
 							]
 						}
 					},
@@ -1092,6 +1140,49 @@
 					"response": []
 				},
 				{
+					"name": "Get List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a7b3c9975791294647265c71224a88ad ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.themoviedb.org/3/genre/movie/list?api_key=a7b3c9975791294647265c71224a88ad&language=en-US",
+							"protocol": "https",
+							"host": [
+								"api",
+								"themoviedb",
+								"org"
+							],
+							"path": [
+								"3",
+								"genre",
+								"movie",
+								"list"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "a7b3c9975791294647265c71224a88ad"
+								},
+								{
+									"key": "language",
+									"value": "en-US"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "popular",
 					"request": {
 						"auth": {
@@ -1107,7 +1198,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api.themoviedb.org/3/movie/popular?api_key=a7b3c9975791294647265c71224a88ad&language=en-US&page=1",
+							"raw": "https://api.themoviedb.org/3/movie/popular?api_key=a7b3c9975791294647265c71224a88ad&language=en-US&page=2&size=3",
 							"protocol": "https",
 							"host": [
 								"api",
@@ -1130,7 +1221,150 @@
 								},
 								{
 									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "now_playing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a7b3c9975791294647265c71224a88ad ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.themoviedb.org/3/movie/now_playing?api_key=a7b3c9975791294647265c71224a88ad&language=en-US&page=1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"themoviedb",
+								"org"
+							],
+							"path": [
+								"3",
+								"movie",
+								"now_playing"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "a7b3c9975791294647265c71224a88ad"
+								},
+								{
+									"key": "language",
+									"value": "en-US"
+								},
+								{
+									"key": "page",
 									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Genres",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a7b3c9975791294647265c71224a88ad ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.themoviedb.org/3/movie/popular?api_key=a7b3c9975791294647265c71224a88ad&language=en-US&page=2&size=3",
+							"protocol": "https",
+							"host": [
+								"api",
+								"themoviedb",
+								"org"
+							],
+							"path": [
+								"3",
+								"movie",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "a7b3c9975791294647265c71224a88ad"
+								},
+								{
+									"key": "language",
+									"value": "en-US"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Genres",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a7b3c9975791294647265c71224a88ad ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.themoviedb.org/3/genre/movie/list?api_key=a7b3c9975791294647265c71224a88ad&language=en-US",
+							"protocol": "https",
+							"host": [
+								"api",
+								"themoviedb",
+								"org"
+							],
+							"path": [
+								"3",
+								"genre",
+								"movie",
+								"list"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "a7b3c9975791294647265c71224a88ad"
+								},
+								{
+									"key": "language",
+									"value": "en-US"
 								}
 							]
 						}
@@ -1201,6 +1435,46 @@
 								"p",
 								"w500",
 								"kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Crawler",
+			"item": [
+				{
+					"name": "Crawl Movie Items",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/api/crawler/movie?fromPage=1&toPage=5&listType=popular",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"api",
+								"crawler",
+								"movie"
+							],
+							"query": [
+								{
+									"key": "fromPage",
+									"value": "1"
+								},
+								{
+									"key": "toPage",
+									"value": "5"
+								},
+								{
+									"key": "listType",
+									"value": "popular"
+								}
 							]
 						}
 					},

@@ -1,4 +1,4 @@
-# Movie Exercise Interview Challenge
+# Movie Exercise Challenge
 
 The goal of the exercise is to make a movie application.
 

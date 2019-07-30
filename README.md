@@ -1,4 +1,4 @@
-# TMA Movie Exercise Interview Challenge
+# Movie Exercise Interview Challenge
 
 The goal of the exercise is to make a movie application.
 

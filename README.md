@@ -7,8 +7,8 @@ The goal of the exercise is to make a movie application.
 <ul>
  <li>Project structure
   <ul>
-   <li>client - Movie UI</li>
-   <li>server - Movie server application</li>
+   <li>client - Single page application using Angular 8 as front-end technology to develop Movie UI</li>
+   <li>server - CRUD RESTFul APIs for Movie Management System</li>
   </ul>
  </li>
 <li>Requirement: <a href="https://drive.google.com/file/d/1OMJ4xo13Y3Kkug1nutvEPMeBc548WwJC/view?usp=sharing" target="_blank">link</a></li>

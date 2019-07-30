@@ -1,8 +1,8 @@
 # TMA Movie Exercise Interview Challenge
 
-## Application Architecture
-- client - Angular 8 Single Page Application that provides the Movie UI
-- server - REST API for Movie Manager Exercise
+The goal of the exercise is to make a movie application.
+
+All move images are stored in https://image.tmdb.org/
 
 ## Requirements
 
@@ -21,3 +21,18 @@ Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/
 ```shell
 mvn spring-boot:run
 ```
+
+## Technology 
+### Server
++ Tomcat server
++ Spring Boot
++ Spring REST DATA
++ Spring JPA
+
+### Client
++ Angular 8
++ Bootstrap 4
+
+## Application Architecture
+- client - Angular 8 Single Page Application that provides the Movie UI
+- server - REST API for Movie Manager Exercise

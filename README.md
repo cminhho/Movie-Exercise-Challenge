@@ -15,7 +15,7 @@ The goal of the exercise is to make a movie application.
 <li>Technical design: <a href="https://docs.google.com/document/d/1-bVlU4_XlYVfjtpYgp1qjhqRhswRfVWut9eiBeEZLfg/edit#" target="_blank">link</a></li>
 </ul>
 
-## How should the UI look?
+## Output
 
 #### Configure Movie data using GUI
 By default, there are 3 movies are populated by the server side when running.

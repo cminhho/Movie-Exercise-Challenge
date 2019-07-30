@@ -8,6 +8,8 @@ All move images are stored in https://image.tmdb.org/
 - client - Movie UI
 - server - Movie server application 
 
+## How should the UI look?
+
 
 ## Tools used
 

@@ -71,7 +71,3 @@ Visit to http://localhost:4200 to view the home page
 ### Client
 + Angular 8
 + Bootstrap 4
-
-## Application Architecture
-- client - Angular 8 Single Page Application that provides the Movie UI
-- server - REST API for Movie Manager Exercise

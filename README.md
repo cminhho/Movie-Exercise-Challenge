@@ -13,6 +13,7 @@ All move images are stored in https://image.tmdb.org/
    <li>server - Movie server application</li>
   </ul>
  </li>
+<li>Requirement: <a href="https://docs.google.com/document/d/1OMJ4xo13Y3Kkug1nutvEPMeBc548WwJC/edit#heading=h.30j0zll" target="_blank">find here</a></li>
 <li>Technical design: <a href="https://docs.google.com/document/d/1-bVlU4_XlYVfjtpYgp1qjhqRhswRfVWut9eiBeEZLfg/edit#" target="_blank">find here</a></li>
 </ul>
 

@@ -23,10 +23,12 @@ mvn clean install
 ### Running the application
 #### Running the application 
 
-The application is supporting to work on multiple envs
-- local: running in port 9080 and using H2 databse
-- dev: running in port 9080 and using MariaDB databse
-- prod: running in port 8080 and using MariaDB databse
+The application supports to work on multiple profiles
+- local - for local local (running in port 9080 and using H2 databse)
+- dev - for local development (running in port 9080 and using MariaDB databse)
+- prod - for local production (running in port 8080 and using MariaDB databse)
+
+Note: Application will use the local profile by default.
 
 ```shell
 mvn clean spring-boot:run -Plocal

@@ -6,12 +6,15 @@ All move images are stored in https://image.tmdb.org/
 
 ## Application Architecture
 
-Project structure
-
-- client - Movie UI
-- server - Movie server application
-
-
+<ul>
+ <li>Project structure
+  <ul>
+   <li>client - Movie UI</li>
+   <li>server - Movie server application</li>
+  </ul>
+ </li>
+<li>Technical design: <a href="https://docs.google.com/document/d/1-bVlU4_XlYVfjtpYgp1qjhqRhswRfVWut9eiBeEZLfg/edit#" target="_blank">find here</a></li>
+</ul>
 
 ## How should the UI look?
 

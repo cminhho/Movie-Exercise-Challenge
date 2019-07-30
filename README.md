@@ -16,7 +16,8 @@ Project structure
 ## How should the UI look?
 
 #### Configure Movie data using GUI
-1. Accessing to http://localhost:9080/#/movie-management then click on 'populate movie data' table (wait for 1 minute).
+By default, there are 3 movies are populated by the server side when running.
+To populate more movies for testing, accessing to http://localhost:9080/#/movie-management then click on 'populate movie data' table (wait for 1 minute).
 
 #### Movie Management Page
 <img src="/screenshots/movie-mgmt-page-desktop.png" width="850">

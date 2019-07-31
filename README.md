@@ -100,3 +100,9 @@ the server running on port 9080
 client > npm run start
 ```
 Visit to http://localhost:4200 to view the home page
+
+### Running tests
+
+```shell 
+server > mvn integration-test
+```

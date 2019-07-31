@@ -32,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest(classes = MovieApplication.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class MovieRestControllerTest {
+public class MovieRestControllerIT {
 
   private static final String DEFAULT_TITLE = "DEFAULT_TITLE";
   private static final Long DEFAULT_VOTE_AVERAGE = 1L;

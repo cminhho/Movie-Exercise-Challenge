@@ -243,6 +243,26 @@
               <include>**/*IntegrationTest.java</include>
             </excludes>
           </configuration>
+          <executions>
+            <execution>
+              <id>integration-test</id>
+              <goals>
+                <goal>test</goal>
+              </goals>
+              <phase>integration-test</phase>
+              <configuration>
+                <excludes>
+                  <exclude>none</exclude>
+                </excludes>
+                <includes>
+                  <include>**/IT*.java</include>
+                  <include>**/*IT.java</include>
+                  <include>**/*ITCase.java</include>
+                  <include>**/*IntegrationTest.java</include>
+                </includes>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
 
         <plugin>

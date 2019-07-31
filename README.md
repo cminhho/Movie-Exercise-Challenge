@@ -103,6 +103,14 @@ Visit to http://localhost:4200 to view the home page
 
 ### Running tests
 
+1. Integration tests
+
 ```shell 
 server > mvn integration-test
+```
+
+2. UI tests
+
+```shell 
+client > npm run test
 ```

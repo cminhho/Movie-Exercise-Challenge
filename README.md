@@ -47,7 +47,7 @@ For building and running the application we need:
 - MariaDB
 - InteliJ, Visual Studio Code
 
-## Technology used
+## Technology Stack
 ### Server
 + Tomcat server
 + Spring Boot
@@ -59,15 +59,6 @@ For building and running the application we need:
 + Bootstrap 4
 
 ## Using the application
-
-### Application profiles
-
-The application supports to work on multiple profiles
-- local - for local local (running on port 9080 and using H2 databse)
-- dev - for local development (running on port 9080 and using MariaDB databse)
-- prod - for local production (running on port 8080 and using MariaDB databse)
-
-Note: Application will use the local profile by default.
 
 ### Using in produciton 
 
@@ -87,16 +78,47 @@ mvn clean spring-boot:run -Pprod
 
 ###  Using in Development
 
-1. Start the backend server
+<b>Application profiles</b>
+
+The application supports to work on multiple profiles
+- local - for local local (running on port 9080 and using H2 databse)
+- dev - for local development (running on port 9080 and using MariaDB databse)
+- prod - for local production (running on port 8080 and using MariaDB databse)
+
+Note: Application will use the local profile by default.
+
+#### Start the backend server
 
 ```shell 
 server > mvn clean spring-boot:run -Plocal
 ```
 the server running on port 9080
 
-2. Start the client
+#### Start the client
 
 ```shell 
 client > npm run start
 ```
 Visit to http://localhost:4200 to view the home page
+
+#### Using H2 database in local development
+
+in-memory database running inside application in local mode, access it at http://localhost:9080/h2-console/ by deault
+
+#### Using HAL Browser 
+
+Access it at http://localhost:9080/api/v1
+
+### Running tests
+
+1. Integration tests
+
+```shell 
+server > mvn integration-test
+```
+
+2. UI tests
+
+```shell 
+client > npm run test
+```

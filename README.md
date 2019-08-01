@@ -85,7 +85,7 @@ cd server
 mvn clean spring-boot:run -Pprod
 ```
 
-###  Using in Development
+###  Development
 
 1. Start the backend server
 
@@ -100,6 +100,10 @@ the server running on port 9080
 client > npm run start
 ```
 Visit to http://localhost:4200 to view the home page
+
+3. Using H2 database in local development
+
+in-memory database running inside application in local mode, access it at http://localhost:9080/h2-console/ by deault
 
 ### Running tests
 

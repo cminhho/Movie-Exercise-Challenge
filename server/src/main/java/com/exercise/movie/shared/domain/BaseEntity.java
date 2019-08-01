@@ -1,9 +1,14 @@
 package com.exercise.movie.shared.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +25,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AllArgsConstructor
 @MappedSuperclass
 @Audited
+@JsonIgnoreProperties({"createdDate", "lastModifiedDate"})
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity<U> implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -39,6 +45,17 @@ public abstract class BaseEntity<U> implements Serializable {
   @LastModifiedDate
   @Column(name = "last_modified_date")
   protected Date lastModifiedDate;
+
+  @PrePersist
+  @PreUpdate
+  public void prePersist() {
+    Date now = new Date();
+
+    if (createdDate == null) {
+      createdDate = now;
+    }
+    lastModifiedDate = now;
+  }
 
   public BaseEntity<U> createdBy(U createdBy) {
     this.createdBy = createdBy;

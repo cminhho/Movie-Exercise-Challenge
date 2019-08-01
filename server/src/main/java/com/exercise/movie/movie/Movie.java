@@ -24,7 +24,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -42,7 +44,8 @@ public class Movie extends BaseEntity<String> implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotNull
+  @NotEmpty(message = "Movie title cannot be empty")
+  @Size(min = 2, max = 100, message = "Playlist title must not be longer than 100 characters and shorter than 2 characters")
   @Column(name = "title", nullable = false)
   private String title;
 
@@ -87,7 +90,7 @@ public class Movie extends BaseEntity<String> implements Serializable {
   @OneToMany(
       mappedBy = "movie",
       fetch = FetchType.EAGER,
-      cascade = CascadeType.REMOVE)
+      cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
   @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
   @JsonIgnore
   private Set<MovieComment> comments = new HashSet<>();

@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
@@ -30,7 +31,7 @@ public class MovieComment extends BaseEntity<String> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty(message = "Comment message cannot be empty")
     @Column(name = "review", nullable = false)
     private String review;
 

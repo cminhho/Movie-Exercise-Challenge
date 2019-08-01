@@ -23,12 +23,12 @@ public class MovieGenre extends BaseEntity<String> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty(message = "Movie genre cannot be empty")
+    @Size(min = 2, max = 32, message = "Movie genre must not be longer than 100 characters and "
+        + "shorter than 2 characters")
+    @Pattern(regexp = "[a-z-A-Z- ']*", message = "Destination name has invalid characters")
     @Column(name = "title", nullable = false)
     private String title;
-
-    @Column(name = "updated_at")
-    private String updatedAt;
 
     @ManyToMany(mappedBy = "genres")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -54,19 +54,6 @@ public class MovieGenre extends BaseEntity<String> implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public MovieGenre updatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-        return this;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public Set<Movie> getMovies() {
@@ -115,7 +102,6 @@ public class MovieGenre extends BaseEntity<String> implements Serializable {
         return "MovieGenre{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
-            ", updatedAt='" + getUpdatedAt() + "'" +
             "}";
     }
 }

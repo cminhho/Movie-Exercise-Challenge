@@ -24,7 +24,8 @@ public class Playlist extends BaseEntity<String> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty(message = "Playlist title cannot be empty")
+    @Size(min = 2, max = 100, message = "Playlist title must not be longer than 100 characters and shorter than 2 characters")
     @Column(name = "title", nullable = false)
     private String title;
 

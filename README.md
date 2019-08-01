@@ -47,7 +47,7 @@ For building and running the application we need:
 - MariaDB
 - InteliJ, Visual Studio Code
 
-## Technology used
+## Technology Stack
 ### Server
 + Tomcat server
 + Spring Boot

@@ -105,6 +105,10 @@ Visit to http://localhost:4200 to view the home page
 
 in-memory database running inside application in local mode, access it at http://localhost:9080/h2-console/ by deault
 
+#### Using HAL Browser 
+
+Access it at http://localhost:9080/api/v1
+
 ### Running tests
 
 1. Integration tests

@@ -9,18 +9,21 @@ import com.exercise.movie.comment.MovieCommentRestRepository;
 import com.exercise.movie.genre.MovieGenre;
 import com.exercise.movie.genre.MovieGenreRestRepository;
 import com.exercise.movie.playlist.Playlist;
-import com.exercise.movie.playlist.PlaylistMovie;
-import com.exercise.movie.playlist.PlaylistMovieRestRepository;
 import com.exercise.movie.playlist.PlaylistRestRepository;
 import com.exercise.movie.movie.Movie;
 import com.exercise.movie.movie.MovieRestRepository;
 import java.util.Arrays;
 import java.util.Collections;
+
+import com.exercise.movie.user.User;
+import com.exercise.movie.user.UserRestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+
+import javax.transaction.Transactional;
 
 @Configuration
 @Slf4j
@@ -44,15 +47,33 @@ public class LoadDatabase {
       MovieCommentRestRepository movieCommentRestRepository,
       MovieGenreRestRepository movieGenreRestRepository,
       PlaylistRestRepository playlistRestRepository,
-      PlaylistMovieRestRepository playlistMovieRestRepository) {
+      UserRestRepository userRestRepository) {
     return args -> {
       log.debug("Initial db records");
+      initUserRecords(userRestRepository);
       initMovieGenresRecords(movieGenreRestRepository);
+      initPlaylistRecords(playlistRestRepository);
       initMovieRecords(movieRestRepository);
       initMovieCommentsRecords(movieCommentRestRepository);
-      initPlaylistRecords(playlistRestRepository);
-      assignMoviesToPlaylist(playlistMovieRestRepository);
     };
+  }
+
+  private void initUserRecords(UserRestRepository userRestRepository) {
+    User system = User.builder()
+        .login("system")
+        .email("system@movie.com")
+        .langKey("en-US")
+        .deleted(false)
+        .activated(true)
+        .build();
+    User admin = User.builder()
+        .login("admin")
+        .email("admin@movie.com")
+        .langKey("en-US")
+        .deleted(true)
+        .activated(true)
+        .build();
+    userRestRepository.saveAll(Arrays.asList(system, admin));
   }
 
   private void initMovieRecords(MovieRestRepository movieRestRepository) {
@@ -62,7 +83,7 @@ public class LoadDatabase {
         .posterPath("dzBtMocZuJbjLOXvrl4zGYigDzh.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .playlistMovies(Collections.emptySet())
+        .playlists(Collections.emptySet())
         .voteAverage(1L)
         .popularity(1L);
     movie2 = new Movie()
@@ -71,7 +92,7 @@ public class LoadDatabase {
         .posterPath("or06FN3Dka5tukK1e9sl16pB3iy.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .playlistMovies(Collections.emptySet())
+        .playlists(Collections.emptySet())
         .voteAverage(2L)
         .popularity(2L);
     movie3 = new Movie()
@@ -80,7 +101,7 @@ public class LoadDatabase {
         .posterPath("86Y6qM8zTn3PFVfCm9J98Ph7JEB.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .playlistMovies(Collections.emptySet())
+        .playlists(Collections.emptySet())
         .voteAverage(3L)
         .popularity(3L);
 
@@ -113,16 +134,14 @@ public class LoadDatabase {
     movieGenreRestRepository.saveAll(Arrays.asList(actionGenre, comedyGenre, animationGenre));
   }
 
-  private void initPlaylistRecords(PlaylistRestRepository playlistRestRepository) {
+  @Transactional
+  private void initPlaylistRecords(PlaylistRestRepository playlistRepository) {
     log.debug("Create movie list records");
     play1ist1 = new Playlist().title("Play1ist 1");
+    play1ist1.setMovies(Collections.singleton(movie1));
     play1ist2 = new Playlist().title("Play1ist 2");
     play1ist3 = new Playlist().title("Play1ist 3");
-    playlistRestRepository.saveAll(Arrays.asList(play1ist1, play1ist2, play1ist3));
-  }
+    playlistRepository.saveAll(Arrays.asList(play1ist1, play1ist2, play1ist3));
 
-  private void assignMoviesToPlaylist(PlaylistMovieRestRepository playlistMovieRestRepository) {
-    PlaylistMovie playlistMovie1 = new PlaylistMovie(movie1, play1ist1);
-    playlistMovieRestRepository.save(playlistMovie1);
   }
 }

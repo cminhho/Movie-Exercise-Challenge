@@ -138,7 +138,7 @@ public class MovieRestController {
   @GetMapping("/movie/{id}/comments")
   public ResponseEntity<Set<MovieComment>> getComments(@PathVariable Long id) {
     log.debug("REST request to get a list of comment by movie : {}", id);
-    Optional<Movie> movieOptional = movieRepository.findOneWithEagerRelationships(id);
+    Optional<Movie> movieOptional = movieRepository.findByIdAndGetComments(id);
     if (!movieOptional.isPresent()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

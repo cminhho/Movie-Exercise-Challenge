@@ -2,9 +2,7 @@ package com.exercise.movie.shared.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Date;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
@@ -36,7 +34,7 @@ public abstract class BaseEntity<U> implements Serializable {
 
   @CreatedDate
   @Column(name = "created_date")
-  protected Date createdDate;
+  protected LocalDateTime createdDate;
 
   @LastModifiedBy
   @Column(name = "last_modified_by")
@@ -44,12 +42,12 @@ public abstract class BaseEntity<U> implements Serializable {
 
   @LastModifiedDate
   @Column(name = "last_modified_date")
-  protected Date lastModifiedDate;
+  protected LocalDateTime lastModifiedDate;
 
   @PrePersist
   @PreUpdate
   public void prePersist() {
-    Date now = new Date();
+    LocalDateTime now = LocalDateTime.now();
 
     if (createdDate == null) {
       createdDate = now;

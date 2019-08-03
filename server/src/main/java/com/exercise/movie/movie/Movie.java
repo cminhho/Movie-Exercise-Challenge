@@ -2,7 +2,7 @@ package com.exercise.movie.movie;
 
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.genre.MovieGenre;
-import com.exercise.movie.playlist.PlaylistMovie;
+import com.exercise.movie.playlist.Playlist;
 import com.exercise.movie.shared.domain.BaseEntity;
 import com.exercise.movie.shared.enumeration.Language;
 import com.exercise.movie.shared.enumeration.MediaType;
@@ -15,7 +15,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,9 +29,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-/**
- * A Movie.
- */
 @Entity
 @Table(name = "movie")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -45,7 +41,7 @@ public class Movie extends BaseEntity<String> implements Serializable {
   private Long id;
 
   @NotEmpty(message = "Movie title cannot be empty")
-  @Size(min = 2, max = 100, message = "Playlist title must not be longer than 100 characters and shorter than 2 characters")
+  @Size(min = 2, max = 100, message = "Movie title must not be longer than 100 characters and shorter than 2 characters")
   @Column(name = "title", nullable = false)
   private String title;
 
@@ -65,6 +61,7 @@ public class Movie extends BaseEntity<String> implements Serializable {
   @Column(name = "popularity")
   private Long popularity;
 
+  @Size(max = 100)
   @Column(name = "poster_path")
   private String posterPath;
 
@@ -75,12 +72,14 @@ public class Movie extends BaseEntity<String> implements Serializable {
   @Column(name = "original_title")
   private String originalTitle;
 
+  @Size(max = 100)
   @Column(name = "backdrop_path")
   private String backdropPath;
 
   @Column(name = "adult")
   private Boolean adult;
 
+  @Size(max = 256)
   @Column(name = "overview")
   private String overview;
 
@@ -89,8 +88,8 @@ public class Movie extends BaseEntity<String> implements Serializable {
 
   @OneToMany(
       mappedBy = "movie",
-      fetch = FetchType.EAGER,
-      cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+      cascade = CascadeType.ALL,
+	  orphanRemoval = true)
   @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
   @JsonIgnore
   private Set<MovieComment> comments = new HashSet<>();
@@ -103,13 +102,10 @@ public class Movie extends BaseEntity<String> implements Serializable {
       inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
   private Set<MovieGenre> genres = new HashSet<>();
 
-  @OneToMany(
-      mappedBy = "movie",
-      cascade = CascadeType.ALL,
-      orphanRemoval = true
-  )
+  @ManyToMany(mappedBy = "movies")
+  @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
   @JsonIgnore
-  private Set<PlaylistMovie> playlistMovies = new HashSet<>();
+  private Set<Playlist> playlists = new HashSet<>();
 
   public Long getId() {
     return id;
@@ -338,27 +334,29 @@ public class Movie extends BaseEntity<String> implements Serializable {
     this.genres = movieGenres;
   }
 
-  public Set<PlaylistMovie> getPlaylistMovies() {
-    return playlistMovies;
+  public Set<Playlist> getPlaylists() {
+    return playlists;
   }
 
-  public void setPlaylistMovies(Set<PlaylistMovie> playlistMovies) {
-    this.playlistMovies = playlistMovies;
-  }
-
-  public Movie playlistMovies(Set<PlaylistMovie> playlistMovies) {
-    this.playlistMovies = playlistMovies;
+  public Movie playlists(Set<Playlist> playlists) {
+    this.playlists = playlists;
     return this;
   }
 
-  public Movie addListMovie(PlaylistMovie playlistMovie) {
-    this.playlistMovies.add(playlistMovie);
+  public Movie addPlaylist(Playlist playlist) {
+    this.playlists.add(playlist);
+    playlist.getMovies().add(this);
     return this;
   }
 
-  public Movie removeListMovie(PlaylistMovie playlistMovie) {
-    this.playlistMovies.remove(playlistMovie);
+  public Movie removePlaylist(Playlist playlist) {
+    this.playlists.remove(playlist);
+    playlist.getMovies().remove(this);
     return this;
+  }
+
+  public void setPlaylists(Set<Playlist> playlists) {
+    this.playlists = playlists;
   }
 
   @Override

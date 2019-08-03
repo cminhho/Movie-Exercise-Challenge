@@ -1,8 +1,11 @@
 package com.exercise.movie.playlist;
 
+import com.exercise.movie.movie.Movie;
 import com.exercise.movie.shared.domain.BaseEntity;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
@@ -29,17 +32,24 @@ public class Playlist extends BaseEntity<String> implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
+    @Size(max = 256)
     @Column(name = "description")
     private String description;
 
-    @Column(name = "backdrop_path")
+    @Size(max = 256)
+    @Column(name = "backdrop_path", length = 256)
     private String backdropPath;
 
+    @Size(max = 256)
     @Column(name = "poster_path")
     private String posterPath;
 
-    @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL)
-    private Set<PlaylistMovie> moviePlaylist = new HashSet<>();
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "playlist_movie",
+            joinColumns = @JoinColumn(name = "playlist_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"))
+    private Set<Movie> movies = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -101,6 +111,30 @@ public class Playlist extends BaseEntity<String> implements Serializable {
         this.posterPath = posterPath;
     }
 
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public Playlist movies(Set<Movie> movies) {
+        this.movies = movies;
+        return this;
+    }
+
+    public Playlist addMovie(Movie movie) {
+        this.movies.add(movie);
+        movie.getPlaylists().add(this);
+        return this;
+    }
+
+    public Playlist removeMovie(Movie movie) {
+        this.movies.remove(movie);
+        movie.getPlaylists().remove(this);
+        return this;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
+    }
 
     @Override
     public boolean equals(Object o) {

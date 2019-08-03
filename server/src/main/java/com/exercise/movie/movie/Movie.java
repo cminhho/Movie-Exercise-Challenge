@@ -102,7 +102,7 @@ public class Movie extends BaseEntity<String> implements Serializable {
       inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
   private Set<MovieGenre> genres = new HashSet<>();
 
-  @ManyToMany(mappedBy = "movies")
+  @ManyToMany(mappedBy = "movies", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
   @JsonIgnore
   private Set<Playlist> playlists = new HashSet<>();

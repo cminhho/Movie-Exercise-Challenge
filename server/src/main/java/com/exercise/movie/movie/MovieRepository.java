@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository("movieRepository")
+@Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
   @Transactional(readOnly = true)
   @Query(value = "SELECT distinct movie FROM Movie movie LEFT JOIN FETCH movie.genres",

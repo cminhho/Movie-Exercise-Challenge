@@ -5,7 +5,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @RepositoryRestResource(path = "playlist")
-@Repository("playlistRestRepository")
-@SuppressWarnings("unused")
 public interface PlaylistRestRepository extends JpaRepository<Playlist, Long> {
 }

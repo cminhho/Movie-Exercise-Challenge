@@ -23,8 +23,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import javax.transaction.Transactional;
-
 @Configuration
 @Slf4j
 @Profile({SPRING_PROFILE_LOCAL, SPRING_PROFILE_DEV, SPRING_PROFILE_PROD})
@@ -52,9 +50,9 @@ public class LoadDatabase {
       log.debug("Initial db records");
       initUserRecords(userRestRepository);
       initMovieGenresRecords(movieGenreRestRepository);
-      initPlaylistRecords(playlistRestRepository);
       initMovieRecords(movieRestRepository);
       initMovieCommentsRecords(movieCommentRestRepository);
+      initPlaylistRecords(playlistRestRepository);
     };
   }
 
@@ -134,14 +132,12 @@ public class LoadDatabase {
     movieGenreRestRepository.saveAll(Arrays.asList(actionGenre, comedyGenre, animationGenre));
   }
 
-  @Transactional
   private void initPlaylistRecords(PlaylistRestRepository playlistRepository) {
     log.debug("Create movie list records");
-    play1ist1 = new Playlist().title("Play1ist 1");
-    play1ist1.setMovies(Collections.singleton(movie1));
+    play1ist1 = new Playlist().title("Playlist 1");
     play1ist2 = new Playlist().title("Play1ist 2");
     play1ist3 = new Playlist().title("Play1ist 3");
+    play1ist1.movies(Collections.singleton(movie1));
     playlistRepository.saveAll(Arrays.asList(play1ist1, play1ist2, play1ist3));
-
   }
 }

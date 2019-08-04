@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository("playlistRepository")
+@Repository
 public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
 
     @Query(value = "select distinct playlist from Playlist playlist left join fetch playlist.movies",
-            countQuery = "select count(distinct playlist) from Playlist playlist")
+        countQuery = "select count(distinct playlist) from Playlist playlist")
     Page<Playlist> findAllWithEagerRelationships(Pageable pageable);
 
     @Query("select distinct playlist from Playlist playlist left join fetch playlist.movies")

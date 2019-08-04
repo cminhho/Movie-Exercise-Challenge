@@ -89,7 +89,7 @@ public class Movie extends BaseEntity<String> implements Serializable {
   @OneToMany(
       mappedBy = "movie",
       cascade = CascadeType.ALL,
-	  orphanRemoval = true)
+	    orphanRemoval = true)
   @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
   @JsonIgnore
   private Set<MovieComment> comments = new HashSet<>();
@@ -394,4 +394,6 @@ public class Movie extends BaseEntity<String> implements Serializable {
         ", releaseDate='" + getReleaseDate() + "'" +
         "}";
   }
+
+
 }

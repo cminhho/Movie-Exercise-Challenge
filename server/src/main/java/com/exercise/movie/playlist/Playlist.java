@@ -17,8 +17,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "playlist")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Setter
-@Getter
 public class Playlist extends BaseEntity<String> implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -157,15 +157,20 @@ public class MovieRestController {
   @PutMapping("/movie")
   public ResponseEntity<Movie> updateMovie(@Valid @RequestBody Movie movie) {
     log.debug("REST request to update movie: {}", movie);
-    try {
-      if (movie.getId() == null) {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-      }
-      Movie result = movieService.save(movie);
-      return ResponseEntity.ok().body(result);
-    } catch (Exception ex) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    if (movie.getId() == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    Optional<Movie> movieOptional = movieRepository.findById(movie.getId());
+    if(!movieOptional.isPresent()){
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    if(!movieOptional.get().getVersion().equals(movie.getVersion())){
+      return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
+
+    Movie result = movieService.save(movie);
+    return ResponseEntity.ok().body(result);
   }
 
   /**

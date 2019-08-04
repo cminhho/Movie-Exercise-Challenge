@@ -1,11 +1,10 @@
 package com.exercise.movie.genre;
 
-import com.exercise.movie.movie.Movie;
+import com.exercise.movie.movie.domain.Movie;
 import com.exercise.movie.shared.domain.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.Builder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;

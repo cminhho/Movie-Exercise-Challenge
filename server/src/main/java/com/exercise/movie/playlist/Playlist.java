@@ -1,13 +1,11 @@
 package com.exercise.movie.playlist;
 
-import com.exercise.movie.movie.Movie;
+import com.exercise.movie.movie.domain.Movie;
 import com.exercise.movie.shared.domain.BaseEntity;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
@@ -47,6 +45,7 @@ public class Playlist extends BaseEntity<String> implements Serializable {
     @JoinTable(name = "playlist_movie",
             joinColumns = @JoinColumn(name = "playlist_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"))
+    @JsonIgnore
     private Set<Movie> movies = new HashSet<>();
 
     public Long getId() {

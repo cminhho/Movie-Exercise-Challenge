@@ -10,8 +10,8 @@ import com.exercise.movie.genre.MovieGenre;
 import com.exercise.movie.genre.MovieGenreRestRepository;
 import com.exercise.movie.playlist.Playlist;
 import com.exercise.movie.playlist.PlaylistRestRepository;
-import com.exercise.movie.movie.Movie;
-import com.exercise.movie.movie.MovieRestRepository;
+import com.exercise.movie.movie.domain.Movie;
+import com.exercise.movie.movie.repository.MovieRestRepository;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -135,8 +135,8 @@ public class LoadDatabase {
   private void initPlaylistRecords(PlaylistRestRepository playlistRepository) {
     log.debug("Create movie list records");
     play1ist1 = new Playlist().title("Playlist 1");
-    play1ist2 = new Playlist().title("Play1ist 2");
-    play1ist3 = new Playlist().title("Play1ist 3");
+    play1ist2 = new Playlist().title("Playlist 2");
+    play1ist3 = new Playlist().title("Playlist 3");
     play1ist1.movies(Collections.singleton(movie1));
     playlistRepository.saveAll(Arrays.asList(play1ist1, play1ist2, play1ist3));
   }

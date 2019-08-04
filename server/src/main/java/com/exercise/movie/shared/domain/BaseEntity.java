@@ -30,8 +30,8 @@ public abstract class BaseEntity<U> implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Version
-  @Column(name = "version")
-  Long version;
+  @Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
+  protected Long version = 0L;
 
   @CreatedBy
   @Column(name = "created_by", updatable = false)
@@ -49,16 +49,9 @@ public abstract class BaseEntity<U> implements Serializable {
   @Column(name = "last_modified_date")
   protected LocalDateTime lastModifiedDate;
 
-//  @PrePersist
-//  @PreUpdate
-//  public void prePersist() {
-//    LocalDateTime now = LocalDateTime.now();
-//  }
-
   @PrePersist
   public void prePersistVersion() {
     createdDate = LocalDateTime.now();
-    version = 1L;
   }
 
   @PreUpdate

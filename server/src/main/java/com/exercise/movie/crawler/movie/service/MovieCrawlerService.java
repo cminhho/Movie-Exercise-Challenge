@@ -6,8 +6,8 @@ import com.exercise.movie.crawler.movie.mapper.MovieCrawlerMapper;
 import com.exercise.movie.crawler.movie.vo.MovieCrawlerResponse;
 import com.exercise.movie.genre.MovieGenre;
 import com.exercise.movie.genre.MovieGenreRestRepository;
-import com.exercise.movie.movie.Movie;
-import com.exercise.movie.movie.MovieRepository;
+import com.exercise.movie.movie.domain.Movie;
+import com.exercise.movie.movie.repository.MovieRepository;
 
 import java.time.LocalDateTime;
 import java.util.*;

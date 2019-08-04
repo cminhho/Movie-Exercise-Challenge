@@ -1,12 +1,15 @@
-package com.exercise.movie.movie;
+package com.exercise.movie.movie.rest;
 
-import com.exercise.movie.comment.MovieComment;
+import com.exercise.movie.movie.domain.Movie;
+import com.exercise.movie.movie.repository.MovieRepository;
+import com.exercise.movie.movie.service.MovieService;
 import com.exercise.movie.shared.domain.PageResponseModel;
+import com.exercise.movie.shared.rest.error.BadRequestException;
+import com.exercise.movie.shared.rest.error.NotFoundException;
+import com.exercise.movie.shared.rest.error.UpdatingConflictException;
 import com.exercise.movie.shared.rest.util.RestResponseUtil;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Optional;
-import java.util.Set;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -43,13 +46,18 @@ public class MovieRestController {
    * {@code POST  /movie} : Create a new movie.
    *
    * @param movie the movie to create.
-   * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new
-   * movie
+   * @return the {@link ResponseEntity}
+   * with status {@code 201 (Created)} and with body the new movie
+   * or with status 400 (Bad Request) if the movie has already an ID
+   * or with status 500 (Bad Request) if the movie violated the entity constraint
    */
   @PostMapping("/movie")
   public ResponseEntity<Movie> createMovie(@Valid @RequestBody Movie movie)
       throws URISyntaxException {
     log.debug("REST request to create movie: {}", movie);
+    if (movie.getId() != null) {
+      throw new BadRequestException("A new movie cannot already have an ID");
+    }
     Movie result = movieService.save(movie);
     return ResponseEntity.created(new URI("/api/movie/" + result.getId())).body(result);
   }
@@ -74,7 +82,6 @@ public class MovieRestController {
     }
     return ResponseEntity.ok().body(RestResponseUtil.pageToResponseResult(page));
   }
-
 
   /**
    * {@code GET  /movies/popular} : Get a list of the popular movies
@@ -119,54 +126,40 @@ public class MovieRestController {
    * {@code GET  /movie/:id} : get the "id" movie.
    *
    * @param id the id of the movie to retrieve.
-   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the movie, or
-   * with status {@code 404 (Not Found)}.
+   * @return the {@link ResponseEntity}
+   * with status {@code 200 (OK)} and with body the movie,
+   * or with status {@code 404 (Not Found)}.
    */
   @GetMapping("/movie/{id}")
   public ResponseEntity<Movie> getMovie(@PathVariable Long id) {
     log.debug("REST request to get movie by ID: {}", id);
     return movieService.findOne(id).map((movie) -> ResponseEntity.ok().body(movie))
-        .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-  }
-
-  /**
-   * {@code GET  /movies/upcoming} : Get a list of comment by movie
-   *
-   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of movie comments
-   * in body.
-   */
-  @GetMapping("/movie/{id}/comments")
-  public ResponseEntity<Set<MovieComment>> getComments(@PathVariable Long id) {
-    log.debug("REST request to get a list of comment by movie : {}", id);
-    Optional<Movie> movieOptional = movieRepository.findByIdAndGetComments(id);
-    if (!movieOptional.isPresent()) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-    Movie movie = movieOptional.get();
-    Set<MovieComment> movieComments = movie.getComments();
-    return ResponseEntity.ok().body(movieComments);
+        .orElseThrow(() -> new NotFoundException("Movie not found"));
   }
 
   /**
    * {@code PUT  /movie} : Updates an existing movie.
    *
-   * @param movie the movie to update.
-   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated
-   * movie, or with status {@code 400 (Bad Request)} if the movie is not valid
+   * @param updateMovie the movie to update.
+   * @return the {@link ResponseEntity}
+   * with status {@code 200 (OK)} and with body the updated movie,
+   * or with status {@code 400 (Bad Request)} if the movie is not valid
+   * or with status {@code 409 (Internal Server Error)} if the movie is conflicted while updating
+   * or with status {@code 500 (Internal Server Error)} if the movie couldn't be updated
    */
   @PutMapping("/movie")
-  public ResponseEntity<Movie> updateMovie(@Valid @RequestBody Movie movie) {
-    log.debug("REST request to update movie: {}", movie);
-    if (movie.getId() == null) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-    Optional<Movie> movieOptional = movieRepository.findById(movie.getId());
-    if(!movieOptional.isPresent()){
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  public ResponseEntity<Movie> updateMovie(@Valid @RequestBody Movie updateMovie) {
+    log.debug("REST request to update movie: {}", updateMovie);
+
+    if (updateMovie.getId() == null) {
+      throw new NotFoundException("Movie ID not found");
     }
 
-    if(!movieOptional.get().getVersion().equals(movie.getVersion())){
-      return new ResponseEntity<>(HttpStatus.CONFLICT);
+    Movie movie = movieRepository.findById(updateMovie.getId())
+        .orElseThrow(() -> new NotFoundException("Movie not found"));
+
+    if (!movie.getVersion().equals(updateMovie.getVersion())) {
+      throw new UpdatingConflictException("Conflict while updating entity");
     }
 
     Movie result = movieService.save(movie);
@@ -178,13 +171,17 @@ public class MovieRestController {
    *
    * @param id the id of the movie to delete.
    * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
+   * or with status {@code 404 (Not Found)} if the movie is not found
+   * or with status {@code 500 (Internal Server Error)} if the movie couldn't be updated
    */
   @DeleteMapping("/movie/{id}")
   public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
     try {
-      movieRepository.deleteById(id);
+      Movie movie = movieRepository.findByIdAndGetGeneresAndGetPlaylists(id)
+          .orElseThrow(() -> new NotFoundException("Movie not found"));
+      movieService.delete(movie);
       return ResponseEntity.noContent().build();
-    } catch (Exception e){
+    } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }

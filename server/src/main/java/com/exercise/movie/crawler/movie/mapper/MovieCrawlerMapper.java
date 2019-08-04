@@ -1,7 +1,7 @@
 package com.exercise.movie.crawler.movie.mapper;
 
 import com.exercise.movie.crawler.movie.vo.MovieCrawler;
-import com.exercise.movie.movie.Movie;
+import com.exercise.movie.movie.domain.Movie;
 import java.util.Collections;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class MovieCrawlerMapper {
         .video(movieCrawler.getVideo())
         .genres(Collections.emptySet())
         .comments(Collections.emptySet())
-        .movielists(Collections.emptySet())
+//        .movielists(Collections.emptySet())
         .voteAverage(movieCrawler.getVoteAverage())
         .popularity(movieCrawler.getPopularity());
   }

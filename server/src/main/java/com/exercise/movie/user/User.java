@@ -1,14 +1,16 @@
 package com.exercise.movie.user;
 
 import com.exercise.movie.shared.Constants;
-import com.exercise.movie.shared.domain.BaseEntity;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+
+import com.exercise.movie.shared.domain.UserBaseEntity;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +19,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends BaseEntity<String> implements Serializable {
+@Builder
+public class User extends UserBaseEntity<String> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -47,4 +50,7 @@ public class User extends BaseEntity<String> implements Serializable {
     @Size(max = 256)
     @Column(name = "image_url", length = 256)
     private String imageUrl;
+
+    @Column(name = "deleted")
+    private boolean deleted;
 }

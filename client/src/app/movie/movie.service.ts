@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseCrudAPIClass } from '@app/core/class/baseCrudAPI.class';
+import { CrudAPIClass } from '@app/core/class/CrudAPI.class';
 import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,11 +7,10 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class MovieService extends BaseCrudAPIClass<any, any> {
-  private SERVER_API_URL = environment.serverUrl;
+export class MovieService extends CrudAPIClass<any, any> {
   constructor(protected http: HttpClient) {
     super(http);
-    this.resourceUrl = this.SERVER_API_URL + 'api/movie';
+    this.resourceUrl = '/api/movie';
   }
 
   query(type: string, req?: any): Observable<any> {

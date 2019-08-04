@@ -20,6 +20,5 @@ public final class TestRestUtil {
   public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
     return mapper.writeValueAsBytes(object);
   }
-
 }
 

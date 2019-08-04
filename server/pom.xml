@@ -29,6 +29,10 @@
     <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
     <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
+    <org-apache-httpcomponents.version>4.5.9</org-apache-httpcomponents.version>
+    <junit.version>4.13-beta-3</junit.version>
+    <gson.version>2.8.5</gson.version>
+    <json.version>20180813</json.version>
 
     <dockerfile.version>1.4.3</dockerfile.version>
     <docker.image.prefix>hmchung</docker.image.prefix>
@@ -111,18 +115,10 @@
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-rest-hal-browser</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-envers</artifactId>
     </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-hibernate5</artifactId>
-      <version>2.10.0.pr1</version>
-    </dependency>
-
     <dependency>
       <groupId>org.zalando</groupId>
       <artifactId>problem-spring-web</artifactId>
@@ -134,31 +130,27 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.1.0</version>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
-      <version>4.1.1</version>
+      <version>${org-apache-httpcomponents.version}</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.json/json -->
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20180813</version>
+      <version>${json.version}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>2.8.5</version>
+      <version>${gson.version}</version>
     </dependency>
-
-
   </dependencies>
 
   <build>
@@ -172,14 +164,6 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
       </plugin>
     </plugins>
     <pluginManagement>
@@ -197,7 +181,7 @@
                 <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
                 <resources>
                   <resource>
-                    <directory>${project.parent.basedir}/client/dist/movie-exercise-client/</directory>
+                    <directory>${client-app.directory}/dist/movie-exercise-client/</directory>
                   </resource>
                 </resources>
               </configuration>
@@ -259,6 +243,26 @@
               <include>**/*IntegrationTest.java</include>
             </excludes>
           </configuration>
+          <executions>
+            <execution>
+              <id>integration-test</id>
+              <goals>
+                <goal>test</goal>
+              </goals>
+              <phase>integration-test</phase>
+              <configuration>
+                <excludes>
+                  <exclude>none</exclude>
+                </excludes>
+                <includes>
+                  <include>**/IT*.java</include>
+                  <include>**/*IT.java</include>
+                  <include>**/*ITCase.java</include>
+                  <include>**/*IntegrationTest.java</include>
+                </includes>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
 
         <plugin>
@@ -333,9 +337,6 @@
 
     <profile>
       <id>dev</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <properties>
         <spring.profiles.active>dev</spring.profiles.active>
       </properties>
@@ -348,6 +349,32 @@
             <configuration>
               <jvmArguments>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
               </jvmArguments>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>build-info</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>prod</id>
+      <properties>
+        <spring.profiles.active>prod</spring.profiles.active>
+      </properties>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
             </configuration>
             <executions>
               <execution>

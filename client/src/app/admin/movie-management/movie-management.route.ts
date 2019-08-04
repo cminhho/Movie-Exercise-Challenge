@@ -5,10 +5,10 @@ import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Movie } from 'app/shared/model/movie.model';
 import { MovieService } from './movie-management.service';
-import { MovieComponent } from './movie-management.component';
-import { MovieDetailComponent } from './movie-management-detail.component';
-import { MovieUpdateComponent } from './movie-management-update.component';
-import { MovieDeletePopupComponent } from './movie-management-delete-dialog.component';
+import { MovieComponent } from './list/movie-management.component';
+import { MovieDetailComponent } from './detail/movie-management-detail.component';
+import { MovieUpdateComponent } from './update/movie-management-update.component';
+import { MovieDeletePopupComponent } from './delete/movie-management-delete-dialog.component';
 import { IMovie } from 'app/shared/model/movie.model';
 
 @Injectable({ providedIn: 'root' })
@@ -18,7 +18,7 @@ export class MovieResolve implements Resolve<IMovie> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IMovie> {
     const id = route.params['id'] ? route.params['id'] : null;
     if (id) {
-      return this.service.find(id).pipe(
+      return this.service.findById(id).pipe(
         filter((response: HttpResponse<Movie>) => response.ok),
         map((movie: HttpResponse<Movie>) => movie.body)
       );
@@ -31,10 +31,6 @@ export const movieRoute: Routes = [
   {
     path: '',
     component: MovieComponent,
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'Movies'
-    },
     canActivate: []
   },
   {
@@ -42,10 +38,6 @@ export const movieRoute: Routes = [
     component: MovieDetailComponent,
     resolve: {
       movie: MovieResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'Movies'
     },
     canActivate: []
   },
@@ -55,10 +47,6 @@ export const movieRoute: Routes = [
     resolve: {
       movie: MovieResolve
     },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'Movies'
-    },
     canActivate: []
   },
   {
@@ -66,10 +54,6 @@ export const movieRoute: Routes = [
     component: MovieUpdateComponent,
     resolve: {
       movie: MovieResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'Movies'
     },
     canActivate: []
   }
@@ -81,10 +65,6 @@ export const moviePopupRoute: Routes = [
     component: MovieDeletePopupComponent,
     resolve: {
       movie: MovieResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'Movies'
     },
     canActivate: [],
     outlet: 'popup'

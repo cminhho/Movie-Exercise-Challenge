@@ -1,0 +1,84 @@
+<div class="px-5">
+  <h2 id="page-heading">
+    <span>Movie Management</span>
+    <button class="btn btn-warning float-right create-movie m-2" (click)="populateMovieData()">
+      <div *ngIf="isPopulatingLoading" class="spinner-border spinner-border-icon" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <span>
+        Populate Movie Data
+      </span>
+    </button>
+    <button class="btn btn-primary float-right create-movie m-2" [routerLink]="['/movie-management/new']">
+      <span>
+        Create new Movie
+      </span>
+    </button>
+  </h2>
+  <br />
+  <div class="alert alert-warning" *ngIf="movies?.length === 0">
+    <span>No movies found</span>
+  </div>
+  <div class="table-responsive" *ngIf="movies?.length > 0">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><span>ID</span></th>
+          <th><span>Title</span></th>
+          <th><span>Vote Average</span></th>
+          <th><span>Vote Count</span></th>
+          <th><span>Video</span></th>
+          <th><span>Media Type</span></th>
+          <th><span>Popularity</span></th>
+          <th><span>Original Language</span></th>
+          <th><span>Original Title</span></th>
+          <th><span>Adult</span></th>
+          <th><span>Release Date</span></th>
+          <th><span>List</span></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= totalPages" [infiniteScrollDistance]="0">
+        <tr *ngFor="let movie of movies; trackBy: trackId">
+          <td>
+            <a [routerLink]="['/movie', movie.id, 'view']">{{ movie.id }}</a>
+          </td>
+          <td>{{ movie.title }}</td>
+          <td>{{ movie.voteAverage }}</td>
+          <td>{{ movie.voteCount }}</td>
+          <td>{{ movie.video }}</td>
+          <td>{{ movie.mediaType }}</td>
+          <td>{{ movie.popularity }}</td>
+          <td>{{ movie.originalLanguage }}</td>
+          <td>{{ movie.originalTitle }}</td>
+          <td>{{ movie.adult }}</td>
+          <td>{{ movie.releaseDate }}</td>
+          <td>
+            <div *ngIf="movie.list">
+              <a [routerLink]="['../list', movie.list?.id, 'view']">{{ movie.list?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/movie-management', movie.id, 'view']" class="btn btn-info btn-sm">
+                <span class="d-none d-md-inline">View</span>
+              </button>
+              <button type="submit" [routerLink]="['/movie-management', movie.id, 'edit']" class="btn btn-primary btn-sm">
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/', 'movie-management', { outlets: { popup: movie.id + '/delete' } }]"
+                replaceUrl="true"
+                queryParamsHandling="merge"
+                class="btn btn-danger btn-sm"
+              >
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

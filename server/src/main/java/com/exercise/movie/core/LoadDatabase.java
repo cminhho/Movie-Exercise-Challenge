@@ -2,17 +2,21 @@ package com.exercise.movie.core;
 
 import static com.exercise.movie.core.Constants.SPRING_PROFILE_DEV;
 import static com.exercise.movie.core.Constants.SPRING_PROFILE_LOCAL;
+import static com.exercise.movie.core.Constants.SPRING_PROFILE_PROD;
 
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.comment.MovieCommentRestRepository;
 import com.exercise.movie.genre.MovieGenre;
 import com.exercise.movie.genre.MovieGenreRestRepository;
-import com.exercise.movie.list.MovieList;
-import com.exercise.movie.list.MovieListRestRepository;
-import com.exercise.movie.movie.Movie;
-import com.exercise.movie.movie.MovieRestRepository;
+import com.exercise.movie.playlist.Playlist;
+import com.exercise.movie.playlist.PlaylistRestRepository;
+import com.exercise.movie.movie.domain.Movie;
+import com.exercise.movie.movie.repository.MovieRestRepository;
 import java.util.Arrays;
 import java.util.Collections;
+
+import com.exercise.movie.user.User;
+import com.exercise.movie.user.UserRestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -21,12 +25,12 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 @Slf4j
-@Profile({SPRING_PROFILE_LOCAL, SPRING_PROFILE_DEV})
+@Profile({SPRING_PROFILE_LOCAL, SPRING_PROFILE_DEV, SPRING_PROFILE_PROD})
 public class LoadDatabase {
 
-  private MovieList movieList1;
-  private MovieList movieList2;
-  private MovieList movieList3;
+  private Playlist play1ist1;
+  private Playlist play1ist2;
+  private Playlist play1ist3;
 
   private MovieGenre actionGenre;
   private MovieGenre comedyGenre;
@@ -40,14 +44,34 @@ public class LoadDatabase {
   CommandLineRunner initDatabase(MovieRestRepository movieRestRepository,
       MovieCommentRestRepository movieCommentRestRepository,
       MovieGenreRestRepository movieGenreRestRepository,
-      MovieListRestRepository movieListRestRepository) {
+      PlaylistRestRepository playlistRestRepository,
+      UserRestRepository userRestRepository) {
     return args -> {
       log.debug("Initial db records");
+      initUserRecords(userRestRepository);
       initMovieGenresRecords(movieGenreRestRepository);
       initMovieRecords(movieRestRepository);
       initMovieCommentsRecords(movieCommentRestRepository);
-      initMovieListRecords(movieListRestRepository);
+      initPlaylistRecords(playlistRestRepository);
     };
+  }
+
+  private void initUserRecords(UserRestRepository userRestRepository) {
+    User system = User.builder()
+        .login("system")
+        .email("system@movie.com")
+        .langKey("en-US")
+        .deleted(false)
+        .activated(true)
+        .build();
+    User admin = User.builder()
+        .login("admin")
+        .email("admin@movie.com")
+        .langKey("en-US")
+        .deleted(true)
+        .activated(true)
+        .build();
+    userRestRepository.saveAll(Arrays.asList(system, admin));
   }
 
   private void initMovieRecords(MovieRestRepository movieRestRepository) {
@@ -57,7 +81,7 @@ public class LoadDatabase {
         .posterPath("dzBtMocZuJbjLOXvrl4zGYigDzh.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .movielists(Collections.emptySet())
+        .playlists(Collections.emptySet())
         .voteAverage(1L)
         .popularity(1L);
     movie2 = new Movie()
@@ -66,7 +90,7 @@ public class LoadDatabase {
         .posterPath("or06FN3Dka5tukK1e9sl16pB3iy.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .movielists(Collections.emptySet())
+        .playlists(Collections.emptySet())
         .voteAverage(2L)
         .popularity(2L);
     movie3 = new Movie()
@@ -75,7 +99,7 @@ public class LoadDatabase {
         .posterPath("86Y6qM8zTn3PFVfCm9J98Ph7JEB.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .movielists(Collections.emptySet())
+        .playlists(Collections.emptySet())
         .voteAverage(3L)
         .popularity(3L);
 
@@ -108,15 +132,12 @@ public class LoadDatabase {
     movieGenreRestRepository.saveAll(Arrays.asList(actionGenre, comedyGenre, animationGenre));
   }
 
-  private void initMovieListRecords(MovieListRestRepository movieListRestRepository) {
+  private void initPlaylistRecords(PlaylistRestRepository playlistRepository) {
     log.debug("Create movie list records");
-    movieList1 = new MovieList().title("Movie 1ist 1");
-    movieList2 = new MovieList().title("Movie 1ist 2");
-    movieList3 = new MovieList().title("Movie 1ist 3");
-    movieListRestRepository.saveAll(Arrays.asList(movieList1, movieList2, movieList3));
-
-    log.debug("Assign a move to specific lists");
-    movieList1.setMovies(Collections.singleton(movie1));
-    movieListRestRepository.saveAll(Arrays.asList(movieList1));
+    play1ist1 = new Playlist().title("Playlist 1");
+    play1ist2 = new Playlist().title("Playlist 2");
+    play1ist3 = new Playlist().title("Playlist 3");
+    play1ist1.movies(Collections.singleton(movie1));
+    playlistRepository.saveAll(Arrays.asList(play1ist1, play1ist2, play1ist3));
   }
 }

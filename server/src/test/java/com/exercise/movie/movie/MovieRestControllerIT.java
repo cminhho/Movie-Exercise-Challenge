@@ -12,8 +12,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.exercise.movie.MovieApplication;
-import com.exercise.movie.comment.MovieComment;
-import com.exercise.movie.comment.MovieCommentRestRepository;
+import com.exercise.movie.movie.domain.Movie;
+import com.exercise.movie.movie.repository.MovieRepository;
 import com.exercise.movie.shared.TestRestUtil;
 import com.exercise.movie.shared.RandomStringUtils;
 import com.exercise.movie.shared.enumeration.Language;
@@ -61,9 +61,6 @@ public class MovieRestControllerIT {
   @Autowired
   private MovieRepository movieRepository;
 
-  @Autowired
-  private MovieCommentRestRepository commentRestRepository;
-
   @Test
   @Transactional
   public void createMovie_validPayload_thenStatus201() throws Exception {
@@ -91,11 +88,28 @@ public class MovieRestControllerIT {
     assertThat(latestUser.getVoteCount()).isEqualTo(DEFAULT_VOTE_COUNT);
     assertThat(latestUser.isAdult()).isEqualTo(DEFAULT_ADULT);
     assertThat(latestUser.isVideo()).isEqualTo(DEFAULT_VIDEO);
-    assertThat(latestUser.getVersion()).isEqualTo(DEFAULT_VERSION + 1);
+    assertThat(latestUser.getVersion()).isEqualTo(DEFAULT_VERSION);
   }
 
   @Test
-  public void createMovie_nullTitle_thenStatus500() throws Exception {
+  public void createMovie_existingIdInPayload_thenStatus400() throws Exception {
+    int databaseSizeBeforeTest = movieRepository.findAll().size();
+    Movie movie = createEntity();
+    movie.setId(1L);
+
+    log.debug("Verify the rest to create movie");
+    mvc.perform(post("/api/movie")
+        .contentType(MediaType.APPLICATION_JSON_UTF8)
+        .content(TestRestUtil.convertObjectToJsonBytes(movie)))
+        .andExpect(status().isBadRequest());
+
+    log.debug("Validate entities in database");
+    List<Movie> movieList = movieRepository.findAll();
+    assertThat(movieList).hasSize(databaseSizeBeforeTest);
+  }
+
+  @Test
+  public void createMovie_nullTitleInPlayload_thenStatus500() throws Exception {
     int databaseSizeBeforeTest = movieRepository.findAll().size();
     Movie movie = createEntity();
     movie.setTitle(null);
@@ -112,7 +126,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
-  public void createMovie_titleLongerThan100Characters_thenStatus500() throws Exception {
+  public void createMovie_titleLongerThan100CharactersInPayload_thenStatus500() throws Exception {
     int databaseSizeBeforeTest = movieRepository.findAll().size();
     Movie movie = createEntity();
 
@@ -131,7 +145,7 @@ public class MovieRestControllerIT {
   }
 
   @Test
-  public void createMovie_titleShorterThan2Characters_thenStatus500() throws Exception {
+  public void createMovie_titleShorterThan2CharactersInPayload_thenStatus500() throws Exception {
     int databaseSizeBeforeTest = movieRepository.findAll().size();
     Movie movie = createEntity();
     movie.setTitle("a");
@@ -236,31 +250,6 @@ public class MovieRestControllerIT {
   }
 
   @Test
-  public void getMovieComments_existingMovieID_thenStatus200() throws Exception {
-    String REVIEW_MESSAGE = "The movie was exciting";
-
-    // Create movie
-    Movie movie = createEntity();
-    movieRepository.saveAndFlush(movie);
-
-    // Assign a comment to the movie
-    MovieComment movieComment = new MovieComment().review(REVIEW_MESSAGE);
-    movieComment.setMovie(movie);
-    commentRestRepository.saveAndFlush(movieComment);
-
-    mvc.perform(get("/api/movie/{id}/comments", movie.getId()))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$.[0].review", is(REVIEW_MESSAGE)));
-  }
-
-  @Test
-  @Transactional
-  public void getMovieComments_nonExistingMovieID_thenStatus404() throws Exception {
-    mvc.perform(get("/api/movie/{id}/comments", 100L))
-        .andExpect(status().isNotFound());
-  }
-
-  @Test
   @Transactional
   public void getMovie_existingID_thenStatus200() throws Exception {
     Movie movie = createEntity();
@@ -318,7 +307,6 @@ public class MovieRestControllerIT {
   public void updateMovie_conflictVersion_thenStatus409() throws Exception {
     log.debug("Initialize the database");
     Movie movie = createEntity();
-    movie.setId(1L);
     movieRepository.saveAndFlush(movie);
 
     Movie movieUpdatedByUser1 = movieRepository.getOne(movie.getId());
@@ -342,7 +330,7 @@ public class MovieRestControllerIT {
 
   @Test
   @Transactional
-  public void deleteMovie_existingID_thenStatus204() throws Exception {
+  public void deleteMovie_existingMovie_thenStatus204() throws Exception {
     Movie movie = createEntity();
     movieRepository.saveAndFlush(movie);
 
@@ -359,7 +347,7 @@ public class MovieRestControllerIT {
 
   @Test
   @Transactional
-  public void deleteMovie_nonExistingID_thenStatus500() throws Exception {
+  public void deleteMovie_nonExistingMovie_thenStatus404() throws Exception {
     mvc.perform(delete("/api/movie/{id}", 100L))
         .andExpect(status().is5xxServerError());
   }

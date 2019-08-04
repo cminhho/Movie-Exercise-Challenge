@@ -1,13 +1,14 @@
 package com.exercise.movie.genre;
 
-import com.exercise.movie.movie.Movie;
+import com.exercise.movie.movie.domain.Movie;
 import com.exercise.movie.shared.domain.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.Builder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -23,10 +24,11 @@ public class MovieGenre extends BaseEntity<String> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Movie genre cannot be empty")
-    @Size(min = 2, max = 32, message = "Movie genre must not be longer than 100 characters and "
+    @NaturalId
+    @NotEmpty(message = "Genre title cannot be empty")
+    @Size(min = 2, max = 32, message = "Genre title must not be longer than 100 characters and "
         + "shorter than 2 characters")
-    @Pattern(regexp = "[a-z-A-Z- ']*", message = "Destination name has invalid characters")
+    @Pattern(regexp = "[a-z-A-Z- ']*", message = "Genre title has invalid characters")
     @Column(name = "title", nullable = false)
     private String title;
 

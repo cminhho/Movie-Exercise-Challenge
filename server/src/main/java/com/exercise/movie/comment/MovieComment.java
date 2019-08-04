@@ -1,6 +1,6 @@
 package com.exercise.movie.comment;
 
-import com.exercise.movie.movie.Movie;
+import com.exercise.movie.movie.domain.Movie;
 import com.exercise.movie.shared.domain.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -11,12 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 

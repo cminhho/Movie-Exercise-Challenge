@@ -1,5 +1,7 @@
-package com.exercise.movie.movie;
+package com.exercise.movie.movie.service;
 
+import com.exercise.movie.movie.domain.Movie;
+import com.exercise.movie.movie.repository.MovieRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,8 +82,19 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         log.debug("Request to delete Movie : {}", id);
         movieRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Movie movie) {
+        movie.getGenres().clear();
+        movie.getPlaylists().forEach((playlist) ->
+            playlist.getMovies().remove(movie)
+        );
+        movieRepository.delete(movie);
     }
 }

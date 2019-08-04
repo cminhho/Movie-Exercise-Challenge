@@ -1,5 +1,6 @@
-package com.exercise.movie.movie;
+package com.exercise.movie.movie.service;
 
+import com.exercise.movie.movie.domain.Movie;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -22,4 +23,6 @@ public interface MovieService {
     Optional<Movie> findOne(Long id);
 
     void delete(Long id);
+
+    void delete(Movie movie);
 }

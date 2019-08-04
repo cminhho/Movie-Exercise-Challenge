@@ -22,10 +22,11 @@ public class MovieCrawlerRestController {
 
   @PostMapping("/crawler/movie")
   public ResponseEntity<CrawlerResponse> crawlMovies(
-      @RequestParam String listType,
-      @RequestParam Integer fromPage,
-      @RequestParam Integer toPage) throws Exception {
+      @RequestParam("listType") String listType,
+      @RequestParam("fromPage") Integer fromPage,
+      @RequestParam("toPage") Integer toPage) throws Exception {
     log.debug("REST request to crawl movie items");
+
     int totalCrawledItem = movieContentCrawler.crawlMovieItems(listType, fromPage, toPage);
     return ResponseEntity.ok().body(new CrawlerResponse(totalCrawledItem));
   }

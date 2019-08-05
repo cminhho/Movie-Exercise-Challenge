@@ -19,6 +19,7 @@ import com.exercise.movie.shared.RandomStringUtils;
 import com.exercise.movie.shared.enumeration.Language;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -315,8 +316,8 @@ public class MovieRestControllerIT {
     movieRepository.saveAndFlush(movieUpdatedByUser1);
 
     Movie movieUpdatedByUser2 = createEntity();
-    movieUpdatedByUser2.setId(1L);
-    movieUpdatedByUser2.setVersion(1L);
+    movieUpdatedByUser2.setId(movie.getId());
+    movieUpdatedByUser2.setVersion(0L);
     log.debug("The movie is going to be updated by user2 via REST API");
     movieUpdatedByUser2.title("The movie is going to be updated by user2 via REST API");
 

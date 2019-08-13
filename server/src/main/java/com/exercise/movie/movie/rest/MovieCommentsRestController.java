@@ -33,7 +33,7 @@ public class MovieCommentsRestController {
   }
 
   /**
-   * {@code GET  /movies/comments} : Get a list of comments by movie
+   * {@code GET  /movie/{id}/comments} : Get a list of comments by movie
    *
    * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of movie comments
    * in body.
@@ -48,7 +48,7 @@ public class MovieCommentsRestController {
   }
 
   /**
-   * {@code POST  /comments} : Create a new comment for movie.
+   * {@code POST  /movie/{id}/comments} : Create a new comment for movie.
    *
    * @param comment the movieComment to create.
    * @return the {@link ResponseEntity}
@@ -64,7 +64,7 @@ public class MovieCommentsRestController {
       @Valid @RequestBody MovieComment comment) throws URISyntaxException {
     log.debug("REST request to save Comment: {} for MovieID {}: ", comment, id);
 
-    Movie movie = movieRepository.findByIdAndGetComments(id)
+    Movie movie = movieRepository.findById(id)
         .orElseThrow(() -> new NotFoundException("Movie not found"));
 
     if (comment.getId() != null) {
@@ -78,17 +78,17 @@ public class MovieCommentsRestController {
 
 
   /**
-   * {@code DELETE  /comments} : Delete comment for movie.
+   * {@code DELETE  /movie/{id}/comments/{commentId}} : Delete comment for movie.
    *
    * @param commentId the comment id to delete.
    * @return the {@link ResponseEntity}
    * constraint
    * @throws URISyntaxException if the Location URI syntax is incorrect.
    */
-  @DeleteMapping("/movie/{id}/comments/{commentId}")
-  public ResponseEntity<Void> deleteComment(@PathVariable Long id,
+  @DeleteMapping("/movie/{movieId}/comments/{commentId}")
+  public ResponseEntity<Void> deleteComment(@PathVariable Long movieId,
       @PathVariable Long commentId) throws URISyntaxException {
-    log.debug("REST request to delete comment id : {} for movie id : {}", commentId, id);
+    log.debug("REST request to delete comment id : {} for movie id : {}", commentId, movieId);
 
     movieCommentRestRepository.deleteById(commentId);
     return ResponseEntity.noContent().build();

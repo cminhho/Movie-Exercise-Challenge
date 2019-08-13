@@ -14,5 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles("test")
 @Slf4j
 public class CommentRestControllerIT {
-
+  public static String DEFAULT_REVIEW = "The movie was exciting";
+  public static MovieComment createEntity() {
+    MovieComment movieComment = new MovieComment().review(DEFAULT_REVIEW);
+    return movieComment;
+  }
 }

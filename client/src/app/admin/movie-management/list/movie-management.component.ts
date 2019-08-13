@@ -9,7 +9,6 @@ import { TmaEventManager } from '@app/core';
 import { ToastService } from '@app/shared';
 
 const ITEMS_PER_PAGE = 10;
-
 @Component({
   selector: 'app-movie-management',
   templateUrl: './movie-management.component.html'
@@ -119,9 +118,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   protected paginateMovies(data: any, headers: HttpHeaders) {
     this.totalItems = data.totalElements;
     this.totalPages = data.totalPages;
-    for (let i = 0; i < data.results.length; i++) {
-      this.movies.push(data.results[i]);
-    }
+    this.movies.concat(data.results);
   }
 
   protected onError(errorMessage: string) {

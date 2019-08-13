@@ -37,13 +37,13 @@ public abstract class BaseEntity<U> implements Serializable {
   @Column(name = "created_by", updatable = false)
   protected U createdBy;
 
-  @CreatedDate
-  @Column(name = "created_date", updatable = false)
-  protected LocalDateTime createdDate;
-
   @LastModifiedBy
   @Column(name = "last_modified_by")
   protected U lastModifiedBy;
+
+  @CreatedDate
+  @Column(name = "created_date", updatable = false)
+  protected LocalDateTime createdDate;
 
   @LastModifiedDate
   @Column(name = "last_modified_date")
@@ -55,7 +55,7 @@ public abstract class BaseEntity<U> implements Serializable {
   }
 
   @PreUpdate
-  public void PreUpdateVersion() {
+  public void preUpdateVersion() {
     lastModifiedDate = LocalDateTime.now();
     version += 1;
   }

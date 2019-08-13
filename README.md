@@ -53,8 +53,7 @@ The goal of the exercise is to make a fullstack movie application within 1 week.
    <li>server - CRUD RESTFul APIs for Movie Management System</li>
   </ul>
  </li>
-<li>Requirement: <a href="https://drive.google.com/file/d/1OMJ4xo13Y3Kkug1nutvEPMeBc548WwJC/view?usp=sharing" target="_blank">link</a></li>
-<li>Technical design: <a href="https://docs.google.com/document/d/1-bVlU4_XlYVfjtpYgp1qjhqRhswRfVWut9eiBeEZLfg/edit#" target="_blank">link</a></li>
+<li>Technical design: <a href="https://docs.google.com/document/d/1" target="_blank">link</a></li>
 </ul>
 
 ## Output

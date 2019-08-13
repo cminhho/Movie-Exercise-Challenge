@@ -1,6 +1,35 @@
 # Movie Exercise Challenge
 
-The goal of the exercise is to make a movie application.
+The goal of the exercise is to make a fullstack movie application within 1 week.
+
+<b>Requirements:</b>
+
+<ul>
+ <li>Create <b>technical design doc</b> to describe solution to a given execise</li>
+ <li>Create <b>client side</b>:
+  <ul>
+   <li>Create the layout exactly like the homepage design below</li>
+   <li>Font-family is Helvetica</li>
+   <li>The top banner needs to be a carousel (a slideshow with 3 images)</li>
+   <li>Request the Get Popular, Get Top Rated, Get Upcoming APIs and populate the data into the content grid view, scroll down the grid view to see more movies, select Popular/Top Rated/Upcoming to see the relevant content grid view.
+</li>
+   <li>Request the Get Movie List or Get TV List APIs to get the genres and fill up to dropdown Genre</li>
+   <li>Optional
+    <ul>
+     <li>Create unit tests to verify your tasks is a plus</li>
+     <li>UI with a nice looking and user-friendly design is a plus</li>
+     <li>The pages should be responsive on different browsers is a plus</li>
+     <li>Design your web app to close as much as your production code is a plus</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+<li>Create <b>server side</b>:
+ <ul>
+   <li>Write UTs + ITs to verify tasks</li>
+  </ul>
+ </li>
+</ul>
 
 ## Application Architecture
 

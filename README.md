@@ -24,9 +24,21 @@ The goal of the exercise is to make a fullstack movie application within 1 week.
    </li>
   </ul>
  </li>
+<li>Delivery</b>:
+ <ul>
+   <li>The source code should be published on Github with a ReadMe.md file to describe the assignment project information including third parties, how to build and run the web app.</li>
+   <li>This assignment is designed to gauge your skills and give us an idea of how you approach tasks relevant to the Fullstack developer role. It would be great if you could send this over to us within 7 days</li>
+  </ul>
+ </li>
 <li>Create <b>server side</b>:
  <ul>
-   <li>Write UTs + ITs to verify tasks</li>
+   <li>Write UTs + ITs to verify tasks</li>   
+   <li>Optional
+    <ul>
+     <li>Caching</li>
+     <li>Performance Testing</li>
+    </ul>
+   </li>
   </ul>
  </li>
 </ul>

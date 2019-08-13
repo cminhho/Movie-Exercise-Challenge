@@ -57,6 +57,14 @@ export class MovieComponent implements OnInit {
     this.loadAll();
   }
 
+  sort() {
+    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
   private loadBannerMovies() {
     this.movieService.query(DEFAULT_MOVIE_BANNER_LIST, {
       page: 0,
@@ -83,18 +91,8 @@ export class MovieComponent implements OnInit {
     });
   }
 
-  sort() {
-    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
-    if (this.predicate !== 'id') {
-      result.push('id');
-    }
-    return result;
-  }
-
   private paginateCrawlRequests(data: any) {
     this.totalPages = data.totalPages;
-    for (let i = 0; i < data.results.length; i++) {
-      this.movies.push(data.results[i]);
-    }
+    this.movies.concat(data.results);
   }
 }

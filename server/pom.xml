@@ -19,6 +19,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
     <java.version>1.8</java.version>
 
     <slf4j.api.version>2.0.0-alpha0</slf4j.api.version>
@@ -33,10 +34,16 @@
     <junit.version>4.13-beta-3</junit.version>
     <gson.version>2.8.5</gson.version>
     <json.version>20180813</json.version>
+    <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
 
     <dockerfile.version>1.4.3</dockerfile.version>
     <docker.image.prefix>hmchung</docker.image.prefix>
     <client-app.directory>../client</client-app.directory>
+    <jacoco.reportFolder>${project.build.directory}/jacoco</jacoco.reportFolder>
+    <jacoco.utReportFile>${jacoco.reportFolder}/test.exec</jacoco.utReportFile>
+    <jacoco.itReportFile>${jacoco.reportFolder}/integrationTest.exec</jacoco.itReportFile>
+    <junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
+    <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
 
     <!--<spring.profiles.default>local</spring.profiles.default>-->
   </properties>
@@ -164,6 +171,11 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
       </plugin>
     </plugins>
     <pluginManagement>
@@ -299,6 +311,58 @@
             </buildArgs>
           </configuration>
         </plugin>
+
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>pre-unit-tests</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+              <configuration>
+                <!-- Sets the path to the file which contains the execution data. -->
+                <destFile>${jacoco.utReportFile}</destFile>
+              </configuration>
+            </execution>
+            <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run -->
+            <execution>
+              <id>post-unit-test</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+              <configuration>
+                <dataFile>${jacoco.utReportFile}</dataFile>
+                <outputDirectory>${jacoco.reportFolder}</outputDirectory>
+              </configuration>
+            </execution>
+            <execution>
+              <id>pre-integration-tests</id>
+              <goals>
+                <goal>prepare-agent-integration</goal>
+              </goals>
+              <configuration>
+                <!-- Sets the path to the file which contains the execution data. -->
+                <destFile>${jacoco.itReportFile}</destFile>
+              </configuration>
+            </execution>
+            <!-- Ensures that the code coverage report for integration tests is created after integration tests have been run -->
+            <execution>
+              <id>post-integration-tests</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>report-integration</goal>
+              </goals>
+              <configuration>
+                <dataFile>${jacoco.itReportFile}</dataFile>
+                <outputDirectory>${jacoco.reportFolder}</outputDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -361,6 +425,15 @@
 
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <id>integration-test</id>
+      <properties>
+        <build.profile.id>integration-test</build.profile.id>
+        <skip.integration.tests>false</skip.integration.tests>
+        <skip.unit.tests>true</skip.unit.tests>
+      </properties>
     </profile>
 
     <profile>

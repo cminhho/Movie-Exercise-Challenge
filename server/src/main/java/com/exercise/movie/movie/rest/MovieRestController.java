@@ -162,7 +162,7 @@ public class MovieRestController {
       throw new ConflictException("Conflict while updating entity");
     }
 
-    Movie result = movieService.save(movie);
+    Movie result = movieService.save(updateMovie);
     return ResponseEntity.ok().body(result);
   }
 

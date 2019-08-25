@@ -1,16 +1,14 @@
 server:
-  port: 8025
+  port: 10344
+  address: localhost
 
 spring:
-  profiles:
-    active: test
-
   application:
     name: MovieTest
 
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:moviedb_intergation_test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;
+    url: jdbc:h2:mem:moviedb_intergation_test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
     name:
     username: sa
     password:

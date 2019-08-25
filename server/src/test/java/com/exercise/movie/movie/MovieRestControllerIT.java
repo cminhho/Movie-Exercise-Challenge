@@ -10,31 +10,31 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 import com.exercise.movie.MovieApplication;
 import com.exercise.movie.movie.domain.Movie;
 import com.exercise.movie.movie.repository.MovieRepository;
+import com.exercise.movie.movie.rest.MovieRestController;
+import com.exercise.movie.movie.service.MovieService;
 import com.exercise.movie.shared.TestRestUtil;
 import com.exercise.movie.shared.RandomStringUtils;
 import com.exercise.movie.shared.enumeration.Language;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MovieApplication.class)
-@AutoConfigureMockMvc
-@ActiveProfiles("test")
 @Slf4j
 public class MovieRestControllerIT {
 
@@ -56,11 +56,23 @@ public class MovieRestControllerIT {
 
   private Movie movie;
 
-  @Autowired
   private MockMvc mvc;
 
   @Autowired
   private MovieRepository movieRepository;
+
+  @Autowired
+  MovieRestController movieRestController;
+
+  @Autowired
+  private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
+
+  @Before
+  public void setup() {
+    this.mvc = standaloneSetup(this.movieRestController)
+        .setCustomArgumentResolvers(pageableArgumentResolver)
+        .build();// Standalone context
+  }
 
   @Test
   @Transactional

@@ -52,4 +52,5 @@ public class MovieApplication {
 				contextPath,
 				env.getActiveProfiles());
 	}
+
 }

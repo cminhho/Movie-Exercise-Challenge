@@ -9,10 +9,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @Slf4j
 @SpringBootApplication
 @EnableConfigurationProperties
+@EnableAsync
 public class MovieApplication {
 	private static final Logger logger = LoggerFactory.getLogger(MovieApplication.class);
 

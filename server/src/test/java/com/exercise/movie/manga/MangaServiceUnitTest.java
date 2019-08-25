@@ -3,6 +3,7 @@ package com.exercise.movie.manga;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import com.exercise.movie.shared.JsonUtils;
 import java.io.IOException;
 import java.util.List;
 

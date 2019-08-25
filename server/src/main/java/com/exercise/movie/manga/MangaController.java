@@ -28,11 +28,6 @@ public class MangaController {
     return mangaService.getMovie();
   }
 
-  @RequestMapping(value = "/getTodo", method = RequestMethod.GET)
-  public Todo getTodo() {
-    return mangaService.getTodo();
-  }
-
   @RequestMapping(value = "/async/{title}", method = RequestMethod.GET)
   @Async
   public CompletableFuture<List<Manga>> searchASync(@PathVariable(name = "title") String title) {

@@ -1,4 +1,4 @@
-package com.exercise.movie.manga;
+package com.exercise.movie.shared;
 
 import java.io.File;
 import java.io.IOException;

@@ -163,3 +163,5 @@ server > mvn integration-test
 ```shell 
 client > npm run test
 ```
+### Code quality
+

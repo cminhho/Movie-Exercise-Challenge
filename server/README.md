@@ -27,3 +27,5 @@ Build a docker image for the app by running:
 Then run:
 
     docker-compose -f docker-compose.yml up -d
+
+.

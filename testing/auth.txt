@@ -1,0 +1,3 @@
+# JMeter generated Authorization file
+http://localhost:9080	admin	admin			BASIC
+https://broadcom-dev.appspot.com	admin				BASIC

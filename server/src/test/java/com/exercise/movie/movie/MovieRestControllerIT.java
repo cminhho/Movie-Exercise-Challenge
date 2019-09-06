@@ -184,7 +184,7 @@ public class MovieRestControllerIT {
         .contentType(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-        .andExpect(jsonPath("$.results.[0].title", is(DEFAULT_TITLE)));
+        .andExpect(jsonPath("$.results.[*].title").value(hasItem(DEFAULT_TITLE)));
   }
 
   @Test

@@ -177,7 +177,7 @@ public class MovieRestController {
   @DeleteMapping("/movie/{id}")
   public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
     try {
-      Movie movie = movieRepository.findByIdAndGetGeneresAndGetPlaylists(id)
+      Movie movie = movieRepository.findOneWithEagerRelationships(id)
           .orElseThrow(() -> new NotFoundException("Movie not found"));
       movieService.delete(movie);
       return ResponseEntity.noContent().build();

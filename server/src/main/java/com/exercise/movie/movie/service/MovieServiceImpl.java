@@ -92,9 +92,6 @@ public class MovieServiceImpl implements MovieService {
     @Transactional
     public void delete(Movie movie) {
         movie.getGenres().clear();
-        movie.getPlaylists().forEach((playlist) ->
-            playlist.getMovies().remove(movie)
-        );
         movieRepository.delete(movie);
     }
 }

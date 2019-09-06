@@ -1,8 +1,8 @@
-package com.exercise.movie.core;
+package com.exercise.movie.config;
 
-import static com.exercise.movie.core.Constants.SPRING_PROFILE_DEV;
-import static com.exercise.movie.core.Constants.SPRING_PROFILE_LOCAL;
-import static com.exercise.movie.core.Constants.SPRING_PROFILE_PROD;
+import static com.exercise.movie.config.Constants.SPRING_PROFILE_DEV;
+import static com.exercise.movie.config.Constants.SPRING_PROFILE_LOCAL;
+import static com.exercise.movie.config.Constants.SPRING_PROFILE_PROD;
 
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.comment.MovieCommentRestRepository;
@@ -81,7 +81,6 @@ public class LoadDatabase {
         .posterPath("dzBtMocZuJbjLOXvrl4zGYigDzh.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .playlists(Collections.emptySet())
         .voteAverage(1L)
         .popularity(1L);
     movie2 = new Movie()
@@ -90,7 +89,6 @@ public class LoadDatabase {
         .posterPath("or06FN3Dka5tukK1e9sl16pB3iy.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .playlists(Collections.emptySet())
         .voteAverage(2L)
         .popularity(2L);
     movie3 = new Movie()
@@ -99,7 +97,6 @@ public class LoadDatabase {
         .posterPath("86Y6qM8zTn3PFVfCm9J98Ph7JEB.jpg")
         .genres(Collections.singleton(actionGenre))
         .comments(Collections.emptySet())
-        .playlists(Collections.emptySet())
         .voteAverage(3L)
         .popularity(3L);
 

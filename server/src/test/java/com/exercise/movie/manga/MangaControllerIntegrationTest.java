@@ -26,9 +26,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 public class MangaControllerIntegrationTest {
 
-  // @Autowired
   MockMvc mockMvc;
-
 
   @Autowired
   protected WebApplicationContext wac;

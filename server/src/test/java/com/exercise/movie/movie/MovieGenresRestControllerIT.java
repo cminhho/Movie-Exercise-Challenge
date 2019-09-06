@@ -66,7 +66,7 @@ public class MovieGenresRestControllerIT {
 
     // Create movie
     Movie movie = MovieRestControllerIT.createEntity();
-    movie.addGenre(comedyGenre);
+//    movie.addGenre(comedyGenre);
     movieRepository.saveAndFlush(movie);
 
     mvc.perform(get("/api/movie/{id}/genres", movie.getId()))

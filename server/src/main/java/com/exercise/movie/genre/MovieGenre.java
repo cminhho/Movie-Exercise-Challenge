@@ -1,10 +1,6 @@
 package com.exercise.movie.genre;
 
-import com.exercise.movie.movie.domain.Movie;
 import com.exercise.movie.shared.domain.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.HashSet;
-import java.util.Set;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
@@ -32,11 +28,6 @@ public class MovieGenre extends BaseEntity<String> implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @ManyToMany(mappedBy = "genres")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JsonIgnore
-    private Set<Movie> movies = new HashSet<>();
-
     public Long getId() {
         return id;
     }
@@ -56,31 +47,6 @@ public class MovieGenre extends BaseEntity<String> implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Set<Movie> getMovies() {
-        return movies;
-    }
-
-    public MovieGenre movies(Set<Movie> movies) {
-        this.movies = movies;
-        return this;
-    }
-
-    public MovieGenre addMovie(Movie movie) {
-        this.movies.add(movie);
-        movie.getGenres().add(this);
-        return this;
-    }
-
-    public MovieGenre removeMovie(Movie movie) {
-        this.movies.remove(movie);
-        movie.getGenres().remove(this);
-        return this;
-    }
-
-    public void setMovies(Set<Movie> movies) {
-        this.movies = movies;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.exercise.movie.core;
+package com.exercise.movie.config;
 
 public final class Constants {
   public static final String SPRING_PROFILE_DEV = "dev";

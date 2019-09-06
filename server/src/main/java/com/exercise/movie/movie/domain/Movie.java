@@ -2,7 +2,6 @@ package com.exercise.movie.movie.domain;
 
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.genre.MovieGenre;
-import com.exercise.movie.playlist.Playlist;
 import com.exercise.movie.shared.domain.BaseEntity;
 import com.exercise.movie.shared.enumeration.Language;
 import com.exercise.movie.shared.enumeration.MediaType;
@@ -100,11 +99,6 @@ public class Movie extends BaseEntity<String> implements Serializable {
       joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
       inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
   private Set<MovieGenre> genres = new HashSet<>();
-
-  @ManyToMany(mappedBy = "movies", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-  @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-  @JsonIgnore
-  private Set<Playlist> playlists = new HashSet<>();
 
   public Long getId() {
     return id;
@@ -317,45 +311,8 @@ public class Movie extends BaseEntity<String> implements Serializable {
     return this;
   }
 
-  public Movie addGenre(MovieGenre movieGenre) {
-    this.genres.add(movieGenre);
-    movieGenre.getMovies().add(this);
-    return this;
-  }
-
-  public Movie removeGenre(MovieGenre movieGenre) {
-    this.genres.remove(movieGenre);
-    movieGenre.getMovies().remove(this);
-    return this;
-  }
-
   public void setGenres(Set<MovieGenre> movieGenres) {
     this.genres = movieGenres;
-  }
-
-  public Set<Playlist> getPlaylists() {
-    return playlists;
-  }
-
-  public Movie playlists(Set<Playlist> playlists) {
-    this.playlists = playlists;
-    return this;
-  }
-
-  public Movie addPlaylist(Playlist playlist) {
-    this.playlists.add(playlist);
-    playlist.getMovies().add(this);
-    return this;
-  }
-
-  public Movie removePlaylist(Playlist playlist) {
-    this.playlists.remove(playlist);
-    playlist.getMovies().remove(this);
-    return this;
-  }
-
-  public void setPlaylists(Set<Playlist> playlists) {
-    this.playlists = playlists;
   }
 
   @Override

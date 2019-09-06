@@ -30,12 +30,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
   @Query("SELECT m FROM Movie m JOIN FETCH m.comments WHERE m.id = :id")
   Optional<Movie> findByIdAndGetComments(@Param("id") Long id);
 
-  @Query("select movie from Movie movie left join fetch movie.genres left join fetch movie.playlists where movie.id =:id")
-  Optional<Movie> findByIdAndGetGeneresAndGetPlaylists(@Param("id") Long id);
-
   @Query("select movie from Movie movie left join fetch movie.genres where movie.id =:id")
   Optional<Movie> findByIdAndGetGeneres(@Param("id") Long id);
 
-  @Query("select movie from Movie movie left join fetch movie.playlists where movie.id =:id")
-  Optional<Movie> findByIdAndGetPlaylists(@Param("id") Long id);
 }

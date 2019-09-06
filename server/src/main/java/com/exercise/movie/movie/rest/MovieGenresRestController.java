@@ -3,7 +3,7 @@ package com.exercise.movie.movie.rest;
 import com.exercise.movie.genre.MovieGenre;
 import com.exercise.movie.movie.domain.Movie;
 import com.exercise.movie.movie.repository.MovieRepository;
-import com.exercise.movie.shared.rest.error.NotFoundException;
+import com.exercise.movie.shared.exceptions.NotFoundException;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.exercise.movie.shared.rest.error;
+package com.exercise.movie.shared.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

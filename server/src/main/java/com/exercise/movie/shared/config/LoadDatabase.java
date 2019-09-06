@@ -1,8 +1,8 @@
-package com.exercise.movie.config;
+package com.exercise.movie.shared.config;
 
-import static com.exercise.movie.config.Constants.SPRING_PROFILE_DEV;
-import static com.exercise.movie.config.Constants.SPRING_PROFILE_LOCAL;
-import static com.exercise.movie.config.Constants.SPRING_PROFILE_PROD;
+import static com.exercise.movie.shared.config.Constants.SPRING_PROFILE_DEV;
+import static com.exercise.movie.shared.config.Constants.SPRING_PROFILE_LOCAL;
+import static com.exercise.movie.shared.config.Constants.SPRING_PROFILE_PROD;
 
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.comment.MovieCommentRestRepository;

@@ -1,4 +1,4 @@
-package com.exercise.movie.config;
+package com.exercise.movie.shared.config;
 
 import com.exercise.movie.shared.auditor.AuditorAwareImpl;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package com.exercise.movie.shared.rest.util;
+package com.exercise.movie.shared.util;
 
 import com.exercise.movie.shared.domain.PageResponseModel;
 import org.springframework.data.domain.Page;

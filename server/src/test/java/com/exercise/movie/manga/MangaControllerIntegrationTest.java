@@ -26,9 +26,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 public class MangaControllerIntegrationTest {
 
-  // @Autowired
   MockMvc mockMvc;
-
 
   @Autowired
   protected WebApplicationContext wac;
@@ -38,9 +36,7 @@ public class MangaControllerIntegrationTest {
 
   @Before
   public void setup() throws Exception {
-    this.mockMvc = standaloneSetup(this.mangaController).build();// Standalone context
-    // mockMvc = MockMvcBuilders.webAppContextSetup(wac)
-    // .build();
+    this.mockMvc = standaloneSetup(this.mangaController).build();
   }
 
   @Test
@@ -62,7 +58,6 @@ public class MangaControllerIntegrationTest {
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.*.title", hasItem(is("Hokuto no Ken"))));
-
   }
 
 }

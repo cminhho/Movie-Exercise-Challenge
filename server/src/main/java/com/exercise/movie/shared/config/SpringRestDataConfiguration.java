@@ -1,4 +1,4 @@
-package com.exercise.movie.core;
+package com.exercise.movie.shared.config;
 
 import com.exercise.movie.comment.MovieComment;
 import com.exercise.movie.genre.MovieGenre;

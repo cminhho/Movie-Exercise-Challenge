@@ -117,18 +117,6 @@ public class Playlist extends BaseEntity<String> implements Serializable {
         return this;
     }
 
-    public Playlist addMovie(Movie movie) {
-        this.movies.add(movie);
-        movie.getPlaylists().add(this);
-        return this;
-    }
-
-    public Playlist removeMovie(Movie movie) {
-        this.movies.remove(movie);
-        movie.getPlaylists().remove(this);
-        return this;
-    }
-
     public void setMovies(Set<Movie> movies) {
         this.movies = movies;
     }

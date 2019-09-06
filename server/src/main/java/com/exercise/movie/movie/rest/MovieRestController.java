@@ -4,10 +4,10 @@ import com.exercise.movie.movie.domain.Movie;
 import com.exercise.movie.movie.repository.MovieRepository;
 import com.exercise.movie.movie.service.MovieService;
 import com.exercise.movie.shared.domain.PageResponseModel;
-import com.exercise.movie.shared.rest.error.BadRequestException;
-import com.exercise.movie.shared.rest.error.NotFoundException;
-import com.exercise.movie.shared.rest.error.ConflictException;
-import com.exercise.movie.shared.rest.util.RestResponseUtil;
+import com.exercise.movie.shared.exceptions.BadRequestException;
+import com.exercise.movie.shared.exceptions.NotFoundException;
+import com.exercise.movie.shared.exceptions.ConflictException;
+import com.exercise.movie.shared.util.RestResponseUtil;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.validation.Valid;
@@ -177,7 +177,7 @@ public class MovieRestController {
   @DeleteMapping("/movie/{id}")
   public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
     try {
-      Movie movie = movieRepository.findByIdAndGetGeneresAndGetPlaylists(id)
+      Movie movie = movieRepository.findOneWithEagerRelationships(id)
           .orElseThrow(() -> new NotFoundException("Movie not found"));
       movieService.delete(movie);
       return ResponseEntity.noContent().build();

@@ -19,7 +19,6 @@ public class MovieCrawlerMapper {
         .video(movieCrawler.getVideo())
         .genres(Collections.emptySet())
         .comments(Collections.emptySet())
-//        .movielists(Collections.emptySet())
         .voteAverage(movieCrawler.getVoteAverage())
         .popularity(movieCrawler.getPopularity());
   }

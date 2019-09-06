@@ -15,6 +15,7 @@ import com.exercise.movie.movie.repository.MovieRepository;
 import com.exercise.movie.movie.rest.MovieGenresRestController;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,7 @@ public class MovieGenresRestControllerIT {
   }
 
   @Test
+  @Ignore
   public void getMovieGenres_existingMovieID_thenStatus200() throws Exception {
     String MOVIE_GENRE_TITLE = "Comedy";
 
